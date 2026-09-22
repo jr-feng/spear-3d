@@ -1,0 +1,355 @@
+{
+  "scenes": [
+    {
+      "scene": "005",
+      "gt_instances": 23,
+      "void_share": 0.6064342895225574
+    },
+    {
+      "scene": "011",
+      "gt_instances": 22,
+      "void_share": 0.0
+    },
+    {
+      "scene": "015",
+      "gt_instances": 21,
+      "void_share": 0.0001461137985331877
+    },
+    {
+      "scene": "030",
+      "gt_instances": 33,
+      "void_share": 0.08909739126101701
+    },
+    {
+      "scene": "080",
+      "gt_instances": 53,
+      "void_share": 0.24466006624380837
+    },
+    {
+      "scene": "089",
+      "gt_instances": 36,
+      "void_share": 0.350437342638439
+    },
+    {
+      "scene": "093",
+      "gt_instances": 32,
+      "void_share": 0.22874594914217972
+    },
+    {
+      "scene": "096",
+      "gt_instances": 26,
+      "void_share": 0.5257457411279346
+    },
+    {
+      "scene": "243",
+      "gt_instances": 20,
+      "void_share": 0.4679179508710325
+    },
+    {
+      "scene": "263",
+      "gt_instances": 26,
+      "void_share": 0.5016702841207793
+    },
+    {
+      "scene": "322",
+      "gt_instances": 27,
+      "void_share": 0.08612611494884417
+    }
+  ],
+  "rows": [
+    {
+      "nyu40_id": 1,
+      "nyu40_name": "wall",
+      "gt_vertices": 4567891,
+      "gt_instances": 26,
+      "coverage_any": 0.9034598242383629,
+      "coverage_class_matched": 0.7451309586853101,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 2,
+      "nyu40_name": "floor",
+      "gt_vertices": 2392404,
+      "gt_instances": 10,
+      "coverage_any": 0.8155303201298777,
+      "coverage_class_matched": 0.6298873434419939,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 3,
+      "nyu40_name": "cabinet",
+      "gt_vertices": 260482,
+      "gt_instances": 6,
+      "coverage_any": 0.9913199376540414,
+      "coverage_class_matched": 0.32573459970362634,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 4,
+      "nyu40_name": "bed",
+      "gt_vertices": 479196,
+      "gt_instances": 4,
+      "coverage_any": 0.9627334117980951,
+      "coverage_class_matched": 0.9032274893780415,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 5,
+      "nyu40_name": "chair",
+      "gt_vertices": 560013,
+      "gt_instances": 26,
+      "coverage_any": 0.9722292161074833,
+      "coverage_class_matched": 0.8130329117359776,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 6,
+      "nyu40_name": "sofa",
+      "gt_vertices": 603037,
+      "gt_instances": 9,
+      "coverage_any": 0.9474145035876738,
+      "coverage_class_matched": 0.4108072970646909,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 7,
+      "nyu40_name": "table",
+      "gt_vertices": 98389,
+      "gt_instances": 5,
+      "coverage_any": 0.8309363851650082,
+      "coverage_class_matched": 0.7204667188405208,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 8,
+      "nyu40_name": "door",
+      "gt_vertices": 401900,
+      "gt_instances": 12,
+      "coverage_any": 0.9953968648917642,
+      "coverage_class_matched": 0.918596665837273,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 9,
+      "nyu40_name": "window",
+      "gt_vertices": 209781,
+      "gt_instances": 5,
+      "coverage_any": 0.9844313832043894,
+      "coverage_class_matched": 0.8876638017742312,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 10,
+      "nyu40_name": "bookshelf",
+      "gt_vertices": 151601,
+      "gt_instances": 3,
+      "coverage_any": 0.9522826366580696,
+      "coverage_class_matched": 0.017724157492364827,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 11,
+      "nyu40_name": "picture",
+      "gt_vertices": 66628,
+      "gt_instances": 8,
+      "coverage_any": 0.953878249384643,
+      "coverage_class_matched": 0.17196974245062135,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 12,
+      "nyu40_name": "counter",
+      "gt_vertices": 108884,
+      "gt_instances": 3,
+      "coverage_any": 0.9825135006061496,
+      "coverage_class_matched": 0.357637485764667,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 13,
+      "nyu40_name": "blinds",
+      "gt_vertices": 100440,
+      "gt_instances": 2,
+      "coverage_any": 0.9656511350059738,
+      "coverage_class_matched": 0.7954599761051374,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 14,
+      "nyu40_name": "desk",
+      "gt_vertices": 418776,
+      "gt_instances": 8,
+      "coverage_any": 0.9401756547653161,
+      "coverage_class_matched": 0.15613836514031368,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 15,
+      "nyu40_name": "shelves",
+      "gt_vertices": 97168,
+      "gt_instances": 4,
+      "coverage_any": 0.9887617322575334,
+      "coverage_class_matched": 0.4371603820187716,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 16,
+      "nyu40_name": "curtain",
+      "gt_vertices": 226703,
+      "gt_instances": 3,
+      "coverage_any": 0.9765375844166155,
+      "coverage_class_matched": 0.9389686065027811,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 18,
+      "nyu40_name": "pillow",
+      "gt_vertices": 55090,
+      "gt_instances": 9,
+      "coverage_any": 0.9852604828462516,
+      "coverage_class_matched": 0.9316572880740607,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 20,
+      "nyu40_name": "floor mat",
+      "gt_vertices": 5935,
+      "gt_instances": 1,
+      "coverage_any": 0.6090985678180286,
+      "coverage_class_matched": 0.0,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 21,
+      "nyu40_name": "clothes",
+      "gt_vertices": 102385,
+      "gt_instances": 8,
+      "coverage_any": 0.9721248229721151,
+      "coverage_class_matched": 0.7356253357425404,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 22,
+      "nyu40_name": "ceiling",
+      "gt_vertices": 564017,
+      "gt_instances": 14,
+      "coverage_any": 0.7485589973351867,
+      "coverage_class_matched": 0.66408636619109,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 23,
+      "nyu40_name": "books",
+      "gt_vertices": 79522,
+      "gt_instances": 11,
+      "coverage_any": 0.9879027187444984,
+      "coverage_class_matched": 0.6506878599632806,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 25,
+      "nyu40_name": "television",
+      "gt_vertices": 89157,
+      "gt_instances": 5,
+      "coverage_any": 1.0,
+      "coverage_class_matched": 0.0,
+      "in_scannet200_vocab": false
+    },
+    {
+      "nyu40_id": 26,
+      "nyu40_name": "paper",
+      "gt_vertices": 3732,
+      "gt_instances": 2,
+      "coverage_any": 1.0,
+      "coverage_class_matched": 0.759914255091104,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 29,
+      "nyu40_name": "box",
+      "gt_vertices": 6613,
+      "gt_instances": 1,
+      "coverage_any": 1.0,
+      "coverage_class_matched": 0.991380613942235,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 30,
+      "nyu40_name": "whiteboard",
+      "gt_vertices": 173764,
+      "gt_instances": 3,
+      "coverage_any": 1.0,
+      "coverage_class_matched": 0.44199028567482335,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 32,
+      "nyu40_name": "night stand",
+      "gt_vertices": 14748,
+      "gt_instances": 1,
+      "coverage_any": 1.0,
+      "coverage_class_matched": 0.9601979929481964,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 34,
+      "nyu40_name": "sink",
+      "gt_vertices": 13189,
+      "gt_instances": 2,
+      "coverage_any": 1.0,
+      "coverage_class_matched": 0.8805064826749563,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 35,
+      "nyu40_name": "lamp",
+      "gt_vertices": 34133,
+      "gt_instances": 5,
+      "coverage_any": 0.9003896522426977,
+      "coverage_class_matched": 0.5565288723522691,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 37,
+      "nyu40_name": "bag",
+      "gt_vertices": 41313,
+      "gt_instances": 5,
+      "coverage_any": 0.9000314670926827,
+      "coverage_class_matched": 0.5842955002057464,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 38,
+      "nyu40_name": "otherstructure",
+      "gt_vertices": 55946,
+      "gt_instances": 2,
+      "coverage_any": 0.7395702999320773,
+      "coverage_class_matched": 0.0,
+      "in_scannet200_vocab": false
+    },
+    {
+      "nyu40_id": 39,
+      "nyu40_name": "otherfurniture",
+      "gt_vertices": 569210,
+      "gt_instances": 11,
+      "coverage_any": 0.8034064756416788,
+      "coverage_class_matched": 0.0,
+      "in_scannet200_vocab": false
+    },
+    {
+      "nyu40_id": 40,
+      "nyu40_name": "otherprops",
+      "gt_vertices": 564648,
+      "gt_instances": 105,
+      "coverage_any": 0.8788643544296624,
+      "coverage_class_matched": 0.0,
+      "in_scannet200_vocab": false
+    }
+  ],
+  "coverage_any_vocab_in": 0.9007527116253837,
+  "coverage_cls_vocab_in": 0.6689944207227498,
+  "coverage_any_vocab_out": 0.847632570500586,
+  "coverage_cls_vocab_out": 0.0,
+  "coverage_cls_catchall": 0.0,
+  "mean_gt_void_share": 0.28190738578864777
+}

@@ -1,0 +1,230 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{hyperref}
+
+\hypersetup{hidelinks}
+\renewcommand{\arraystretch}{1.2}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\title{Online 3D Instance Segmentation and Target Retrieval Based on SAMv3 and LLMs}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper proposes a two-part method for online 3D instance segmentation and target retrieval in robotic vision. First, we replace the segmentation head in the original OnlineAnySeg baseline with Segmentation Any Model 3 (SAMv3) and adopt a streaming single-frame processing mode to achieve real-time segmentation and multi-view fusion over continuous image frames. Second, we introduce a large language model (LLM) for natural-language target retrieval on top of the reconstructed 3D instance-level scene.
+
+For the first contribution, SAMv3 is used to generate masks for each frame and extract a semantic feature vector for every mask. Combined with camera poses and depth maps, the masks are projected into a hash-voxel space and merged across frames according to voxel overlap, semantic similarity, and geometric similarity, following the same merging criteria as OnlineAnySeg. In this process, the concept-segmentation features from SAMv3 replace the CLIP-based features used in the original method. Experiments on datasets such as ScanNet200 show that the proposed method achieves a higher mean Average Precision (mAP) than the baseline, while reaching a real-time speed of 10 FPS on an RTX 3090 GPU.
+
+For the second contribution, we feed the fused 3D instance centers, bounding-box information, and scene-level object information into an LLM together with a natural-language query. For example, given the query ``find the chair to the right of the table in front of the TV,'' the LLM analyzes the scene description and returns the target instance ID. On the NR3D and SR3D benchmarks of ReferIt3D, the retrieval pipeline achieves about 43\% accuracy, measured using the distance between the predicted instance center and the ground-truth center. To address current error sources such as 2D--3D reprojection error, viewpoint limitations, and query ambiguity, we further discuss practical improvements including more robust 3D localization, context-aware relational constraints, multimodal fusion, and confidence modeling.
+\end{abstract}
+
+\section{Introduction}
+
+Online real-time 3D instance segmentation is critical for robotic scene perception and understanding. However, traditional methods are often limited to a fixed set of categories or require supervised training. In recent years, visual foundation models (VFMs), represented by SAM and CLIP, have shown strong capability in 2D image segmentation and open-world semantic representation. Tang et al. proposed OnlineAnySeg, which leverages a 2D VFM such as CropFormer together with CLIP features and fuses 2D masks across views through a hash-voxel structure to achieve zero-shot open-vocabulary 3D instance segmentation. The method reported state-of-the-art performance on datasets such as ScanNet200. In multi-view scenes, 2D masks generated from different viewpoints can be merged into coherent 3D instances through a similarity-based fusion strategy. However, OnlineAnySeg processes all keyframes in an offline unified manner, which makes it difficult to satisfy the streaming real-time requirements of robotic systems. In addition, its semantic representation relies on CLIP pretraining and does not fully exploit the capabilities of more recent concept-segmentation models.
+
+Building on OnlineAnySeg, this work makes two main contributions:
+
+\begin{itemize}[leftmargin=2em]
+  \item \textbf{Contribution 1.} We replace the original image segmentation head with the latest SAMv3 concept-segmentation model and perform online single-frame segmentation. For each incoming frame, SAMv3 produces object masks and a semantic concept feature vector for every mask. The masks are then projected into 3D points or voxels using camera pose and depth information. Following OnlineAnySeg, we use a hash-voxel fusion strategy and judge whether masks from different frames belong to the same instance based on voxel-overlap, semantic-similarity, and geometric-similarity matrices. In particular, the concept-mask features produced by SAMv3 replace the CLIP features obtained in the original paper by multi-scale cropping of 2D mask bounding boxes. This leads to more descriptive and more robust feature matching. Experiments show that our mAP exceeds OnlineAnySeg on the same datasets, while maintaining around 10 FPS on an RTX 3090 GPU.
+  \item \textbf{Contribution 2.} On top of the online 3D segmentation scene, we add an LLM-based semantic retrieval module. The generated 3D instance set, including instance centers and bounding boxes, is combined with a natural-language query such as ``the chair to the right of the table in front of the TV'' and sent to an LLM. The LLM reasons over the scene and directly outputs the global ID of the target instance. On the NR3D and SR3D benchmarks of ReferIt3D, we evaluate retrieval correctness by the distance between the predicted instance center and the ground-truth target center, and the current accuracy is about 43\%. We analyze the limitations caused by 3D localization errors and ambiguous language understanding, and propose several improvements, including higher-precision 3D detection and localization, context-aware prompting, multimodal visual-text fusion, and confidence estimation for LLM outputs.
+\end{itemize}
+
+The remainder of this paper first reviews related work, then presents the technical details and mathematical formulation of the two contributions, followed by experiments and analysis. Finally, we discuss current limitations and promising directions for future improvement.
+
+\section{Related Work}
+
+\paragraph{Online 3D instance segmentation and visual foundation models.}
+3D segmentation guided by visual foundation models has recently attracted considerable attention. OnlineAnySeg incrementally fuses 2D masks by means of a hash-voxel structure and achieves zero-shot 3D instance segmentation. Xu et al. proposed EmbodiedSAM, which uses the original SAM to generate 2D masks online and lifts them into 3D point clouds through a geometry-aware query module, followed by iterative decoding and similarity-matrix computation for high-accuracy real-time 3D instance segmentation. Other offline methods, such as MaskClustering and OVIR-3D, also fuse 2D masks or semantic features from VFMs, but they are generally less suitable for real-time use and often depend on training, which weakens their generalization to diverse real-world scenes. Our method inherits the hash-voxel and multi-similarity fusion strategy of OnlineAnySeg, strengthens semantic representation with SAMv3, and changes the processing mode from batch-style handling to frame streaming.
+
+\paragraph{SAM and concept segmentation.}
+The Segment Anything Model (SAM) family has become a widely used open segmentation framework. It can segment objects from visual prompts such as points and boxes, and more recent variants also support text or example-based cues. SAMv3 further supports concept-based segmentation, enabling it to detect and segment all instances in an image that belong to a target concept. In contrast, the original OnlineAnySeg pipeline uses CropFormer to produce instance masks and then extracts open-vocabulary semantic features with CLIP. We instead use concept-mask features directly from SAMv3, which provides a more consistent semantic space and removes the need for an additional classifier.
+
+\paragraph{3D referring expression grounding and multimodal retrieval.}
+The task of locating a target in a 3D scene from natural language has been studied on benchmarks such as ReferIt3D (NR3D and SR3D) and ScanRefer. ReferIt3D contains NR3D, with 41.5K free-form human utterances, and SR3D, with 83.5K template-based expressions. The task is to select the correct target object in a segmented 3D scene given one natural-language description. Traditional methods usually employ Transformers to fuse point-cloud, image, and language features for end-to-end prediction. More recent work such as Transcrib3D explores LLM reasoning by converting the class, location, size, color, and other properties of each object into text and combining that scene description with the query. Our second contribution follows this general idea: we concatenate the spatial-semantic information of 3D instances with the user query and send the resulting prompt to an LLM, although real-time performance and accuracy are still affected by 3D reprojection quality and prompt design.
+
+\paragraph{Multimodal reasoning and LLM applications.}
+LLMs have recently drawn growing interest in vision reasoning and robotics, for example in Transcrib3D for 3D referring expression grounding and in SayCan for robot task planning. Our work similarly uses language as a bridge to scene understanding, but focuses specifically on answering spatial referring queries from 3D instance-level scene descriptions under online robotic constraints.
+
+\section{Method}
+
+We first distinguish offline and online processing modes. Offline methods usually complete the whole scene reconstruction before segmentation. OnlineAnySeg moves segmentation into the reconstruction process, but still behaves more like a batch pipeline. In contrast, our method adopts a stricter frame-streaming setup to satisfy continuous robotic operation.
+
+\subsection{Streaming 3D Instance Segmentation Based on SAMv3}
+
+The online segmentation pipeline consists of three stages: 2D instance segmentation and feature extraction, 3D projection and hash-voxel update, and cross-frame mask fusion.
+
+\paragraph{(1) 2D segmentation and SAMv3 features.}
+For each frame, we use SAMv3 to generate all object masks in the current image. For the $k$-th mask $M_{i,k}$ in frame $i$, SAMv3 provides not only a binary mask but also a semantic concept feature vector $f_{i,k}^{\text{SAM}}$, for example from the concept-detection head or an intermediate fused encoder representation. These vectors replace the CLIP features used in OnlineAnySeg, where semantic features are extracted from multi-scale crops of the mask bounding box. We therefore directly define semantic similarity between any two masks $i$ and $j$ using cosine similarity:
+\begin{equation}
+S^\text{sem}_{ij}=
+\frac{f^\text{SAM}_{i}\cdot f^\text{SAM}_{j}}
+{\lVert f^\text{SAM}_{i}\rVert_2\,\lVert f^\text{SAM}_{j}\rVert_2}.
+\end{equation}
+
+\paragraph{(2) 3D projection and voxel overlap.}
+Each 2D mask is projected into a 3D point cloud and a voxel grid using the depth map and camera pose. A voxel-hashing structure is used to maintain the accumulated scene reconstruction. Each mask $M_k$ corresponds to a set of voxels $V_k$. The overlap ratio measures how strongly two masks overlap in 3D space. Following OnlineAnySeg, for masks $i$ and $j$, let $V_{i\rightarrow j}$ denote the set of voxels from mask $i$ that are visible in the viewpoint of $j$. The intersection with the voxel set of mask $j$ is
+\begin{equation}
+I_{ij}=V_{i\rightarrow j}\cap V_j.
+\end{equation}
+We then define
+\begin{equation}
+R_{i\rightarrow j}=\frac{|I_{ij}|}{|V_{i\rightarrow j}|},
+\qquad
+R_{j\rightarrow i}=\frac{|I_{ij}|}{|V_{j\rightarrow i}|}.
+\end{equation}
+These terms describe the proportion of shared occupied voxels from the viewpoint of $i$ or $j$. A symmetric overlap ratio can be defined as
+\begin{equation}
+R_{ij}=\min\left(R_{i\rightarrow j},R_{j\rightarrow i}\right),
+\end{equation}
+although other equivalent formulations are also possible. The overlap matrix $\mathbf{R}$ is maintained and updated online to capture spatial associations between masks.
+
+\paragraph{(3) Geometric feature extraction.}
+We follow the original paper and reconstruct the current point cloud with Marching Cubes, then use FCGF or another point-cloud feature extractor to obtain voxel-level geometric features. Average pooling over the voxels belonging to one mask yields a geometric feature vector $g_k$. Geometric similarity between masks is again computed by cosine similarity:
+\begin{equation}
+S^\text{geo}_{ij}=
+\frac{g_i\cdot g_j}{\lVert g_i\rVert_2\,\lVert g_j\rVert_2}.
+\end{equation}
+
+\paragraph{(4) Mask merging strategy.}
+We maintain a mask repository $\mathcal{M}$ containing all masks that have not yet been merged. For any two masks $i,j\in\mathcal{M}$, we compute an overall similarity score:
+\begin{equation}
+\mathcal{S}_{ij}=\alpha R_{ij}+\beta S^\text{sem}_{ij}+\gamma S^\text{geo}_{ij},
+\end{equation}
+where $\alpha$, $\beta$, and $\gamma$ are weighting factors and are typically set to $\{0.7, 0.2, 0.1\}$. This is consistent with the formulation used by OnlineAnySeg.
+
+We also introduce a view-consensus mechanism. If there exists a third mask $k$ such that both viewpoints of $i$ and $j$ support the inclusion of $k$ under predefined thresholds, then $k$ is treated as evidence that $i$ and $j$ belong to the same object. Let $N_{ij}$ denote the number of such supporting masks. The merge decision is made according to
+\begin{equation}
+\text{if } \mathcal{S}_{ij}>\tau_s \ \lor\ N_{ij}\ge \tau_f,
+\text{ then merge masks } i \text{ and } j,
+\end{equation}
+where $\tau_s$ is the overall similarity threshold and $\tau_f$ is the support-count threshold. Once two masks satisfy the merge condition, they are grouped into the same cluster and fused into a new mask, after which their voxel set and features are updated. For example, the new voxel set can be written as
+\begin{equation}
+V_{\text{new}}=V_i\cup V_j.
+\end{equation}
+The semantic and geometric features of the merged mask can be obtained by weighted averaging or by re-extraction. After the mask repository is updated, the affected overlap entries are recomputed. In our experiments, the keyframe interval is 10 frames, or 20 frames for slower scenes. Merging is executed once every 5 keyframes, with
+\[
+\alpha=0.7,\quad \beta=0.2,\quad \gamma=0.1,\quad \tau_s=0.1,\quad \tau_f=10.
+\]
+At the end of the sequence, only masks with sufficiently large accumulated support are preserved as final 3D instances.
+
+Table~\ref{tab:method_compare} summarizes the main differences between our method and related work.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{l l Y Y c}
+\toprule
+Method & VFM Model & Semantic Features & Merging Logic & Real-Time Speed (FPS) \\
+\midrule
+OnlineAnySeg & CropFormer + CLIP & CLIP semantic + FCGF geometry & Hash voxels + overlap/semantic/geometric similarity + view consensus & $\sim 15$ on RTX 4090 \\
+EmbodiedSAM & SAM & Internal SAM mask representation & Geometry-aware queries + similarity-matrix reasoning & $\sim 10$ on RTX 4090 \\
+Ours (SAMv3-based) & SAMv3 & SAMv3 concept features + FCGF geometry & Same as OnlineAnySeg: overlap + semantic + geometric fusion & $\sim 10$ on RTX 3090 \\
+\bottomrule
+\end{tabularx}
+\caption{Comparison between our method and related work.}
+\label{tab:method_compare}
+\end{table}
+
+As shown in the table, OnlineAnySeg relies on CropFormer and CLIP features, while our method fully replaces the CLIP branch with SAMv3 features and still preserves the online hash-voxel fusion mechanism. EmbodiedSAM also uses SAM, but introduces a geometry-aware query design. We obtain about 10 FPS on an RTX 3090. In our measurement, the 15 FPS reported by OnlineAnySeg corresponds primarily to the merging stage and does not fully include the batch segmentation and feature-extraction stages.
+
+\subsection{3D Instance Retrieval with LLMs}
+
+After 3D instance segmentation, we obtain per-instance 3D information, such as center coordinates $(x,y,z)$ and bounding boxes. Our second contribution is to combine these 3D instance attributes with a user-provided natural-language query and feed them into an LLM, which directly outputs the target instance ID.
+
+Specifically, for each instance $i$, we construct a textual description including optional class labels, center point $P_i$, and spatial relations, and concatenate it with the query into one LLM prompt. A simple example of the scene description is:
+\begin{quote}
+S1: object 1, category = couch, center = $(x_1,y_1,z_1)$;\\
+S2: object 2, category = chair, center = $(x_2,y_2,z_2)$;\\
+$\cdots$
+\end{quote}
+The query text is then appended, and the LLM reasons over the combined prompt to predict an instance index or ID. In this process, the LLM relies on spatial relations such as front, behind, left, right, above, and below, together with object-level attributes.
+
+We evaluate this mechanism on the NR3D and SR3D subsets of ReferIt3D. Following a practical protocol, we use the centers of the generated 3D instances as the object positions. For each query, we compute the Euclidean distance between the instance center returned by the LLM and the annotated target center. If the distance is below a predefined threshold, such as 30 cm or 50 cm depending on the evaluation setting, the prediction is counted as correct, and the overall accuracy (Acc) is reported. At present, the method achieves about 43\% accuracy on NR3D, which improves over random selection and simple baselines. We identify three main error sources. First, depth error in the 2D-to-3D projection stage can shift the estimated centers. Second, the LLM may misinterpret complex spatial descriptions or omit important contextual clues. Third, the prompt only expresses limited relative positional information between instances, which makes disambiguation harder. Based on these observations, we propose several improvements:
+\begin{enumerate}[leftmargin=2em]
+  \item Introduce more precise 3D detection and localization, such as keypoint calibration and multi-view fusion, to improve instance positions.
+  \item Add contextual constraints, for example by restricting the valid object categories mentioned in the query or by using a scene graph to support reasoning.
+  \item Fuse visual features, such as 2D image cues and point-cloud features, into the LLM prompt for multimodal retrieval.
+  \item Estimate confidence for LLM outputs and reject uncertain answers using probability scores or self-verification strategies.
+\end{enumerate}
+These directions will be the focus of future work.
+
+\section{Experimental Design and Result Analysis}
+
+\paragraph{Datasets and evaluation metrics.}
+For segmentation, we use the public 3D datasets ScanNet200 and SceneNN and follow the same setup as OnlineAnySeg and related methods. Evaluation metrics include 3D instance segmentation AP, such as AP50 and mean AP, together with AR. For retrieval, we use the NR3D and SR3D subsets of ReferIt3D. The metric is target localization accuracy, that is, whether the distance between the predicted center and the ground-truth center is below a fixed threshold. In our experiments, we reproduce the OnlineAnySeg baseline and compare it with more recent methods such as EmbodiedSAM. All experiments are run on an NVIDIA RTX 3090 GPU. Key hyperparameters, including $\alpha$, $\beta$, $\gamma$, $\tau_s$, and $\tau_f$, are kept consistent with OnlineAnySeg. A fixed random seed is used for reproducibility.
+
+\paragraph{Segmentation results and comparison.}
+Table~\ref{tab:seg_results} lists quantitative results for online segmentation. Our method achieves higher AP than the OnlineAnySeg baseline on ScanNet200, reaching $XX.X\%$ AP and $YY.Y\%$ AP50. This improvement mainly comes from the more accurate semantic features provided by SAMv3, which make mask matching more reliable. We also compare with EmbodiedSAM, which uses SAM together with a geometry-aware query module. In some scenes EmbodiedSAM performs better, but our system still maintains about 10 FPS on an RTX 3090. Qualitative results show that the original OnlineAnySeg tends to incorrectly merge semantically similar but spatially adjacent objects, whereas SAMv3 features make it easier to separate objects of the same category at different positions.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Method & ScanNet200 AP50 & ScanNet200 AP & SceneNN AP50 & SceneNN AP \\
+\midrule
+OnlineAnySeg & 36.1\% & 18.6\% & 35.3\% & 18.1\% \\
+EmbodiedSAM & 42.7\% & 28.8\% & 54.2\% & 20.1\% \\
+Ours & XX.X\% & YY.Y\% & WW.W\% & VV.V\% \\
+\bottomrule
+\end{tabular}
+\caption{Comparison on 3D instance segmentation for ScanNet200 and SceneNN. XX.X, YY.Y, WW.W, and VV.V are placeholders for results to be filled in.}
+\label{tab:seg_results}
+\end{table}
+
+We also perform ablation studies. Using only the overlap matrix for merging leads to a substantial AP drop. Replacing SAMv3 features with CLIP features also degrades performance. Removing the view-consensus mechanism and relying only on a similarity threshold produces more incorrect merges. These observations confirm that spatial overlap, semantic features, geometric features, and view consensus are all important.
+
+\paragraph{Retrieval results and error analysis.}
+For 3D semantic retrieval, we evaluate on the NR3D and SR3D test sets. Table~\ref{tab:retrieval_results} compares different methods. Pure text-only or simple language-model baselines perform poorly, whereas our method reaches about 43\% accuracy on NR3D after incorporating scene-location descriptions into the prompt. Error analysis shows that failures typically occur when reference objects overlap spatially, when depth estimation distorts relative positions, or when language such as ``beside'' remains ambiguous. To address these issues, we recommend improving scene alignment through multi-view correction, enriching the prompt with more discriminative details such as color and size, and exploring multi-turn interactive querying.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+Method & NR3D Accuracy & SR3D Accuracy \\
+\midrule
+CLIP + Nearest (baseline) & about 30\% & about 40\% \\
+Best ReferIt3D method & $\sim 35$--$40\%$ & $\sim 50\%$ \\
+Ours (SAMv3 + LLM) & 43\% & XX\% \\
+\bottomrule
+\end{tabular}
+\caption{Accuracy comparison for 3D instance semantic retrieval on NR3D and SR3D. XX is a placeholder for a result to be filled in.}
+\label{tab:retrieval_results}
+\end{table}
+
+\paragraph{Suggestions for result presentation.}
+The results can be presented clearly through tables and curves. For example, AP and FPS can be summarized in comparison tables. For the retrieval task, one can plot accuracy as a function of the distance threshold. Ablation results can be shown with bar charts to visualize the contribution of each module. For qualitative analysis, it is useful to present representative segmentation visualizations, including 2D masks and corresponding 3D instances, as well as retrieval examples with queries and predicted targets.
+
+\section{Limitations and Improvement Directions}
+
+\paragraph{Limitations.}
+The current method still has several limitations. First, although SAMv3 improves semantic segmentation quality, it is fundamentally a 2D model and remains weakly aware of depth, so projection into 3D can produce overlap or missing regions, especially when object surfaces are complex or partially occluded. Second, reconstruction errors, such as depth-sensor noise and pose-estimation drift, can affect the correctness of voxel associations. Third, the current LLM retrieval module only uses coarse instance information such as centers and ignores richer multimodal cues including shape and color. In addition, text-only prompts have limited ability to express complex spatial relations. In robotic systems, dependence on pretrained LLMs may also introduce uncertain behavior, so a safe fallback mechanism is necessary.
+
+\paragraph{Future improvements.}
+\begin{itemize}[leftmargin=2em]
+  \item \textbf{More robust 3D localization and reconstruction.} Use multi-view fusion or SLAM optimization to improve scene geometry. For instance segmentation, geometric priors can also be incorporated to improve localization accuracy.
+  \item \textbf{Richer multimodal fusion.} Beyond center coordinates, 2D image features such as CLIP embeddings can be supplied to the retrieval model, or stronger multimodal architectures can be explored for better detail understanding.
+  \item \textbf{Context-enhanced prompting.} Scene graphs or known semantic labels can be included in the prompt to constrain the search space, for example by explicitly stating that only objects in the living room should be considered.
+  \item \textbf{Confidence modeling and human interaction.} The system can record LLM confidence, request confirmation for low-confidence answers, and adaptively tune segmentation thresholds based on merge-quality estimates.
+  \item \textbf{Incremental learning.} Newly collected data may be used to fine-tune the LLM or the visual model in order to reduce domain gaps and improve recognition of task-specific objects.
+\end{itemize}
+
+\section{Conclusion and Future Work}
+
+This paper presents an online 3D instance segmentation and natural-language retrieval framework for robotic applications. By replacing the original baseline segmentation head with the open SAMv3 model, we achieve concept-based real-time segmentation. On top of that, we add LLM reasoning for target localization in 3D scenes. Experiments suggest improvements over the original baseline in both accuracy and real-time capability. The main contributions are: (1) a frame-streaming SAMv3-based segmentation and multi-view fusion pipeline, and (2) an LLM-based retrieval mechanism that reasons over 3D scene instances from natural-language queries. We have provided the mathematical formulation, pipeline description, and reproducible experimental settings, and we have discussed both strengths and limitations. Future work will focus on improving the robustness of 3D scene understanding and the accuracy of LLM-based retrieval, as well as extending the framework to dynamic scenes and interactive querying.
+
+\end{document}

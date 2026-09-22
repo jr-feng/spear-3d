@@ -1,0 +1,25 @@
+# ============================================================
+# L0 黑盒基线（LLM.py）
+# 数据集 SR3D | 模型 qwen3 | 模式 n（n=黑盒直出）
+# 优先级：命令行参数 > 本配置文件 > 代码默认值
+# ============================================================
+llm:
+  base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  api_key: "sk-e06c09a335264712806f246dc09025de"
+  model: "qwen3.5-plus"
+
+data:
+  gt_path: "./sr3d/sr3d_gt_bboxes_matched.json"
+  oas_root: "output_test/nr3d"   # SR3D 与 NR3D 共用同一批 ScanNet 重建实例
+  pred_name: "pred_bboxes.json"
+
+output:
+  out: "ground_ral/sr3d/qwen3_n_outputs.jsonl"
+  metrics_out: "ground_ral/sr3d/qwen3_n_metrics.json"
+
+eval:
+  scene: null                  # 只处理单个 scene_id（null = 全部）
+  max: 100                    # 每个实验最多跑 100 条（快速验证）
+  print_every: 25
+  corr_thresh: 0.5             # SelAcc/Coverage 对应规则：类别一致 + 质心距离 <= 该值(米)
+

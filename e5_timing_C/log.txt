@@ -1,0 +1,15 @@
+[09/10 10:03:28] ========== Start scene: scene0432_00 ==========
+[09/10 10:05:14] Scene scene0432_00 finished successfully. FPS: 5.50 (510 frames in 92.76s)
+[09/10 10:05:14] [E5-OAS] scene0432_00: frames=510 elapsed=92.76s FPS=5.498 | integrate 20.26s/51 (avg 397 ms, 2.52 frame/s), seg(CropFormer+feat) 53.47s/51 (avg 1049 ms, 0.95 frame/s), merge 6.79s/10 (avg 679 ms, 1.47 merge/s), other 12.23s
+[09/10 10:05:14] ========== Start scene: scene0527_00 ==========
+[09/10 10:07:42] Scene scene0527_00 finished successfully. FPS: 4.82 (670 frames in 138.93s)
+[09/10 10:07:42] [E5-OAS] scene0527_00: frames=670 elapsed=138.93s FPS=4.823 | integrate 26.61s/67 (avg 397 ms, 2.52 frame/s), seg(CropFormer+feat) 92.34s/67 (avg 1378 ms, 0.73 frame/s), merge 7.20s/13 (avg 554 ms, 1.81 merge/s), other 12.79s
+[09/10 10:07:42] ========== Start scene: scene0559_00 ==========
+[09/10 10:10:00] Scene scene0559_00 finished successfully. FPS: 4.41 (570 frames in 129.27s)
+[09/10 10:10:00] [E5-OAS] scene0559_00: frames=570 elapsed=129.27s FPS=4.409 | integrate 27.13s/57 (avg 476 ms, 2.10 frame/s), seg(CropFormer+feat) 80.65s/57 (avg 1415 ms, 0.71 frame/s), merge 10.26s/11 (avg 932 ms, 1.07 merge/s), other 11.24s
+[09/10 10:10:00] ========== Start scene: scene0494_00 ==========
+[09/10 10:12:01] Scene scene0494_00 finished successfully. FPS: 6.60 (740 frames in 112.08s)
+[09/10 10:12:01] [E5-OAS] scene0494_00: frames=740 elapsed=112.08s FPS=6.602 | integrate 27.59s/74 (avg 373 ms, 2.68 frame/s), seg(CropFormer+feat) 64.94s/74 (avg 878 ms, 1.14 frame/s), merge 5.91s/14 (avg 422 ms, 2.37 merge/s), other 13.64s
+[09/10 10:12:01] ========== Start scene: scene0689_00 ==========
+[09/10 10:14:54] Scene scene0689_00 finished successfully. FPS: 5.25 (860 frames in 163.72s)
+[09/10 10:14:54] [E5-OAS] scene0689_00: frames=860 elapsed=163.72s FPS=5.253 | integrate 38.99s/86 (avg 453 ms, 2.21 frame/s), seg(CropFormer+feat) 94.51s/86 (avg 1099 ms, 0.91 frame/s), merge 22.22s/17 (avg 1307 ms, 0.77 merge/s), other 8.01s

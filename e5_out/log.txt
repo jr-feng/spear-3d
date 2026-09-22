@@ -1,0 +1,19 @@
+2026-09-08 03:07:41,577 INFO: Arguments: Namespace(input=None, config='./config/scannet_test_1024.yaml', device='cuda:0', output_dir='/home/OnlineAnySeg/e5_out', scans_root='/home/OnlineAnySeg/data_eval/scannet', merge_gpu=0, failed_log='/home/OnlineAnySeg/e5_out/failed_scenes.log', scenes=['scene0011_00', 'scene0015_00', 'scene0019_00'], arm='A', feature_source='text')
+2026-09-08 03:07:41,597 INFO: ========== Start scene: scene0011_00 ==========
+2026-09-08 03:16:41,713 INFO: Scene scene0011_00 finished successfully. FPS (exclude API transfer): 5.57 (2370 frames in 425.47s, removed 86.35s transfer over 237 calls) | E5 per-stage: SAM3-model 94.54s/237 calls (avg 399 ms), fusion(insert_seg_frame) 128.48s/237 (avg 542 ms), merge(update_masks) 131.42s/47 (avg 2796 ms), other 71.03s
+2026-09-08 03:16:41,748 INFO: ========== Start scene: scene0015_00 ==========
+2026-09-08 03:24:13,432 INFO: Scene scene0015_00 finished successfully. FPS (exclude API transfer): 5.64 (1970 frames in 349.39s, removed 74.47s transfer over 197 calls) | E5 per-stage: SAM3-model 54.71s/197 calls (avg 278 ms), fusion(insert_seg_frame) 135.07s/197 (avg 686 ms), merge(update_masks) 95.50s/39 (avg 2449 ms), other 64.11s
+2026-09-08 03:24:13,458 INFO: ========== Start scene: scene0019_00 ==========
+2026-09-08 03:25:42,264 ERROR: [Failed] Scene scene0019_00: [Errno 32] Broken pipe
+2026-09-08 03:28:21,136 INFO: Arguments: Namespace(input=None, config='./config/scannet_test_1024.yaml', device='cuda:0', output_dir='/home/OnlineAnySeg/e5_out', scans_root='/home/OnlineAnySeg/data_eval/scannet', merge_gpu=0, failed_log='/home/OnlineAnySeg/e5_out/failed_scenes.log', scenes=['scene0432_00', 'scene0527_00', 'scene0559_00', 'scene0494_00', 'scene0689_00'], arm='A', feature_source='text')
+2026-09-08 03:28:21,162 INFO: ========== Start scene: scene0432_00 ==========
+2026-09-08 03:29:54,039 INFO: Scene scene0432_00 finished successfully. FPS (exclude API transfer): 11.22 (510 frames in 45.46s, removed 18.43s transfer over 51 calls) | E5 per-stage: SAM3-model 11.01s/51 calls (avg 216 ms), fusion(insert_seg_frame) 13.66s/51 (avg 268 ms), merge(update_masks) 4.85s/10 (avg 485 ms), other 15.94s
+2026-09-08 03:29:54,055 INFO: ========== Start scene: scene0527_00 ==========
+2026-09-08 03:31:42,962 INFO: Scene scene0527_00 finished successfully. FPS (exclude API transfer): 10.61 (670 frames in 63.18s, removed 21.14s transfer over 67 calls) | E5 per-stage: SAM3-model 21.38s/67 calls (avg 319 ms), fusion(insert_seg_frame) 18.79s/67 (avg 280 ms), merge(update_masks) 4.27s/13 (avg 328 ms), other 18.74s
+2026-09-08 03:31:42,977 INFO: ========== Start scene: scene0559_00 ==========
+2026-09-08 03:33:20,647 INFO: Scene scene0559_00 finished successfully. FPS (exclude API transfer): 10.50 (570 frames in 54.26s, removed 19.94s transfer over 57 calls) | E5 per-stage: SAM3-model 14.25s/57 calls (avg 250 ms), fusion(insert_seg_frame) 18.81s/57 (avg 330 ms), merge(update_masks) 5.01s/11 (avg 455 ms), other 16.20s
+2026-09-08 03:33:20,661 INFO: ========== Start scene: scene0494_00 ==========
+2026-09-08 03:35:19,690 INFO: Scene scene0494_00 finished successfully. FPS (exclude API transfer): 10.83 (740 frames in 68.33s, removed 27.09s transfer over 74 calls) | E5 per-stage: SAM3-model 18.19s/74 calls (avg 246 ms), fusion(insert_seg_frame) 24.64s/74 (avg 333 ms), merge(update_masks) 4.93s/14 (avg 352 ms), other 20.56s
+2026-09-08 03:35:19,704 INFO: ========== Start scene: scene0689_00 ==========
+2026-09-08 03:37:28,405 INFO: Scene scene0689_00 finished successfully. FPS (exclude API transfer): 10.98 (860 frames in 78.35s, removed 27.34s transfer over 86 calls) | E5 per-stage: SAM3-model 21.05s/86 calls (avg 245 ms), fusion(insert_seg_frame) 31.01s/86 (avg 361 ms), merge(update_masks) 12.12s/17 (avg 713 ms), other 14.17s
+2026-09-08 03:37:28,422 WARNING: eval_log.csv not found at /home/OnlineAnySeg/e5_out/eval_log.csv, skip appending FPS.

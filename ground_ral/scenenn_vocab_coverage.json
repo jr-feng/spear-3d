@@ -1,0 +1,304 @@
+{
+  "n_scenes": 12,
+  "rows": [
+    {
+      "nyu40_id": 1,
+      "nyu40_name": "wall",
+      "instances": 31,
+      "inst_share": 0.0852,
+      "vertices": 5112349,
+      "vert_share": 0.3414,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 2,
+      "nyu40_name": "floor",
+      "instances": 11,
+      "inst_share": 0.0302,
+      "vertices": 2854022,
+      "vert_share": 0.1906,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 3,
+      "nyu40_name": "cabinet",
+      "instances": 6,
+      "inst_share": 0.0165,
+      "vertices": 260482,
+      "vert_share": 0.0174,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 4,
+      "nyu40_name": "bed",
+      "instances": 4,
+      "inst_share": 0.011,
+      "vertices": 479196,
+      "vert_share": 0.032,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 5,
+      "nyu40_name": "chair",
+      "instances": 34,
+      "inst_share": 0.0934,
+      "vertices": 735338,
+      "vert_share": 0.0491,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 6,
+      "nyu40_name": "sofa",
+      "instances": 10,
+      "inst_share": 0.0275,
+      "vertices": 624761,
+      "vert_share": 0.0417,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 7,
+      "nyu40_name": "table",
+      "instances": 6,
+      "inst_share": 0.0165,
+      "vertices": 130234,
+      "vert_share": 0.0087,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 8,
+      "nyu40_name": "door",
+      "instances": 13,
+      "inst_share": 0.0357,
+      "vertices": 519552,
+      "vert_share": 0.0347,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 9,
+      "nyu40_name": "window",
+      "instances": 5,
+      "inst_share": 0.0137,
+      "vertices": 209781,
+      "vert_share": 0.014,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 10,
+      "nyu40_name": "bookshelf",
+      "instances": 3,
+      "inst_share": 0.0082,
+      "vertices": 151601,
+      "vert_share": 0.0101,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 11,
+      "nyu40_name": "picture",
+      "instances": 8,
+      "inst_share": 0.022,
+      "vertices": 66628,
+      "vert_share": 0.0044,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 12,
+      "nyu40_name": "counter",
+      "instances": 3,
+      "inst_share": 0.0082,
+      "vertices": 108884,
+      "vert_share": 0.0073,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 13,
+      "nyu40_name": "blinds",
+      "instances": 2,
+      "inst_share": 0.0055,
+      "vertices": 100440,
+      "vert_share": 0.0067,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 14,
+      "nyu40_name": "desk",
+      "instances": 13,
+      "inst_share": 0.0357,
+      "vertices": 590579,
+      "vert_share": 0.0394,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 15,
+      "nyu40_name": "shelves",
+      "instances": 4,
+      "inst_share": 0.011,
+      "vertices": 97168,
+      "vert_share": 0.0065,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 16,
+      "nyu40_name": "curtain",
+      "instances": 3,
+      "inst_share": 0.0082,
+      "vertices": 226703,
+      "vert_share": 0.0151,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 18,
+      "nyu40_name": "pillow",
+      "instances": 9,
+      "inst_share": 0.0247,
+      "vertices": 55090,
+      "vert_share": 0.0037,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 20,
+      "nyu40_name": "floor mat",
+      "instances": 1,
+      "inst_share": 0.0027,
+      "vertices": 5935,
+      "vert_share": 0.0004,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 21,
+      "nyu40_name": "clothes",
+      "instances": 8,
+      "inst_share": 0.022,
+      "vertices": 102385,
+      "vert_share": 0.0068,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 22,
+      "nyu40_name": "ceiling",
+      "instances": 16,
+      "inst_share": 0.044,
+      "vertices": 729166,
+      "vert_share": 0.0487,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 23,
+      "nyu40_name": "books",
+      "instances": 12,
+      "inst_share": 0.033,
+      "vertices": 83118,
+      "vert_share": 0.0056,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 25,
+      "nyu40_name": "television",
+      "instances": 5,
+      "inst_share": 0.0137,
+      "vertices": 89157,
+      "vert_share": 0.006,
+      "in_scannet200_vocab": false
+    },
+    {
+      "nyu40_id": 26,
+      "nyu40_name": "paper",
+      "instances": 2,
+      "inst_share": 0.0055,
+      "vertices": 3732,
+      "vert_share": 0.0002,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 29,
+      "nyu40_name": "box",
+      "instances": 1,
+      "inst_share": 0.0027,
+      "vertices": 6613,
+      "vert_share": 0.0004,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 30,
+      "nyu40_name": "whiteboard",
+      "instances": 5,
+      "inst_share": 0.0137,
+      "vertices": 261473,
+      "vert_share": 0.0175,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 32,
+      "nyu40_name": "night stand",
+      "instances": 1,
+      "inst_share": 0.0027,
+      "vertices": 14748,
+      "vert_share": 0.001,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 34,
+      "nyu40_name": "sink",
+      "instances": 2,
+      "inst_share": 0.0055,
+      "vertices": 13189,
+      "vert_share": 0.0009,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 35,
+      "nyu40_name": "lamp",
+      "instances": 5,
+      "inst_share": 0.0137,
+      "vertices": 34133,
+      "vert_share": 0.0023,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 37,
+      "nyu40_name": "bag",
+      "instances": 5,
+      "inst_share": 0.0137,
+      "vertices": 41313,
+      "vert_share": 0.0028,
+      "in_scannet200_vocab": true
+    },
+    {
+      "nyu40_id": 38,
+      "nyu40_name": "otherstructure",
+      "instances": 2,
+      "inst_share": 0.0055,
+      "vertices": 55946,
+      "vert_share": 0.0037,
+      "in_scannet200_vocab": false
+    },
+    {
+      "nyu40_id": 39,
+      "nyu40_name": "otherfurniture",
+      "instances": 11,
+      "inst_share": 0.0302,
+      "vertices": 569210,
+      "vert_share": 0.038,
+      "in_scannet200_vocab": false
+    },
+    {
+      "nyu40_id": 40,
+      "nyu40_name": "otherprops",
+      "instances": 123,
+      "inst_share": 0.3379,
+      "vertices": 642436,
+      "vert_share": 0.0429,
+      "in_scannet200_vocab": false
+    }
+  ],
+  "total_instances": 364,
+  "total_vertices": 14975362,
+  "coverage_instances": 0.6126373626373627,
+  "coverage_vertices": 0.9094012552083883,
+  "missing_classes": [
+    "television",
+    "otherstructure",
+    "otherfurniture",
+    "otherprops"
+  ],
+  "missing_instances_share": 0.3873626373626374
+}

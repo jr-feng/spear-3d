@@ -1,0 +1,12 @@
+2026-09-09 05:07:23,138 INFO: Arguments: Namespace(input=None, config='./config/scannet_test_1024.yaml', device='cuda:0', output_dir='/home/OnlineAnySeg/e5_out_200', scans_root='/home/OnlineAnySeg/data_eval/scannet', merge_gpu=0, failed_log='/home/OnlineAnySeg/e5_out_200/failed_scenes.log', scenes=['scene0011_00', 'scene0432_00', 'scene0527_00', 'scene0559_00', 'scene0689_00'], arm='A', subsample=200, feature_source='text')
+2026-09-09 05:07:23,158 INFO: ========== Start scene: scene0011_00 ==========
+2026-09-09 05:08:26,401 INFO: Scene scene0011_00 finished successfully. FPS (exclude API transfer): 7.49 (200 frames in 26.72s, removed 7.44s transfer over 20 calls) | E5 per-stage: SAM3-model 6.62s/20 calls (avg 331 ms), fusion(insert_seg_frame) 6.78s/20 (avg 339 ms), merge(update_masks) 1.41s/3 (avg 469 ms), other 11.91s
+2026-09-09 05:08:26,422 INFO: ========== Start scene: scene0432_00 ==========
+2026-09-09 05:09:13,588 INFO: Scene scene0432_00 finished successfully. FPS (exclude API transfer): 12.94 (200 frames in 15.46s, removed 7.75s transfer over 20 calls) | E5 per-stage: SAM3-model 4.21s/20 calls (avg 210 ms), fusion(insert_seg_frame) 5.37s/20 (avg 268 ms), merge(update_masks) 0.75s/3 (avg 250 ms), other 5.13s
+2026-09-09 05:09:13,600 INFO: ========== Start scene: scene0527_00 ==========
+2026-09-09 05:09:59,107 INFO: Scene scene0527_00 finished successfully. FPS (exclude API transfer): 12.13 (200 frames in 16.49s, removed 6.33s transfer over 20 calls) | E5 per-stage: SAM3-model 6.31s/20 calls (avg 315 ms), fusion(insert_seg_frame) 5.03s/20 (avg 252 ms), merge(update_masks) 0.25s/3 (avg 85 ms), other 4.89s
+2026-09-09 05:09:59,118 INFO: ========== Start scene: scene0559_00 ==========
+2026-09-09 05:10:47,313 INFO: Scene scene0559_00 finished successfully. FPS (exclude API transfer): 11.69 (200 frames in 17.11s, removed 7.03s transfer over 20 calls) | E5 per-stage: SAM3-model 5.12s/20 calls (avg 256 ms), fusion(insert_seg_frame) 5.96s/20 (avg 298 ms), merge(update_masks) 1.19s/3 (avg 396 ms), other 4.84s
+2026-09-09 05:10:47,331 INFO: ========== Start scene: scene0689_00 ==========
+2026-09-09 05:11:31,501 INFO: Scene scene0689_00 finished successfully. FPS (exclude API transfer): 13.16 (200 frames in 15.19s, removed 6.75s transfer over 20 calls) | E5 per-stage: SAM3-model 4.90s/20 calls (avg 245 ms), fusion(insert_seg_frame) 6.71s/20 (avg 335 ms), merge(update_masks) 0.64s/3 (avg 214 ms), other 2.94s
+2026-09-09 05:11:31,513 WARNING: eval_log.csv not found at /home/OnlineAnySeg/e5_out_200/eval_log.csv, skip appending FPS.

@@ -1,0 +1,174 @@
+{
+  "n_queries": 99,
+  "n_parse_fail": 0,
+  "n_no_relation": 0,
+  "rows": [
+    {
+      "combo": "full",
+      "disabled": "none",
+      "processed": 99,
+      "valid": 98,
+      "no_prediction": 1,
+      "mean_dist": 0.9139,
+      "acc03m_pred": 0.5816,
+      "acc05m_pred": 0.6224,
+      "acc05m_all": 0.6061,
+      "selacc_all": 0.6061,
+      "coverage": 0.9394
+    },
+    {
+      "combo": "-dir",
+      "disabled": [
+        "dir"
+      ],
+      "processed": 99,
+      "valid": 98,
+      "no_prediction": 1,
+      "mean_dist": 1.0239,
+      "acc03m_pred": 0.551,
+      "acc05m_pred": 0.5714,
+      "acc05m_all": 0.5556,
+      "selacc_all": 0.5556,
+      "coverage": 0.9394
+    },
+    {
+      "combo": "-near",
+      "disabled": [
+        "near"
+      ],
+      "processed": 99,
+      "valid": 98,
+      "no_prediction": 1,
+      "mean_dist": 0.8991,
+      "acc03m_pred": 0.602,
+      "acc05m_pred": 0.6735,
+      "acc05m_all": 0.6465,
+      "selacc_all": 0.6465,
+      "coverage": 0.9394
+    },
+    {
+      "combo": "-rank",
+      "disabled": [
+        "rank"
+      ],
+      "processed": 99,
+      "valid": 98,
+      "no_prediction": 1,
+      "mean_dist": 0.9676,
+      "acc03m_pred": 0.551,
+      "acc05m_pred": 0.5918,
+      "acc05m_all": 0.5758,
+      "selacc_all": 0.5758,
+      "coverage": 0.9394
+    },
+    {
+      "combo": "-vert",
+      "disabled": [
+        "vert"
+      ],
+      "processed": 99,
+      "valid": 98,
+      "no_prediction": 1,
+      "mean_dist": 0.9967,
+      "acc03m_pred": 0.5306,
+      "acc05m_pred": 0.5714,
+      "acc05m_all": 0.5657,
+      "selacc_all": 0.5657,
+      "coverage": 0.9394
+    },
+    {
+      "combo": "-contact",
+      "disabled": [
+        "contact"
+      ],
+      "processed": 99,
+      "valid": 98,
+      "no_prediction": 1,
+      "mean_dist": 1.0502,
+      "acc03m_pred": 0.5204,
+      "acc05m_pred": 0.5612,
+      "acc05m_all": 0.5455,
+      "selacc_all": 0.5455,
+      "coverage": 0.9394
+    },
+    {
+      "combo": "-side",
+      "disabled": [
+        "side"
+      ],
+      "processed": 99,
+      "valid": 98,
+      "no_prediction": 1,
+      "mean_dist": 0.9219,
+      "acc03m_pred": 0.5612,
+      "acc05m_pred": 0.602,
+      "acc05m_all": 0.5859,
+      "selacc_all": 0.5859,
+      "coverage": 0.9394
+    },
+    {
+      "combo": "-between",
+      "disabled": [
+        "between"
+      ],
+      "processed": 99,
+      "valid": 98,
+      "no_prediction": 1,
+      "mean_dist": 1.0338,
+      "acc03m_pred": 0.5408,
+      "acc05m_pred": 0.5816,
+      "acc05m_all": 0.5657,
+      "selacc_all": 0.5657,
+      "coverage": 0.9394
+    },
+    {
+      "combo": "-all_relations",
+      "disabled": [
+        "dir",
+        "near",
+        "rank",
+        "vert",
+        "contact",
+        "side",
+        "between"
+      ],
+      "processed": 99,
+      "valid": 98,
+      "no_prediction": 1,
+      "mean_dist": 1.4721,
+      "acc03m_pred": 0.3469,
+      "acc05m_pred": 0.398,
+      "acc05m_all": 0.3838,
+      "selacc_all": 0.3838,
+      "coverage": 0.9394
+    }
+  ],
+  "rel_freq": {
+    "same_side_as": 11,
+    "between": 15,
+    "above": 12,
+    "below": 3,
+    "under": 7,
+    "not_with_object": 1,
+    "on_top_of": 9,
+    "on_wall": 1,
+    "closest_to": 13,
+    "farthest_from": 5,
+    "near": 16,
+    "left_of": 1,
+    "right_of": 8,
+    "front_of": 6,
+    "behind": 6,
+    "with_object": 1,
+    "has_on_it": 1
+  },
+  "scorer_query_hits": {
+    "side": 11,
+    "between": 15,
+    "vert": 15,
+    "contact": 16,
+    "rank": 18,
+    "near": 16,
+    "dir": 21
+  }
+}

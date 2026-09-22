@@ -1,0 +1,39 @@
+# ============================================================
+# NS-Grounding（LLM_sam3_query_graph_clip.py）
+# 数据集 NR3D | 模型 glm | 模式 y（y=NS-Grounding）
+# 优先级：命令行参数 > 本配置文件 > 代码默认值
+# ============================================================
+llm:
+  base_url: "https://open.bigmodel.cn/api/paas/v4"                      # TODO: 填写 API URL
+  api_key: "32f49d5c1c8448d3b2d47c979ac5d457.n5VzfmTTWnzspk1X"                       # TODO: 填写 API Key
+  model: "glm-5"
+
+data:
+  gt_path: "./nr3d/nr3d_gt_bboxes_matched.json"
+  oas_root: "output_test/nr3d"
+  pred_name: "pred_bboxes.json"
+
+output:
+  out: "ground_ral/nr3d/glm_y_outputs.jsonl"
+  metrics_out: "ground_ral/nr3d/glm_y_metrics.json"
+
+eval:
+  scene: null                  # 只处理单个 scene_id（null = 全部）
+  max: 100                    # 每个实验最多跑 100 条（快速验证）
+  print_every: 25
+  corr_thresh: 0.5             # SelAcc/Coverage 对应规则：类别一致 + 质心距离 <= 该值(米)
+
+grounder:
+  top_k: 5
+  rerank_top_k: 4
+  disable_rerank: false
+  beam_size: 160
+  target_cands: 24
+  ref_cands: 10
+  class_top_k: 3
+
+clip:
+  model: "ViT-H-14"
+  pretrained: "models/open_clip_pytorch_model.bin"
+  device: null
+

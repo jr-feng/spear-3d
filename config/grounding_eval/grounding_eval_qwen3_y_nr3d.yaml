@@ -1,0 +1,39 @@
+# ============================================================
+# 定位评估配置（LLM_sam3_query_graph_clip.py）
+# 优先级：命令行参数 > 本配置文件 > 代码默认值
+# 改 API key / 模型 / 输入输出，只改本文件即可。
+# ============================================================
+
+llm:
+  base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  api_key: "sk-e06c09a335264712806f246dc09025de"
+  model: "qwen3.5-plus"          # qwen3-plus / deepseek-v3.2 / GLM-5 等
+
+data:
+  gt_path: "./nr3d/nr3d_gt_bboxes_matched.json"   # NR3D；换 SR3D 用 ./sr3d/sr3d_gt_bboxes_matched.json
+  oas_root: "output_test/nr3d"                     # 重建实例根目录（含 sceneXXX/pred_bboxes.json）
+  pred_name: "pred_bboxes.json"
+
+output:
+  out: "ground_ral/nr3d/qwen3_outputs_y.json"      # 逐条结果输出（JSONL）
+  metrics_out: "ground_ral/nr3d/qwen3_y_metrics.json"   # 汇总指标输出
+
+eval:
+  scene: null                  # 只处理单个 scene_id（null = 全部）
+  max: 100                    # 每个实验最多跑 100 条（快速验证）
+  print_every: 25
+  corr_thresh: 0.5             # SelAcc/Coverage 对应规则：类别一致 + 质心距离 <= 该值(米)
+
+grounder:
+  top_k: 5                     # 图匹配保留候选数
+  rerank_top_k: 4              # 送 LLM 重排的候选数
+  disable_rerank: false        # true = 关闭 LLM 重排
+  beam_size: 160
+  target_cands: 24
+  ref_cands: 10
+  class_top_k: 3               # CLIP 类匹配 top-k
+
+clip:
+  model: "ViT-H-14"
+  pretrained: "models/open_clip_pytorch_model.bin"
+  device: null                 # null = 自动（cuda if available），也可写 "cuda:0" / "cpu"

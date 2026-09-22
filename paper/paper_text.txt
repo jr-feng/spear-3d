@@ -1,0 +1,811 @@
+===== PAGE 1 =====
+IEEE ROBOTICS AND AUTOMATION LETTERS, VOL. X, NO. X, [MONTH] [YEAR] 1
+SPEAR-3D: From Streaming Reconstruction to Explicit Reasoning—A
+Neuro-Symbolic Approach for 3D Visual Grounding
+First A. Author,Member, IEEE,Second B. Author, and Third C. Author
+Abstract—Open-vocabulary 3D scene instance reconstruction
+is a crucial capability for autonomous robots working in complex
+environments. It requires both efficient streaming 3D instance con-
+struction and accurate language-driven object localization within
+the constructed scene. Existing methods face two major challenges.
+First, online systems often divide 2D perception, semantic feature
+extraction, and 3D reconstruction into separate modules, leading
+to high latency and inconsistent scene representations. Second,
+directly using Large Language Models (LLMs) to spatial reasoning
+tasks may lead to spatial hallucinations, as the reasoning process
+lacks explicit constraints from reconstructed 3D geometry. To
+address these issues, we propose SPEAR-3D, a framework that
+combines prompt-conditioned Open-vocabulary streaming 3D
+scene instance reconstruction with explicit neuro-symbolic spatial
+reasoning. Our reconstruction module incrementally constructs an
+instance-aware 3D scene from RGB-D streams,and this streaming
+reconstruction stage operates at 10 FPS on an RTX 3090. Based
+on the reconstructed scene, we introduce a Neuro-Symbolic Query
+Graph Grounding (NS-Grounding) module that parses natural-
+language instructions into structured query graphs and matches
+them against a geometry-derived 3D scene graph. Experimental
+results show that SPEAR-3D achieves 10 FPS in streaming
+reconstruction, reaches 60.4 AP25 on ScanNet200, and improves
+grounding accuracy on NR3D/SR3D, validating the effectiveness
+of prompt-conditioned reconstruction and explicit geometric
+reasoning.
+Index Terms—streaming 3D reconstruction, language-guided
+3D object grounding, neuro-symbolic query graph grounding,
+spatial scene graph reasoning.
+I. INTRODUCTION
+REAL-TIME 3D scene understanding is a cornerstone for
+autonomous robots, enabling them to perceive, recon-
+struct, reason about, and interact with complex unstructured
+environments. Unlike traditional closed-set perception, which
+is limited to fixed training categories, open-vocabulary systems
+are designed to leverage natural-language category names or
+task-specific textual prompts during the inference phrase. This
+capability is essential for embodied AI tasks such as mobile
+manipulation and semantic navigation [1], [2], where a robot
+needs to identify and locate objects from human descriptions.
+Despite recent progress in 3D vision-language models,
+existing online systems still face a difficult trade-off between
+reconstruction efficiency and semantic generalization. Closed-
+set online systems such as Embodied-SAM [3] achieve real-
+time 3D instance construction, yet they are constrained by
+the semantic categories encountered during training. They
+Manuscript received [Date]; revised [Date]; accepted [Date]. Date of
+publication [Date]; date of current version [Date]. This letter was recommended
+for publication by Associate Editor [Name] and Editor [Name] upon evaluation
+of the reviewers’ comments. (Corresponding author: [Name].)
+The authors are with the [Your Department], [Your University/Institute], [City,
+Zip Code, Country] (e-mail: email1@domain.com; email2@domain.com).perform well on their training domains, such as ScanNet200
+[4], but their performance may degrade when deployed in
+unseen environments such as SceneNN [5]. In contrast, open-
+vocabulary systems such as OnlineAnySeg [6] enable more
+flexible semantic recognition but typically rely on decoupled
+stages, including 2D segmentation, cross-frame association,
+and feature extraction. Such separation increases computational
+redundancy and limits the frame rate of online reconstruction.
+To address these challenges, we propose SPEAR-3D, a
+framework for prompt-conditioned streaming 3D scene instance
+reconstruction and language-guided grounding. As shown
+in Fig. 1, Our first component is aCategory-Guided 3D
+Streaming Reconstructionmodule. It leverages category
+prompts, SAM3 [7], and CLIP-style text embeddings to
+incrementally construct an instance-aware 3D scene from RGB-
+D streams. The reconstruction module is designed for streaming
+scene construction and achieves 10 FPS on an RTX 3090. We
+explicitly distinguish this reconstruction throughput from the
+latency of language-query processing. and this design enables
+semantic-driven 3D scene instance reconstruction and produces
+an explicit instance-aware 3D scene representation, providing
+a foundation for subsequent object retrieval, localization, and
+language-guided grounding.
+Based on the reconstructed 3D instance scene, we introduce a
+Neuro-Symbolic Query Graph Grounding (NS-Grounding)
+module. Instead of treating the LLM as a black-box spatial
+reasoner, we use the LLM to parse natural-language descrip-
+tions into structured query graphs. These query graphs are
+then explicitly matched to a geometry-derived 3D scene graph
+constructed from the output of the streaming reconstruction
+process. In this way, language grounding is performed based
+on the reconstructed scene state, allowing object localization to
+be constrained by explicit 3D geometry and spatial relations.
+It is important to clarify the scope of our open-vocabulary set-
+ting. SPEAR-3D performs prompt-conditioned open-vocabulary
+reconstruction that textual category vocabulary can be supplied
+or modified at inference time without the need for retraining.
+This differs from unconditional open-world object discovery.
+Objects whose names are not included in the inference-time
+prompt set may not be reconstructed as semantic instances.
+This design choice prioritizes efficient, task-relevant streaming
+reconstruction.
+The primary contributions of this work are summarized as
+follows:
+•We propose acategory-guided streaming 3D recon-
+structionframework that incrementally constructs prompt-
+conditioned open-vocabulary 3D instance scenes from
+RGB-D streams and achieving10 FPSduring the recon-
+struction stage.
+===== PAGE 2 =====
+IEEE ROBOTICS AND AUTOMATION LETTERS, VOL. X, NO. X, [MONTH] [YEAR] 2
+Depth RGBlabel 
+group
+segmentation Encoder
+mask with feature
+Reconstruct 
+backendDepth RGB
+Frame 1:Frame 2:Depth RGB.   . .  Frame n:
+3D Semantic
+Instance MapFrame x n : Depth RGB
+Segmentation and EncoderOFFLINE
+RGB Depth Masks Features
+Reconstruct 
+backendFrame x n :
+3D Semantic
+Instance MapSPEAR-3D(ours) OnLineAnySeg(BaseLine)
+Streaming
+Binding.   . .  
+Fig. 1. Comparison between the baseline decoupled pipeline and SPEAR-3D.
+The baseline performs segmentation, feature encoding, and reconstruction
+in separate stages, whereas SPEAR-3D enables category-guided streaming
+3D instance reconstruction from RGB-D inputs and produces an explicit
+instance-aware scene representation for downstream retrieval, localization, and
+language-guided grounding.
+•We introduceNeuro-Symbolic Query Graph Ground-
+ing (NS-Grounding), are method that grounds natural-
+language descriptions by matching LLM-parsed query
+graphs with scene graphs derived from the streaming
+reconstruction output.
+•We comprehensively evaluate our framework on Scan-
+Net200, SceneNN, NR3D, and SR3D datasets under a
+realistic streaming reconstructed setting, demonstrating
+that while maintaining a real-time speed of 10 FPS,
+SPEAR-3D achieves a peak AP25of 60.4% in ScanNet200
+and grounding accuracy achieves Acc@0.5 65.9% in target
+object localization.
+II. RELATEDWORK
+A. Real-Time 3D Instance Reconstruction
+The ability to incrementally reconstruct and parse 3D scenes
+is a fundamental prerequisite for embodied agents. Early
+semantic SLAM and 3D tracking methods [8], [9] focused
+mainly on closed-set categories, limiting a robot’s ability to
+operate with novel object names. Subsequent works explored
+open-set multimodal scene construction [10], [11], but often
+lacked real-time instance-level fusion. Recent online systems
+accelerate 3D instance construction, but many of them either
+depend on closed-set semantics or introduce high latency
+through decoupled processing stages. SPEAR-3D addresses
+this trade-off by using prompt-conditioned category guidance
+for efficient streaming 3D instance reconstruction.
+B. Open-Vocabulary Segmentation and Foundation Models
+To overcome closed-set limitations, researchers have in-
+tegrated Vision-Language Models (VLMs) and visual foun-
+dation models into 3D perception. Offline methods such as
+MaskClustering [12] leverage CLIP [13] features to group open-
+vocabulary instances, but they are not designed for streaming re-
+construction. OnlineAnySeg uses a decoupled pipeline with 2Dinstance segmentation, cross-frame association, and semantic
+feature extraction.By incorporating open-vocabulary semantic
+features for cross-frame 3D instance fusion, this architecture
+enables explicit 3D scene instance reconstruction; however, the
+decoupled pipeline constrains reconstruction throughput and
+prevents streaming reconstruction..
+As shown in Fig. 3, Our method uses SAM3 as a prompt-
+conditioned visual segmentation backbone tegrated into a
+streaming 3D scene instance reconstruction process. The goal
+is not unconditional discovery of every object in an open world,
+but efficient reconstruction of task-relevant semantic instances
+specified by an inference-time prompt vocabulary. This method
+is practical for robotic tasks where object categories can be
+provided through task context, user instructions, environment
+priors, or benchmark inventories.
+C. 3D Visual Grounding and LLM-based Spatial Reasoning
+3D visual grounding requires an agent to localize objects
+from free-form natural-language descriptions [14], [15]. Many
+recent pipelines attempt to inject 3D awareness into LLMs
+for spatial reasoning [16], [17]. While LLMs possess robust
+language parsing ability, directly employing them as black-box
+spatial reasoners may lead to spatial hallucinations. Inspired
+by visual programming and neuro-symbolic execution [18],
+[19], NS-Grounding separates linguistic parsing from geometric
+reasoning. The LLM produces a structured query graph, while
+the final spatial decision is made through explicit matching it
+against the reconstructed 3D scene graph.
+III. METHODOLOGY
+SPEAR-3D consists of two connected stages. (1) acategory-
+guided 3D streaming reconstructionmodule that incrementally
+constructs an instance-aware 3D scene from RGB-D observa-
+tions, and (2) aneuro-symbolic query graph groundingmodule
+that resolves natural-language queries against the reconstructed
+3D scene. In this paper,perceptionis defined as to 2D visual
+mask generation and semantic feature extraction, while3D
+reconstructionorscene constructionrefers to the incremental
+fusion of RGB-D observations into a geometric and instance-
+level 3D representation.
+A. Category-Guided 3D Streaming Reconstruction
+As shown in Fig. 2, the reconstruction module constructs a
+prompt-conditioned 3D instance scene using streaming RGB-D
+frames. Unlike conventional segment-then-classify pipelines,
+our method integrates semantic category information prior to
+3D instance fusion, reducing per-mask recognition overhead
+and enabling efficient streaming updates.
+a) Prompt-Conditioned Open-Vocabulary Setting.:At
+time step t, the prompt vocabulary is denoted as Lt={l k}Kt
+k=1.
+The vocabulary can be provided at inference time from a
+task-level object list, user query context, dataset-level category
+inventory, or an external vocabulary source. Since Ltis not
+fixed during model training, the system supports prompt-
+conditioned open-vocabulary 3D scene instance reconstruction.
+However, this setting should be distinguished from class-
+agnostic open-world discovery, the reconstruction recall is
+===== PAGE 3 =====
+IEEE ROBOTICS AND AUTOMATION LETTERS, VOL. X, NO. X, [MONTH] [YEAR] 3
+"choose the chair
+in the center of
+the plant and
+the radiator"
+LLM parser
+chair
+plant
+radiator(t) = { V1, V4, V7 }
+(r1) = { V2 }
+(r2) = { V5, V9 }
+Directional scorer
+(left/right/
+front/back)Proximity scorer
+(near/closest/
+farthest)Vertical scorer
+(above/below/
+on/under)
+Between scorer
+(between/center of
+two references)
+Room attribute scorer
+(corner/center/against
+wall/group/middle)Node
+Score
++
+Edge
+ScoreTop-1
+.
+.
+.
+promptt
+Target : {chair}
+Refs : {plant ,radiator}
+Relation : in the center of chair
+plant radiatorbetween V2
+V1V4
+V7V9 V5
+(r1)
+(t)
+(r2)
+Q = (VQ, EQ, d)G = (VS , ES)
+between t
+r1 r2
+π : VQ → VS +x+y
+V1fffV2V4
+V7V5
+V9fffV2
+fffV2V5Target  Ref_1  Ref_2   Score
+.
+.
+..
+.
+.(a) Language to Query Graph
+(b) CLIP Node Matching(c) Joint Graph Matching and Ranking
+(d) Spatial Relation Scorer LibraryRGB-D/Pose 
+Video FramesSAM3Category Labels
+Per RGB Image2D masks 
+& FeaturesCLIP Text 
+Encoder
+2D-3D Voxel
+Projection
+Category-Guided 3D Streaming Reconstruction
+Per Depth Image/Pose
+ TSDF Geometry 
+UpdateFinal 3D 
+Instance Map
+Scene Graph
+3D  Instance 
+Association
+Neuro-Symbolic Query Graph Grounding
+view direction3D Reconstruction Backend
+Binding
+Fig. 2. Overall architecture of SPEAR-3D. The upper stage performs category-guided streaming 3D scene instance reconstruction from RGB-D sequences.
+Given the inference-time prompt vocabulary Lt, SAM3 generates category-conditioned masks and CLIP provides label-bound semantic features, enabling
+prompt-conditioned 3D instance updates at 10 FPS. The reconstructed instance scene is converted into a spatial scene graph. The lower stage performs
+NS-Grounding on this reconstructed scene graph by parsing language into a query graph, selecting semantic candidates, and ranking target instances with
+explicit geometric relation scorers.
+conditioned on the supplied prompts, and objects absent from
+Ltmay not be reconstructed as semantic instances.
+b) Parallel Semantic and Perceptual Streams.:At time
+stept, given an RGB image It, a depth map Dt, and camera
+poseTt, each category label lk∈ Ltis processed through two
+streams. In the semantic stream, the category label is encoded
+by a CLIP text encoderΨ(·):
+ek=Ψ(lk)
+∥Ψ(l k)∥.(1)
+In the perceptual stream, the same prompt vocabulary is
+provided to SAM3:
+{Mt,k}Kt
+k=1= SAM3(I t,Lt),(2)
+where Mt,kdenotes the 2D mask associated with category
+promptl kat framet.
+c) Label-Mediated Feature Binding.:Semantic identity
+is assigned before cross-frame 3D association. Instead of
+extracting a separate text feature for each cropped mask,we bind the precomputed category embedding ekto its
+corresponding mask:
+ft,kID(lk)← − − − −e k.(3)
+ft,kis the category embedding corresponding to the mask
+after binding. This yields a compact instance observation
+(Mt,k,ft,k, lk)and reduces ambiguity in the subsequent 3D
+fusion stage.
+d) 3D Scene Instance Reconstruction Backend:After
+obtaining category-conditioned 2D masks and label-bound
+semantic features, we adopt the online reconstruction backend
+of OnlineAnySeg for geometric lifting and temporal association.
+Specially, each RGB-D frame is first integrated into a 3D voxel-
+hashed TSDF geometry stateG t:
+Gt=U(G t−1, It, Dt, Tt),(4)
+and each 2D mask is projected into the active 3D geometry
+Vt,k:
+Vt,k= Π(M t,k, Dt, Tt;Gt).(5)
+===== PAGE 4 =====
+IEEE ROBOTICS AND AUTOMATION LETTERS, VOL. X, NO. X, [MONTH] [YEAR] 4
+Fig. 3. SAM3-driven streaming 3D reconstruction. The top row illustrates incremental geometric reconstruction from RGB-D sequences. The bottom row
+visualizes instance-level semantic masks generated by SAM3, showing how object observations are fused across viewpoints to form a coherent 3D instance
+library.
+For temporal association, the backend computes an overlap-,
+semantic-, and geometry-aware matching scoreS kj:
+Skj=λsA(ft,k,fj) +λ gSgeo
+kj+λoRkj,(6)
+where A(ft,k,fj)is the cosine similarity between the semantic
+embeddings of the current observation and the associated
+reconstructed instance, Sgeo
+kjis the geometric similarity com-
+puted from FCGF descriptors extracted from the corresponding
+voxelized observations, and Rkjis the 3D overlap ratio.
+Parameters λs,λgandλoare set the same as in OnlineAnySeg.
+The resulting voxelized observations and matching scores are
+then passed to our category-guided streaming instance update
+module.
+e) Category-Guided Streaming Instance Update.:Given
+voxelized observations {(Vt,k,ft,k, lk)}Kt
+k=1and matching score
+matrixS t= [S kj], we update:
+It=R
+It−1,{(V t,k,ft,k, lk)}Kt
+k=1,St
+.(7)
+The updated library Itis a prompt-conditioned 3D instance
+scene library used to construct the scene graph required by
+NS-Grounding. The streaming reconstruction stage runs at
+approximately 10 FPS on an RTX 3090.
+B. NS-Grounding: Neuro-Symbolic Query Graph Grounding
+NS-Grounding performs natural-language object grounding
+over the reconstructed 3D instance scene. We formulate
+grounding as matching a language-derived structred query
+graph to a geometry-derived scene graph [20], [21]. From
+the 3D scene instance library It, we construct a spatial scene
+graph G= (V S, ES), where VSnodes represent reconstructed
+object instances with category, position, and size, and ESedges
+encode spatial relations.
+Fig. 4. 2D bird’s-eye view of topological grounding. The target object is
+localized in the XY-plane by resolving thebetweenconstraint relative to
+reference anchors while effectively rejecting distractors.
+1) Language to Query Graph:As shown in Fig 2(a), An
+LLM parses the input expression into a structured query graph
+Q= (V Q, EQ, d), where VQrepresents target and reference
+nodes, EQcontains typed relational edges, and drepresents
+===== PAGE 5 =====
+IEEE ROBOTICS AND AUTOMATION LETTERS, VOL. X, NO. X, [MONTH] [YEAR] 5
+an optional viewer direction.
+2) CLIP Node Matching:As shown in Fig 2(b), To align
+target query labels with reconstructed object categories, we
+compute CLIP similarity between query label ℓuand scene
+classc:
+sclip(ℓu, c) = cos 
+ftext(ℓu), ftext(c)
+.(8)
+Top-matched reconstructed instances form candidate sets for
+each query node.
+3) Joint Graph Matching and Ranking:Grounding is
+formulated as a structured assignment problem. As shown in
+Fig 2(c), For an injective mapping π:V Q→V Sand direction
+d, the compatibility score is:
+S(π|d) =X
+u∈VQλusnode(u, π(u)|d)+X
+e∈EQλesrel(e, π|d),
+(9)
+where u∈V Qdenotes a query node and e∈E Qdenotes a
+relation edge connecting two query nodes. snode evaluates node-
+level semantic consistency, while srelmeasures the satisfaction
+of the spatial relation encoded by edge e.λuandλeare the
+weights for node matching and relation matching, respectively,
+withλu+λe= 1. The influence of these parameters is analyzed
+in the experimental section.
+4) Spatial Relation Scorer Library:As shown in Fig 2(d),
+we compute srelthrough a geometric scorer library. Let
+ou=π(u) andov=π(v) be reconstructed scene instances
+with centers pouandpov. All distances are normalized by
+scene-adaptive scales. We use σ(x) = (1 +e−x)−1and
+ϕ(x) =e−x. In the following, sdir,snear,srank,svert,scontact ,
+sside,sbetween denote the scores of various correspondence
+relationships.
+a) Directional Relations.:For directional relations, in-
+cluding left, right, front, and behind, we project displacement
+pou−povonto the queried axis δ∥and the orthogonal axis δ⊥:
+sdir(ou, ov|d) =σ(δ ∥)ϕ(|δ ⊥|).(10)
+b) Proximity and Comparative Distance.:Proximity uses
+horizontal distance dxy(ou, ov) =∥pxy
+ou−pxy
+ov∥2and an XY
+overlap bonusγ xy(ou, ov):
+snear(ou, ov) =ϕ(d xy(ou, ov))γxy(ou, ov).(11)
+Comparative relations evaluate instance ourelative to its
+candidate set C(u) using the 3D distance r(o, o v) =∥p o−pov∥2
+and the normalized rankρ(o u, ov):
+srank(ou, ov) =ρ(o u, ov) +ϕ 
+|r(ou, ov)−r⋆|
+.(12)
+c) Vertical and Contact Relations.:Vertical relations
+combine height ordering with horizontal alignment axy(ou, ov):
+svert(ou, ov) =σ(pz
+ou−pz
+ov)axy(ou, ov).(13)
+Contact-sensitive relations add a vertical contact term
+ϕ(gz(ou, ov))based on the surface gapg z:
+scontact (ou, ov) =s vert(ou, ov)ϕ(g z(ou, ov)).(14)
+chair
+plant radiatorbetween betweentarget
+reference_1 reference_2Fig. 5. Structured query graph parsing. The instruction separates the target
+entity (chair) from contextual anchors (plant,radiator) through an explicit
+ternary geometric constraint (between).
+d) Room-side and Between Relations.:For thesame-side-
+of-roomrelation, we measure each object’s affinity to the four
+room boundaries W={x min, xmax, ymin, ymax}. Given the
+distanceδ w(o)from objectoto wallw, the wall affinity is
+αw(o) = exp
+−δw(o)
+τwall
+.(15)
+The room-side relation score is then defined as the best shared
+wall affinity:
+sside(ou, ov) = max
+w∈Wmin 
+αw(ou), αw(ov)
+.(16)
+For the ternarybetweenrelation, let cu, cv1, cv2∈R3denote
+object centers and m= (c v1+cv2)/2the midpoint of the two
+anchors. We combine midpoint proximity, distance balance,
+and in-plane alignment:
+smid= exp
+−∥cu−m∥ 2
+τmid
+,(17)
+sbal= exp 
+−∥cu−cv1∥2− ∥c u−cv2∥2
+τmid!
+,(18)
+salign= exp
+−dxy(cu,cv1cv2)
+τalign
+,(19)
+and compute
+sbetween (ou;ov1, ov2) =s midsbalsalign.(20)
+If the viewer direction is unknown, final grounding optimizes
+over canonical directions:
+S(π) = max
+d∈{+x,−x,+y,−y}S(π|d),ˆo= ˆπ(t).(21)
+IV. EXPERIMENTS
+A. Experimental Settings
+We evaluate SPEAR-3D from two complementary perspec-
+tives: streaming 3D instance reconstruction and language
+grounding over reconstructed scenes. For reconstruction, we
+use ScanNet200 and SceneNN, and report AP, AP50, and
+AP25. For grounding, we use NR3D and SR3D, and report
+Mean Distance (MeanDist) as well as Acc@0.3 and Acc@0.5,
+measured against ground-truth target centroids. Following the
+prompt-conditioned setting of our method, the inference-time
+prompt vocabulary is set to the benchmark category inventory
+of each dataset, which makes the evaluation protocol explicit
+and reproducible.
+===== PAGE 6 =====
+IEEE ROBOTICS AND AUTOMATION LETTERS, VOL. X, NO. X, [MONTH] [YEAR] 6
+Scene graph | scene0114_00 | ref_id=81667 | pred=5
+This graph is derived from real prediction instances in pred_bboxes.json and the SpatialSceneGraph relations built from object centers and box geometry.
+0
+1
+2
+3
+4
+5
+6
+x
+0
+1
+2
+3
+4
+5
+6
+7y
+above
+above
+near
+below
+near
+below
+near
+near
+chair
+#5
+radiator
+#7
+plant
+#18predicted target
+reference objects
+other scene objects
+Fig. 6. 3D scene graph topology. The graph encodes explicit spatial relations
+as the substrate for structural graph matching.
+All experiments are conducted on an RTX 3090 GPU. The
+streaming reconstruction stage runs at approximately 10 FPS,
+while NS-Grounding is invoked on demand and takes about
+2 seconds per query using the Qwen3-plus API, including
+query-graph parsing and explicit graph matching. We report
+these two runtimes separately, since reconstruction throughput
+should not be confused with language-query latency.
+B. Hyperparameter Settings.
+In the joint graph matching module, the node-relation weight-
+ing parameters λuandλecontrol the trade-off between node
+matching and relation matching, respectively, with λu+λe= 1.
+We sweep λu∈ {0.25,0.50,0.75} on NR3D using Qwen3-plus
+to study the influence of this balance. As shown in Table III The
+best performance is obtained when λu= 0.50 , which indicates
+that semantic consistency and spatial relation reasoning should
+contribute equally in our grounding setting.
+C. Quantitative Analysis
+a) Reconstruction Performance.:As shown in Table I,
+SPEAR-3D balances reconstruction accuracy, semantic flexibil-
+ity, and computational efficiency. Compared with the decoupled
+OnlineAnySeg pipeline, our SAM3-integrated streaming recon-
+struction stage achieves10 FPS,while OnlineAnySeg operates
+at merely 4 FPS when executing streaming reconstruction for
+3D instance scenes. On ScanNet200, SPEAR-3D achieves an
+AP25of 60.4%, outperforming OnlineAnySeg by 6.9 percent-
+age points. The performance drop on SceneNN is primarily
+attributed to the missing annotations of small or ambiguous
+objects in the dataset, which conflicts with our category-
+driven reconstruction strategy. Unlike ScanNet200, SceneNN’s
+incomplete semantic inventory means objects omitted from
+the task-relevant prompt vocabulary are skipped during thestreaming stage, thereby impacting strict AP metrics. Ultimately,
+this result reflects a calculated trade-off where SPEAR-3D
+prioritizes computational efficiency and task-driven precision
+over exhaustive scene recall.Additionally, while ESAM exhibits
+higher quantitative metrics due to its supervised training
+natively optimized on the ScanNet dataset, it operates as a
+closed-set validator and lacks the generalized open-vocabulary
+capability intrinsic to our framework.”
+b) Grounding Performance.:As shown in Table II, NS-
+Grounding consistently improves grounding performance across
+different LLM backbones. Under the same reconstructed-scene
+input, explicit graph matching outperforms direct black-box
+LLM reasoning, indicating that structured geometric constraints
+help reduce spatial ambiguity and improve target localization.
+The best result is achieved by Qwen3-plus with NS-Grounding,
+which obtains a MeanDist of 0.96 m and Acc@0.3/Acc@0.5
+of 64.7%/65.9% on SR3D, demonstrating the effectiveness of
+combining explicit scene-graph reasoning with modern LLMs.
+D. Ablation Studies
+a) Ablation of NS-Grounding.:Table II isolates the con-
+tribution of NS-Grounding by comparing each LLM backbone
+with and without the proposed graph-based reasoning module.
+Across all backbones, adding NS-Grounding consistently
+improves both distance-based and threshold-based grounding
+metrics on NR3D and SR3D, indicating that the module is
+beneficial regardless of the underlying language model. The
+gains are particularly clear for models that rely more heavily
+on direct prompting. For instance, Qwen3-plus and GLM-
+5 show large improvements after enabling NS-Grounding,
+while deepseek-v3.2 also benefits consistently, albeit from
+a stronger baseline. On SR3D, all three backbones achieve
+substantially better localization accuracy and lower MeanDist
+once explicit graph matching is introduced. These results
+demonstrate that the proposed module contributes a stable
+and model-agnostic improvement by replacing implicit LLM
+guessing with structured scene-graph reasoning.
+b) Sensitivity to Node-Relation Weighting.:Table III
+evaluates the influence of the node-relation weighting parameter
+λu. The best performance is achieved at λu= 0.50 , suggesting
+that semantic consistency and spatial relation reasoning should
+be balanced in our grounding framework. More importantly, the
+results remain stable across a relatively wide range of settings.
+When λuvaries from 0.25 to 0.75, the performance changes
+only moderately, and all configurations produce comparable
+grounding accuracy. This indicates that the proposed method is
+not sensitive to the exact choice of λu, which reduces the need
+for careful hyperparameter tuning and makes the framework
+more practical for deployment across different datasets and
+LLM backbones.
+E. Qualitative Analysis and Reasoning Logic
+As shown in Fig. 5. To illustrate why NS-Grounding
+mitigates spatial hallucinations, we visualize the reasoning
+trajectory for the instruction:“choose the chair that is in the
+center of the plant and the radiator”.
+===== PAGE 7 =====
+IEEE ROBOTICS AND AUTOMATION LETTERS, VOL. X, NO. X, [MONTH] [YEAR] 7
+TABLE I
+FULL-SEQUENCE3DSCENE INSTANCE RECONSTRUCTION RESULTS ONSCANNET200ANDSCENENN.
+Method Streaming Online Zero-shot ScanNet200 SceneNN FPS
+AP AP 50AP25AP AP 50AP25
+EmbodiedSAM [3] ✓ ✓× 28.8 42.754.2 20.132.5 46.3 10
+OVIR-3D [22] × ×✓ 14.4 27.5 38.8 12.3 24.4 34.6 -
+MaskClustering [12] × ×✓ 19.7 36.4 51.4 16.3 31.7 46.2 -
+SAM3D [23]*‡ × ×✓ 17.8 30.6 48.5 - - - 8
+SAM3D [23]*† ✓ ✓ ✓ 9.6 24.8 49.6 9.1 21.3 43.4 8
+OnlineAnySeg [6] ×✓ ✓ 18.6 36.1 53.5 18.1 35.3 59.5 4
+Ours ✓ ✓ ✓ 22.6 40.4 60.4 15.6 30.4 54.7 10
+TABLE II
+ABLATION OF THE PROPOSEDNS-GROUNDING MODULE ONNR3DANDSR3D. GROUNDING IS EVALUATED ON INSTANCES PRODUCED BY STREAMING
+RECONSTRUCTION,NOT ON COMPLETE GROUND-TRUTHSCANNET POINT CLOUDS.
+LLM NS-GroundingNR3D SR3D
+MeanDist↓Acc@0.3↑Acc@0.5↑MeanDist↓Acc@0.3↑Acc@0.5↑
+Qwen3-plus×1.36 38.7 43.5 1.32 53.8 54.8
+Qwen3-plus✓1.02 56.3 58.8 0.96 64.7 65.9
+deepseek-v3.2×1.33 42.0 44.6 1.24 53.1 54.1
+deepseek-v3.2✓1.27 51.1 54.3 1.00 64.8 66.0
+GLM-5 [24]×1.35 37.8 41.5 1.28 52.5 51.9
+GLM-5 [24]✓1.18 50.2 53.4 0.97 65.6 67.0
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+score1. #5 chair
+2. #0 chair
+3. #3 chair
+4. #20 chairTop-k candidates
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+component scorebetween
+r1.class
+r2.class
+t.class
+0.812
+1.00
+1.00
+1.00Score breakdown
+Fig. 7. Explicit score decomposition. Although multiple candidates have strong
+semantic alignment,chair #5is selected because it satisfies the dominant
+geometric relation.
+First, the streaming reconstruction module incrementally
+constructs semantic 3D instances from RGB-D data. By binding
+semantic prompts before fusion, the target chair and reference
+objects are consolidated into stable reconstructed instances
+rather than fragmented frame-level observations.
+Second, As shown in Fig. 6. These instances are convertedTABLE III
+EFFECT OF DIFFERENTλ uONNR3DUSINGQWEN3-PLUS.
+λuMeanDist↓Acc@0.3↑Acc@0.5↑
+0.25 1.2550 48.1 51.6
+0.50 1.0200 56.3 58.8
+0.75 1.0840 53.4 57.8
+into a spatial scene graph G= (V S, ES), turning raw
+reconstructed geometry into a relational abstraction that can
+be queried compositionally.
+Third, the natural-language query is parsed into a structured
+graph and matched against the reconstructed scene graph. As
+shown in Fig. 7, multiple candidate chairs align semantically,
+butchair #5receives the highest geometric relation score for
+thebetweenconstraint. Distractor chairs fail the topological
+constraint, showing that semantic identity alone is insufficient
+for 3D disambiguation. In contrast, the black-box LLM
+baseline incorrectly selects distractorchair #3, as it fails
+to reliably evaluate the continuousbetweenmetric without
+explicit geometric verification. Finally, as shown in Fig. 4 and
+Fig. 8, the predicted target aligns with the ground-truth target
+location. This transparent reasoning process externalizes spatial
+reasoning into an inspectable geometric procedure.
+V. CONCLUSION
+We presented SPEAR-3D, a neuro-symbolic framework that
+unifies prompt-conditioned streaming 3D instance reconstruc-
+===== PAGE 8 =====
+IEEE ROBOTICS AND AUTOMATION LETTERS, VOL. X, NO. X, [MONTH] [YEAR] 8
+Fig. 8. Final 3D spatial localization. The red bounding box indicates the
+predicted target extent in the reconstructed scene.
+tion with explicit language grounding. The main contribution
+of this work is to couple category-guided, instance-aware recon-
+struction with graph-based reasoning, enabling open-vocabulary
+3D scene understanding to proceed in real time while remaining
+structurally interpretable. By binding semantic prompts before
+3D fusion and then grounding language over reconstructed
+scene graphs, SPEAR-3D addresses two key challenges in
+existing pipelines: the latency introduced by decoupled online
+perception modules and the spatial hallucinations that may arise
+when large language models are used as black-box reasoners.
+Experiments on ScanNet200, SceneNN, NR3D, and SR3D
+demonstrate that SPEAR-3D improves both reconstruction
+efficiency and grounding accuracy under the same streaming
+reconstructed-scene setting. These results suggest that explicit
+geometric reasoning can serve as a reliable bridge between
+streaming perception and natural-language grounding, offering
+a practical route toward more robust embodied scene under-
+standing. More broadly, our framework shows that semantic
+flexibility and real-time performance do not have to be mutually
+exclusive, and that they can be jointly realized through a
+carefully designed reconstruction-and-reasoning pipeline.
+A current limitation is that reconstruction recall is still
+conditioned on the supplied prompt vocabulary, so objects
+outside the prompt set may be missed when the category
+inventory is incomplete. In future work, we will investigate hy-
+brid category-guided and class-agnostic proposal mechanisms,
+together with more efficient query processing and broader open-
+world reconstruction, to further improve recall, robustness, and
+scalability in streaming 3D perception.
+REFERENCES
+[1]A. Das, S. Datta, G. Gkioxari, S. Lee, D. Parikh, and D. Batra, “Embodied
+question answering,” inProceedings of the IEEE conference on computer
+vision and pattern recognition, 2018, pp. 1–10.
+[2]D. S. Chaplot, D. P. Gandhi, A. Gupta, and R. R. Salakhutdinov, “Object
+goal navigation using goal-oriented semantic exploration,”Advances in
+Neural Information Processing Systems, vol. 33, pp. 4247–4258, 2020.
+[3]X. Xu, H. Chen, L. Zhao, Z. Wang, J. Zhou, and J. Lu, “Embod-
+iedsam: Online segment any 3d thing in real time,”arXiv preprint
+arXiv:2408.11811, 2024.[4]D. Rozenberszki, O. Litany, and A. Dai, “Language-grounded indoor 3d
+semantic segmentation in the wild,” inEuropean conference on computer
+vision. Springer, 2022, pp. 125–141.
+[5]B.-S. Hua, Q.-H. Pham, D. T. Nguyen, M.-K. Tran, L.-F. Yu, and S.-K.
+Yeung, “Scenenn: A scene meshes dataset with annotations,” in2016
+fourth international conference on 3D vision (3DV). Ieee, 2016, pp.
+92–101.
+[6]Y . Tang, J. Zhang, Y . Lan, Y . Guo, D. Dong, C. Zhu, and K. Xu,
+“Onlineanyseg: Online zero-shot 3d segmentation by visual foundation
+model guided 2d mask merging,” inProceedings of the Computer Vision
+and Pattern Recognition Conference, 2025, pp. 3676–3685.
+[7]N. Carion, L. Gustafson, Y .-T. Hu, S. Debnath, R. Hu, D. Suris, C. Ryali,
+K. V . Alwala, H. Khedr, A. Huanget al., “Sam 3: Segment anything
+with concepts,”arXiv preprint arXiv:2511.16719, 2025.
+[8]J. McCormac, A. Handa, A. Davison, and S. Leutenegger, “Semanticfu-
+sion: Dense 3d semantic mapping with convolutional neural networks,”
+in2017 IEEE International Conference on Robotics and automation
+(ICRA). IEEE, 2017, pp. 4628–4635.
+[9]M. Runz, M. Buffier, and L. Agapito, “Maskfusion: Real-time recognition,
+tracking and reconstruction of multiple moving objects,” in2018 IEEE
+international symposium on mixed and augmented reality (ISMAR).
+IEEE, 2018, pp. 10–20.
+[10] K. M. Jatavallabhula, A. Kuwajerwala, Q. Gu, M. Omama, T. Chen,
+A. Maalouf, S. Li, G. Iyer, S. Saryazdi, N. Keethaet al., “Conceptfusion:
+Open-set multimodal 3d mapping,”arXiv preprint arXiv:2302.07241,
+2023.
+[11] S. Peng, K. Genova, C. Jiang, A. Tagliasacchi, M. Pollefeys,
+T. Funkhouseret al., “Openscene: 3d scene understanding with open
+vocabularies,” inProceedings of the IEEE/CVF conference on computer
+vision and pattern recognition, 2023, pp. 815–824.
+[12] M. Yan, J. Zhang, Y . Zhu, and H. Wang, “Maskclustering: View
+consensus based mask graph clustering for open-vocabulary 3d instance
+segmentation,” inProceedings of the IEEE/CVF Conference on Computer
+Vision and Pattern Recognition, 2024, pp. 28 274–28 284.
+[13] A. Radford, J. W. Kim, C. Hallacy, A. Ramesh, G. Goh, S. Agarwal,
+G. Sastry, A. Askell, P. Mishkin, J. Clarket al., “Learning transferable
+visual models from natural language supervision,” inInternational
+conference on machine learning. PmLR, 2021, pp. 8748–8763.
+[14] D. Z. Chen, A. X. Chang, and M. Nießner, “Scanrefer: 3d object local-
+ization in rgb-d scans using natural language,” inEuropean conference
+on computer vision. Springer, 2020, pp. 202–221.
+[15] Y . Zhang, Z. Gong, and A. X. Chang, “Multi3drefer: Grounding text
+description to multiple 3d objects,” inProceedings of the IEEE/CVF
+International Conference on Computer Vision, 2023, pp. 15 225–15 236.
+[16] Y . Hong, H. Zhen, P. Chen, S. Zheng, Y . Du, Z. Chen, and C. Gan,
+“3d-llm: Injecting the 3d world into large language models,”Advances
+in Neural Information Processing Systems, vol. 36, pp. 20 482–20 494,
+2023.
+[17] C. Zhu, T. Wang, W. Zhang, J. Pang, and X. Liu, “Llava-3d: A simple
+yet effective pathway to empowering lmms with 3d-awareness,”arXiv
+preprint arXiv:2409.18125, 2024.
+[18] D. Sur ´ıs, S. Menon, and C. V ondrick, “Vipergpt: Visual inference
+via python execution for reasoning,” inProceedings of the IEEE/CVF
+international conference on computer vision, 2023, pp. 11 888–11 898.
+[19] T. Gupta and A. Kembhavi, “Visual programming: Compositional visual
+reasoning without training,” inProceedings of the IEEE/CVF conference
+on computer vision and pattern recognition, 2023, pp. 14 953–14 962.
+[20] J. Wald, H. Dhamo, N. Navab, and F. Tombari, “Learning 3d semantic
+scene graphs from 3d indoor reconstructions,” inProceedings of the
+IEEE/CVF Conference on Computer Vision and Pattern Recognition,
+2020, pp. 3961–3970.
+[21] Q. Gu, A. Kuwajerwala, S. Morin, K. M. Jatavallabhula, B. Sen, A. Agar-
+wal, C. Rivera, W. Paul, K. Ellis, R. Chellappaet al., “Conceptgraphs:
+Open-vocabulary 3d scene graphs for perception and planning,” in2024
+IEEE International Conference on Robotics and Automation (ICRA).
+IEEE, 2024, pp. 5021–5028.
+[22] S. Lu, H. Chang, E. P. Jing, A. Boularias, and K. Bekris, “Ovir-3d:
+Open-vocabulary 3d instance retrieval without training on 3d data,” in
+Conference on Robot Learning. PMLR, 2023, pp. 1610–1620.
+[23] Y . Yang, X. Wu, T. He, H. Zhao, and X. Liu, “Sam3d: Segment anything
+in 3d scenes. arxiv 2023,”arXiv preprint arXiv:2306.03908.
+[24] Z. Du, Y . Qian, X. Liu, M. Ding, J. Qiu, Z. Yang, and J. Tang, “Glm:
+General language model pretraining with autoregressive blank infilling,”
+inProceedings of the 60th Annual Meeting of the Association for
+Computational Linguistics (Volume 1: Long Papers), 2022, pp. 320–
+335.

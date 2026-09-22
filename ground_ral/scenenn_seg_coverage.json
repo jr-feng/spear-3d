@@ -1,0 +1,195 @@
+{
+  "scenes": [
+    "005",
+    "011",
+    "080"
+  ],
+  "rows": [
+    {
+      "nyu40_id": 1,
+      "name": "wall",
+      "gt_vertices": 1108199,
+      "covered": 1036971,
+      "coverage": 0.9357263451780772,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 2,
+      "name": "floor",
+      "gt_vertices": 507995,
+      "covered": 475353,
+      "coverage": 0.9357434620419492,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 4,
+      "name": "bed",
+      "gt_vertices": 141209,
+      "covered": 130049,
+      "coverage": 0.9209682102415568,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 5,
+      "name": "chair",
+      "gt_vertices": 160330,
+      "covered": 158960,
+      "coverage": 0.9914551238071477,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 6,
+      "name": "sofa",
+      "gt_vertices": 157082,
+      "covered": 156955,
+      "coverage": 0.9991915050737831,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 7,
+      "name": "table",
+      "gt_vertices": 8630,
+      "covered": 7366,
+      "coverage": 0.8535341830822711,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 8,
+      "name": "door",
+      "gt_vertices": 165620,
+      "covered": 165516,
+      "coverage": 0.9993720565149137,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 9,
+      "name": "window",
+      "gt_vertices": 36525,
+      "covered": 36525,
+      "coverage": 1.0,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 10,
+      "name": "bookshelf",
+      "gt_vertices": 51305,
+      "covered": 46648,
+      "coverage": 0.909229119968814,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 11,
+      "name": "picture",
+      "gt_vertices": 21650,
+      "covered": 21220,
+      "coverage": 0.9801385681293302,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 13,
+      "name": "blinds",
+      "gt_vertices": 15594,
+      "covered": 15021,
+      "coverage": 0.9632550981146595,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 14,
+      "name": "desk",
+      "gt_vertices": 226303,
+      "covered": 222079,
+      "coverage": 0.9813347591503426,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 18,
+      "name": "pillow",
+      "gt_vertices": 17503,
+      "covered": 16691,
+      "coverage": 0.9536079529223561,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 21,
+      "name": "clothes",
+      "gt_vertices": 23799,
+      "covered": 20987,
+      "coverage": 0.8818437749485273,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 22,
+      "name": "ceiling",
+      "gt_vertices": 251346,
+      "covered": 147870,
+      "coverage": 0.5883125253634433,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 23,
+      "name": "books",
+      "gt_vertices": 10453,
+      "covered": 10450,
+      "coverage": 0.9997130010523295,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 25,
+      "name": "television",
+      "gt_vertices": 21192,
+      "covered": 21192,
+      "coverage": 1.0,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 26,
+      "name": "paper",
+      "gt_vertices": 2836,
+      "covered": 2836,
+      "coverage": 1.0,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 30,
+      "name": "whiteboard",
+      "gt_vertices": 85785,
+      "covered": 85785,
+      "coverage": 1.0,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 37,
+      "name": "bag",
+      "gt_vertices": 7364,
+      "covered": 4899,
+      "coverage": 0.665263443780554,
+      "catchall": false
+    },
+    {
+      "nyu40_id": 38,
+      "name": "otherstructure",
+      "gt_vertices": 27123,
+      "covered": 21289,
+      "coverage": 0.7849057995059544,
+      "catchall": true
+    },
+    {
+      "nyu40_id": 39,
+      "name": "otherfurniture",
+      "gt_vertices": 67139,
+      "covered": 66408,
+      "coverage": 0.9891121404846661,
+      "catchall": true
+    },
+    {
+      "nyu40_id": 40,
+      "name": "otherprops",
+      "gt_vertices": 195509,
+      "covered": 192143,
+      "coverage": 0.9827834012756446,
+      "catchall": true
+    }
+  ],
+  "coverage_non_catchall": 0.9214270107788871,
+  "coverage_catchall": 0.9657281094381426
+}

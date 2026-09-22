@@ -1,0 +1,20 @@
+{
+  "processed": 1,
+  "skipped": 0,
+  "mean_dist": 1.2642774993088752,
+  "acc03m": 0.0,
+  "acc05m": 0.0,
+  "coverage": 1.0,
+  "selacc_all": 0.0,
+  "selacc_covered": 0.0,
+  "error_split": {
+    "not_reconstructed": 0,
+    "no_prediction": 0,
+    "wrong_selection": 0,
+    "hallucinated": 1
+  },
+  "valid_count": 1,
+  "total_count": 1,
+  "input_gt": 1,
+  "output_jsonl": "ground_ral/nr3d/qwen3_outputs_n.jsonl"
+}

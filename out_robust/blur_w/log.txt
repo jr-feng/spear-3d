@@ -1,0 +1,46 @@
+2026-09-10 03:09:54,180 INFO: Arguments: Namespace(input=None, config='./config/scannet_test_1024.yaml', device='cuda:0', output_dir='out_robust/blur_w', scans_root='data_eval_robust/blur_w', merge_gpu=0, failed_log='out_robust/blur_w/failed_scenes.log', scenes=['scene0025_00', 'scene0050_00', 'scene0063_00', 'scene0064_00', 'scene0164_00', 'scene0169_00', 'scene0193_00', 'scene0196_00', 'scene0207_00', 'scene0249_00'], arm='A', subsample=None, dense_seg=True, feature_source='text')
+2026-09-10 03:09:54,201 INFO: ========== Start scene: scene0025_00 ==========
+2026-09-10 03:17:03,987 INFO: Scene scene0025_00 finished successfully. FPS (exclude API transfer): 0.60 (200 frames in 332.33s, removed 70.45s transfer over 200 calls) | E5 per-stage: SAM3-model 78.38s/200 calls (avg 392 ms), fusion(insert_seg_frame) 133.39s/200 (avg 667 ms), merge(update_masks) 93.87s/39 (avg 2407 ms), other 26.68s
+2026-09-10 03:17:04,027 INFO: ========== Start scene: scene0050_00 ==========
+2026-09-10 03:22:09,331 INFO: Scene scene0050_00 finished successfully. FPS (exclude API transfer): 1.00 (200 frames in 200.64s, removed 82.14s transfer over 200 calls) | E5 per-stage: SAM3-model 81.10s/200 calls (avg 405 ms), fusion(insert_seg_frame) 68.80s/200 (avg 344 ms), merge(update_masks) 31.89s/39 (avg 818 ms), other 18.84s
+2026-09-10 03:22:09,355 INFO: ========== Start scene: scene0063_00 ==========
+2026-09-10 03:26:51,871 INFO: Scene scene0063_00 finished successfully. FPS (exclude API transfer): 1.04 (200 frames in 192.09s, removed 67.79s transfer over 200 calls) | E5 per-stage: SAM3-model 56.13s/200 calls (avg 281 ms), fusion(insert_seg_frame) 77.82s/200 (avg 389 ms), merge(update_masks) 40.22s/39 (avg 1031 ms), other 17.92s
+2026-09-10 03:26:51,899 INFO: ========== Start scene: scene0064_00 ==========
+2026-09-10 03:34:34,321 INFO: Scene scene0064_00 finished successfully. FPS (exclude API transfer): 0.56 (200 frames in 359.88s, removed 80.44s transfer over 200 calls) | E5 per-stage: SAM3-model 52.45s/200 calls (avg 262 ms), fusion(insert_seg_frame) 146.42s/200 (avg 732 ms), merge(update_masks) 132.32s/39 (avg 3393 ms), other 28.69s
+2026-09-10 03:34:34,359 INFO: ========== Start scene: scene0164_00 ==========
+2026-09-10 03:40:08,327 INFO: Scene scene0164_00 finished successfully. FPS (exclude API transfer): 0.87 (200 frames in 230.95s, removed 79.83s transfer over 200 calls) | E5 per-stage: SAM3-model 101.14s/200 calls (avg 506 ms), fusion(insert_seg_frame) 85.07s/200 (avg 425 ms), merge(update_masks) 24.57s/39 (avg 630 ms), other 20.16s
+2026-09-10 03:40:08,409 INFO: ========== Start scene: scene0169_00 ==========
+2026-09-10 03:47:14,317 INFO: Scene scene0169_00 finished successfully. FPS (exclude API transfer): 0.61 (200 frames in 326.23s, removed 77.72s transfer over 200 calls) | E5 per-stage: SAM3-model 52.09s/200 calls (avg 260 ms), fusion(insert_seg_frame) 135.03s/200 (avg 675 ms), merge(update_masks) 119.56s/39 (avg 3066 ms), other 19.55s
+2026-09-10 03:47:14,347 INFO: ========== Start scene: scene0193_00 ==========
+2026-09-10 03:52:31,326 INFO: Scene scene0193_00 finished successfully. FPS (exclude API transfer): 0.94 (200 frames in 212.53s, removed 81.65s transfer over 200 calls) | E5 per-stage: SAM3-model 48.30s/200 calls (avg 241 ms), fusion(insert_seg_frame) 88.57s/200 (avg 443 ms), merge(update_masks) 59.80s/39 (avg 1533 ms), other 15.85s
+2026-09-10 03:52:31,349 INFO: ========== Start scene: scene0196_00 ==========
+2026-09-10 03:58:08,338 INFO: Scene scene0196_00 finished successfully. FPS (exclude API transfer): 0.83 (200 frames in 241.54s, removed 72.82s transfer over 200 calls) | E5 per-stage: SAM3-model 46.78s/200 calls (avg 234 ms), fusion(insert_seg_frame) 112.52s/200 (avg 563 ms), merge(update_masks) 58.60s/39 (avg 1503 ms), other 23.63s
+2026-09-10 03:58:08,373 INFO: ========== Start scene: scene0207_00 ==========
+2026-09-10 04:05:42,101 INFO: Scene scene0207_00 finished successfully. FPS (exclude API transfer): 0.57 (200 frames in 348.60s, removed 82.90s transfer over 200 calls) | E5 per-stage: SAM3-model 135.67s/200 calls (avg 678 ms), fusion(insert_seg_frame) 106.76s/200 (avg 534 ms), merge(update_masks) 81.50s/39 (avg 2090 ms), other 24.67s
+2026-09-10 04:05:42,138 INFO: ========== Start scene: scene0249_00 ==========
+2026-09-10 04:11:50,326 INFO: Scene scene0249_00 finished successfully. FPS (exclude API transfer): 0.77 (200 frames in 260.56s, removed 85.10s transfer over 200 calls) | E5 per-stage: SAM3-model 48.84s/200 calls (avg 244 ms), fusion(insert_seg_frame) 104.81s/200 (avg 524 ms), merge(update_masks) 85.79s/39 (avg 2200 ms), other 21.13s
+2026-09-10 04:11:50,366 WARNING: eval_log.csv not found at out_robust/blur_w/eval_log.csv, skip appending FPS.
+2026-09-10 06:04:35,047 INFO: Arguments: Namespace(input=None, config='./config/scannet_test_1024.yaml', device='cuda:0', output_dir='out_robust/blur_w', scans_root='data_eval_robust/blur_w', merge_gpu=0, failed_log='out_robust/blur_w/failed_scenes.log', scenes=['scene0025_00', 'scene0050_00', 'scene0063_00', 'scene0064_00', 'scene0164_00', 'scene0169_00', 'scene0193_00', 'scene0196_00', 'scene0207_00', 'scene0249_00'], arm='A', subsample=None, dense_seg=True, feature_source='text')
+2026-09-10 06:04:35,069 INFO: [Skip] scene0025_00: 已完成（存在 final.ply/ckpt_final）-> out_robust/blur_w/scene0025_00
+2026-09-10 06:04:35,069 INFO: [Skip] scene0050_00: 已完成（存在 final.ply/ckpt_final）-> out_robust/blur_w/scene0050_00
+2026-09-10 06:04:35,069 INFO: [Skip] scene0063_00: 已完成（存在 final.ply/ckpt_final）-> out_robust/blur_w/scene0063_00
+2026-09-10 06:04:35,069 INFO: [Skip] scene0064_00: 已完成（存在 final.ply/ckpt_final）-> out_robust/blur_w/scene0064_00
+2026-09-10 06:04:35,069 INFO: [Skip] scene0164_00: 已完成（存在 final.ply/ckpt_final）-> out_robust/blur_w/scene0164_00
+2026-09-10 06:04:35,069 INFO: [Skip] scene0169_00: 已完成（存在 final.ply/ckpt_final）-> out_robust/blur_w/scene0169_00
+2026-09-10 06:04:35,070 INFO: [Skip] scene0193_00: 已完成（存在 final.ply/ckpt_final）-> out_robust/blur_w/scene0193_00
+2026-09-10 06:04:35,070 INFO: [Skip] scene0196_00: 已完成（存在 final.ply/ckpt_final）-> out_robust/blur_w/scene0196_00
+2026-09-10 06:04:35,070 INFO: [Skip] scene0207_00: 已完成（存在 final.ply/ckpt_final）-> out_robust/blur_w/scene0207_00
+2026-09-10 06:04:35,070 INFO: [Skip] scene0249_00: 已完成（存在 final.ply/ckpt_final）-> out_robust/blur_w/scene0249_00
+2026-09-10 06:04:35,070 INFO: No scene FPS recorded.
+2026-09-10 11:05:06,123 INFO: Arguments: Namespace(input=None, config='/home/OnlineAnySeg/config/scannet_test_1024.yaml', device='cuda:0', output_dir='/home/OnlineAnySeg/out_robust/blur_w', scans_root='/home/OnlineAnySeg/data_eval_robust/blur_w', merge_gpu=0, failed_log='/home/OnlineAnySeg/out_robust/blur_w/failed_scenes.log', scenes=['scene0025_00', 'scene0050_00', 'scene0063_00', 'scene0064_00', 'scene0164_00', 'scene0169_00', 'scene0193_00', 'scene0196_00', 'scene0207_00', 'scene0249_00'], arm='A', subsample=None, dense_seg=True, feature_source='text')
+2026-09-10 11:05:06,142 INFO: [Skip] scene0025_00: 已完成（存在 final.ply/ckpt_final）-> /home/OnlineAnySeg/out_robust/blur_w/scene0025_00
+2026-09-10 11:05:06,142 INFO: [Skip] scene0050_00: 已完成（存在 final.ply/ckpt_final）-> /home/OnlineAnySeg/out_robust/blur_w/scene0050_00
+2026-09-10 11:05:06,143 INFO: [Skip] scene0063_00: 已完成（存在 final.ply/ckpt_final）-> /home/OnlineAnySeg/out_robust/blur_w/scene0063_00
+2026-09-10 11:05:06,143 INFO: [Skip] scene0064_00: 已完成（存在 final.ply/ckpt_final）-> /home/OnlineAnySeg/out_robust/blur_w/scene0064_00
+2026-09-10 11:05:06,143 INFO: [Skip] scene0164_00: 已完成（存在 final.ply/ckpt_final）-> /home/OnlineAnySeg/out_robust/blur_w/scene0164_00
+2026-09-10 11:05:06,143 INFO: [Skip] scene0169_00: 已完成（存在 final.ply/ckpt_final）-> /home/OnlineAnySeg/out_robust/blur_w/scene0169_00
+2026-09-10 11:05:06,143 INFO: [Skip] scene0193_00: 已完成（存在 final.ply/ckpt_final）-> /home/OnlineAnySeg/out_robust/blur_w/scene0193_00
+2026-09-10 11:05:06,143 INFO: [Skip] scene0196_00: 已完成（存在 final.ply/ckpt_final）-> /home/OnlineAnySeg/out_robust/blur_w/scene0196_00
+2026-09-10 11:05:06,143 INFO: [Skip] scene0207_00: 已完成（存在 final.ply/ckpt_final）-> /home/OnlineAnySeg/out_robust/blur_w/scene0207_00
+2026-09-10 11:05:06,143 INFO: [Skip] scene0249_00: 已完成（存在 final.ply/ckpt_final）-> /home/OnlineAnySeg/out_robust/blur_w/scene0249_00
+2026-09-10 11:05:06,143 INFO: No scene FPS recorded.

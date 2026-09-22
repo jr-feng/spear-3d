@@ -1,0 +1,25 @@
+# ============================================================
+# L0 基线配置（LLM.py：黑盒 LLM 直出，无 NS-Grounding）
+# 与 NS-Grounding 评估（LLM_sam3_query_graph_clip.py）同一套指标协议。
+# 优先级：命令行参数 > 本配置文件 > 代码默认值
+# ============================================================
+
+llm:
+  base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  api_key: "sk-e06c09a335264712806f246dc09025de"
+  model: "qwen3.5-plus"          # 与 NS 评估用同一模型，保证 L0 vs NS 可比
+
+data:
+  gt_path: "./nr3d/nr3d_gt_bboxes_matched.json"   # NR3D；换 SR3D 用 ./sr3d/sr3d_gt_bboxes_matched.json
+  oas_root: "output_test/nr3d"                     # 重建实例根目录（含 sceneXXX/pred_bboxes.json）
+  pred_name: "pred_bboxes.json"
+
+output:
+  out: "ground_ral/nr3d/qwen3_outputs_n.jsonl"        # L0 逐条结果输出（JSONL）
+  metrics_out: "ground_ral/nr3d/qwen3_n_metrics.json" # L0 汇总指标输出
+
+eval:
+  scene: null                  # 只处理单个 scene_id（null = 全部）
+  max: 100                    # 每个实验最多跑 100 条（快速验证）
+  print_every: 25
+  corr_thresh: 0.5             # SelAcc/Coverage 对应规则：类别一致 + 质心距离 <= 该值(米)

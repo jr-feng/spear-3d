@@ -1,0 +1,20 @@
+{
+  "processed": 100,
+  "skipped": 0,
+  "mean_dist": 1.217603037109893,
+  "acc03m": 0.5,
+  "acc05m": 0.52,
+  "coverage": 0.95,
+  "selacc_all": 0.48,
+  "selacc_covered": 0.5052631578947369,
+  "error_split": {
+    "not_reconstructed": 5,
+    "no_prediction": 0,
+    "wrong_selection": 2,
+    "hallucinated": 45
+  },
+  "valid_count": 100,
+  "total_count": 100,
+  "input_gt": 100,
+  "output_jsonl": "ground_ral/nr3d/glm_y_outputs.jsonl"
+}

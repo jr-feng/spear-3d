@@ -1,0 +1,19 @@
+2026-09-10 09:24:21,430 INFO: Arguments: Namespace(input=None, config='./config/scannet_test_1024.yaml', device='cuda:0', output_dir='./e5_timing_A', scans_root='./data_eval/scannet', merge_gpu=0, failed_log='./e5_timing_A/failed_scenes.log', scenes=['scene0432_00', 'scene0527_00', 'scene0559_00', 'scene0494_00', 'scene0689_00'], arm='A', subsample=None, dense_seg=False, feature_source='text')
+2026-09-10 09:24:21,449 INFO: ========== Start scene: scene0432_00 ==========
+2026-09-10 09:25:53,456 INFO: Scene scene0432_00 finished successfully. FPS (exclude API transfer): 11.42 (510 frames in 44.67s, removed 18.15s transfer over 51 calls) | E5 per-stage: SAM3-model 9.99s/51 calls (avg 196 ms), fusion(insert_seg_frame) 14.47s/51 (avg 284 ms), merge(update_masks) 4.77s/10 (avg 477 ms), other 15.44s
+2026-09-10 09:25:53,473 INFO: ========== Start scene: scene0527_00 ==========
+2026-09-10 09:27:42,649 INFO: Scene scene0527_00 finished successfully. FPS (exclude API transfer): 10.71 (670 frames in 62.54s, removed 20.79s transfer over 67 calls) | E5 per-stage: SAM3-model 20.14s/67 calls (avg 301 ms), fusion(insert_seg_frame) 19.80s/67 (avg 296 ms), merge(update_masks) 4.51s/13 (avg 347 ms), other 18.09s
+2026-09-10 09:27:42,664 INFO: ========== Start scene: scene0559_00 ==========
+2026-09-10 09:29:21,231 INFO: Scene scene0559_00 finished successfully. FPS (exclude API transfer): 10.62 (570 frames in 53.69s, removed 19.48s transfer over 57 calls) | E5 per-stage: SAM3-model 13.65s/57 calls (avg 239 ms), fusion(insert_seg_frame) 19.16s/57 (avg 336 ms), merge(update_masks) 4.91s/11 (avg 446 ms), other 15.97s
+2026-09-10 09:29:21,245 INFO: ========== Start scene: scene0494_00 ==========
+2026-09-10 09:31:20,646 INFO: Scene scene0494_00 finished successfully. FPS (exclude API transfer): 10.82 (740 frames in 68.40s, removed 26.68s transfer over 74 calls) | E5 per-stage: SAM3-model 17.12s/74 calls (avg 231 ms), fusion(insert_seg_frame) 25.64s/74 (avg 347 ms), merge(update_masks) 5.02s/14 (avg 359 ms), other 20.61s
+2026-09-10 09:31:20,659 INFO: ========== Start scene: scene0689_00 ==========
+2026-09-10 09:33:29,152 INFO: Scene scene0689_00 finished successfully. FPS (exclude API transfer): 11.04 (860 frames in 77.88s, removed 26.52s transfer over 86 calls) | E5 per-stage: SAM3-model 19.68s/86 calls (avg 229 ms), fusion(insert_seg_frame) 31.51s/86 (avg 366 ms), merge(update_masks) 12.44s/17 (avg 732 ms), other 14.24s
+2026-09-10 09:33:29,170 WARNING: eval_log.csv not found at ./e5_timing_A/eval_log.csv, skip appending FPS.
+2026-09-10 09:59:22,697 INFO: Arguments: Namespace(input=None, config='./config/scannet_test_1024.yaml', device='cuda:0', output_dir='./e5_timing_A', scans_root='./data_eval/scannet', merge_gpu=0, failed_log='./e5_timing_A/failed_scenes.log', scenes=['scene0432_00', 'scene0527_00', 'scene0559_00', 'scene0494_00', 'scene0689_00'], arm='A', subsample=None, dense_seg=False, feature_source='text')
+2026-09-10 09:59:22,719 INFO: [Skip] scene0432_00: 已完成（存在 final.ply/ckpt_final）-> ./e5_timing_A/scene0432_00
+2026-09-10 09:59:22,719 INFO: [Skip] scene0527_00: 已完成（存在 final.ply/ckpt_final）-> ./e5_timing_A/scene0527_00
+2026-09-10 09:59:22,719 INFO: [Skip] scene0559_00: 已完成（存在 final.ply/ckpt_final）-> ./e5_timing_A/scene0559_00
+2026-09-10 09:59:22,719 INFO: [Skip] scene0494_00: 已完成（存在 final.ply/ckpt_final）-> ./e5_timing_A/scene0494_00
+2026-09-10 09:59:22,719 INFO: [Skip] scene0689_00: 已完成（存在 final.ply/ckpt_final）-> ./e5_timing_A/scene0689_00
+2026-09-10 09:59:22,720 INFO: No scene FPS recorded.

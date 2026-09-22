@@ -1,0 +1,20 @@
+{
+  "processed": 100,
+  "skipped": 0,
+  "mean_dist": 1.1313441024190818,
+  "acc03m": 0.5454545454545454,
+  "acc05m": 0.5858585858585859,
+  "coverage": 0.99,
+  "selacc_all": 0.57,
+  "selacc_covered": 0.5757575757575758,
+  "error_split": {
+    "not_reconstructed": 1,
+    "no_prediction": 1,
+    "wrong_selection": 7,
+    "hallucinated": 34
+  },
+  "valid_count": 99,
+  "total_count": 100,
+  "input_gt": 100,
+  "output_jsonl": "ground_ral/nr3d/deepseek_y_outputs.jsonl"
+}

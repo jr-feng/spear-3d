@@ -1,0 +1,12 @@
+Scene FPS results (API transfer excluded):
+scene0025_00: 0.6018 FPS
+scene0050_00: 0.9968 FPS
+scene0063_00: 1.0412 FPS
+scene0064_00: 0.5557 FPS
+scene0164_00: 0.8660 FPS
+scene0169_00: 0.6131 FPS
+scene0193_00: 0.9411 FPS
+scene0196_00: 0.8280 FPS
+scene0207_00: 0.5737 FPS
+scene0249_00: 0.7676 FPS
+Average FPS: 0.7785

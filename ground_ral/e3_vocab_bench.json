@@ -1,0 +1,47 @@
+{
+  "rows": [
+    {
+      "vocab": 10,
+      "latency_ms": 311.0,
+      "fps": 3.22,
+      "peak_mem_mb": 16105.3,
+      "segments_avg": 8.3,
+      "n_calls": 30,
+      "oom": 0
+    },
+    {
+      "vocab": 30,
+      "latency_ms": 508.85,
+      "fps": 1.97,
+      "peak_mem_mb": 16098.1,
+      "segments_avg": 11.3,
+      "n_calls": 30,
+      "oom": 0
+    },
+    {
+      "vocab": 50,
+      "latency_ms": 761.75,
+      "fps": 1.31,
+      "peak_mem_mb": 16094.7,
+      "segments_avg": 12.1,
+      "n_calls": 30,
+      "oom": 0
+    },
+    {
+      "vocab": 100,
+      "latency_ms": 1626.6,
+      "fps": 0.61,
+      "peak_mem_mb": 16083.8,
+      "segments_avg": 16.8,
+      "n_calls": 30,
+      "oom": 0
+    }
+  ],
+  "scenes": [
+    "scene0011_00",
+    "scene0015_00"
+  ],
+  "frames": 5,
+  "vocab_mode": "freq",
+  "server": "http://127.0.0.1:18091"
+}

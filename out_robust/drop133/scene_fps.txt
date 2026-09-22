@@ -1,0 +1,12 @@
+Scene FPS results (API transfer excluded):
+scene0025_00: 0.6916 FPS  | sam3 2.56 call/s | fusion 1.75 frame/s | merge 0.55 merge/s
+scene0050_00: 1.0222 FPS  | sam3 2.47 call/s | fusion 2.94 frame/s | merge 1.41 merge/s
+scene0063_00: 1.1135 FPS  | sam3 3.57 call/s | fusion 2.77 frame/s | merge 1.18 merge/s
+scene0064_00: 0.6420 FPS  | sam3 3.78 call/s | fusion 1.55 frame/s | merge 0.39 merge/s
+scene0164_00: 0.8827 FPS  | sam3 1.98 call/s | fusion 2.46 frame/s | merge 1.61 merge/s
+scene0169_00: 0.7149 FPS  | sam3 3.84 call/s | fusion 1.77 frame/s | merge 0.41 merge/s
+scene0193_00: 0.9684 FPS  | sam3 4.14 call/s | fusion 2.28 frame/s | merge 0.75 merge/s
+scene0196_00: 0.8849 FPS  | sam3 4.26 call/s | fusion 1.88 frame/s | merge 0.81 merge/s
+scene0207_00: 0.6124 FPS  | sam3 1.48 call/s | fusion 1.97 frame/s | merge 0.60 merge/s
+scene0249_00: 0.8235 FPS  | sam3 4.09 call/s | fusion 2.02 frame/s | merge 0.53 merge/s
+Average FPS: 0.8356

@@ -1,0 +1,36 @@
+{
+  "n_queries": 100,
+  "rows": {
+    "lambda=0.5:none": {
+      "lambda_u": 0.5,
+      "normalize": "none",
+      "mean_dist": 1.178,
+      "acc03m": 0.52,
+      "acc05m": 0.54,
+      "selacc": 0.54,
+      "queries": 100
+    },
+    "lambda=0.5:norm": {
+      "lambda_u": 0.5,
+      "normalize": "norm",
+      "mean_dist": 1.1286,
+      "acc03m": 0.51,
+      "acc05m": 0.54,
+      "selacc": 0.54,
+      "queries": 100
+    }
+  },
+  "params": {
+    "corr_thresh": 0.5,
+    "lambdas": [
+      0.5
+    ]
+  },
+  "decision_change": {
+    "0.5": {
+      "changed": 6,
+      "n": 100,
+      "pct": 0.06
+    }
+  }
+}

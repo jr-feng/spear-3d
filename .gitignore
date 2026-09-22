@@ -1,0 +1,211 @@
+###############################################################################
+# OnlineAnySeg - .gitignore
+#
+# 原则：仓库只保留「源码 / 配置 / 文档 / 少量必要的小文件」。
+#       数据集（ScanNet / SceneNN / NR3D / SR3D / ScanRefer / COCO ...）、
+#       模型权重、以及所有运行产出（output、可视化、checkpoint、缓存、
+#       编译产物）一律不入库。
+#
+# 注意：.gitignore 只对「尚未被跟踪」的文件生效。如果某些数据集 / 产出
+#       之前已经被提交进仓库，需要额外把它们从索引里移除（本地文件不动）：
+#           git rm -r --cached <path>      # 例如：git rm -r --cached data output
+#           git commit -m "stop tracking datasets and outputs"
+###############################################################################
+
+
+###############################################################################
+# 1. 数据集 (Datasets)
+###############################################################################
+
+# --- 主数据目录 data/：整体忽略，只白名单保留几个必要的小文件 ---
+/data/*
+!/data/.gitkeep
+!/data/download_scannet.py
+!/data/evaluation
+!/data/SceneNN
+
+# SceneNN：只保留相机内参与解压脚本；下载/解压出来的序列一律忽略
+/data/SceneNN/*
+!/data/SceneNN/intrinsic
+!/data/SceneNN/decompress_all_seqs.sh
+
+# --- Dataset/：只保留代码，特征文件与备份忽略 ---
+/Dataset/*
+!/Dataset/dataset.py
+/Dataset/label_feature_scannet200.npy
+/Dataset/dataset_backup.py
+
+# --- 评测用 GT：只保留打包好的 zip，解压出来的 txt 不入库 ---
+/eval/scannet200/validation/*
+!/eval/scannet200/validation/scannet_gt_seg.zip
+/eval/sceneNN/*
+!/eval/sceneNN/sceneNN_gt_seg.zip
+/eval/backup/
+# nr3d_eval：保留代码 prepare_gt.py 与 GT 压缩包，只忽略解压出来的标注
+/eval/nr3d_eval/validation/*
+
+# --- 各 benchmark 的数据 / 结果目录 ---
+/nr3d/
+/sr3d/
+/scenenn/
+/scanrefer/
+/scanrefer_eval_2/
+/scanrefer_oas_eval/
+/coco/
+
+# --- 常见 3D / RGB-D 原始数据与标注格式 ---
+*.ply
+*.oni
+*.sens
+*.bag
+
+# --- 第三方仓库：内含 detectron2/datasets/coco 等数据集，整目录忽略 ---
+#     仅按原有约定保留 FCGF 的代码
+/third_party/*
+!/third_party/FCGF/
+
+
+###############################################################################
+# 2. 模型权重 (Model weights / checkpoints)
+###############################################################################
+/models/*
+!/models/.gitkeep
+*.pth
+*.pth.tar
+*.pt
+*.ckpt
+*.bin
+*.onnx
+*.safetensors
+*.npy
+*.npz
+
+
+###############################################################################
+# 3. 运行产出 (Outputs / results)
+###############################################################################
+output/
+outputs/
+/output_*/
+/out/
+results/
+work_dirs/
+exp/
+runs/
+logs/
+
+# 可视化图片（figs/ 下多为实验产出，仅保留 README 引用的静态图）
+/figs/*
+!/figs/overview.png
+!/figs/teaser.png
+!/figs/teaser1.png
+
+# 2D 掩码预测的产物目录（在数据集目录下生成）
+seg_result/
+mask_embeddings/
+mask_color/
+
+
+# --- CSVG 子项目：只保留代码 / 提示词，缓存与评测结果不入库 ---
+/CSVG
+/CSVG/data/instance_cache/
+/CSVG/data/eval_output/
+/CSVG/output/
+/CSVG/ground_ral/
+/CSVG/out_*.txt
+
+# 根目录下的临时截图
+/image*.png
+
+/OVI-MAP
+
+# 大体积备份 / 衍生实验目录
+/RA-L-OAS/
+/panopticapi/
+/ppt/
+/testing/
+
+
+###############################################################################
+# 4. 日志与临时文件 (Logs & temp)
+###############################################################################
+*.log
+*.tmp
+*.bak
+*.old
+*~
+
+# 项目内的个人备份脚本
+Scene_rep_backup.py
+Bi_plane_classifier.py
+readme.txt
+readme_env.txt
+
+
+###############################################################################
+# 5. Python / 编译缓存 (Caches & build artifacts)
+###############################################################################
+__pycache__/
+*/__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.mypy_cache/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# catkin / ROS（OVI-MAP 等）
+devel/
+.logs/
+.catkin_tools/
+
+
+###############################################################################
+# 6. 环境 / 编辑器 / 系统文件
+###############################################################################
+/.venv/
+/venv/
+/env/
+/.vscode/
+/.idea/
+/.claude/
+/.DS_Store
+Thumbs.db
+*.swp
+
+# 模型权重
+*.pth
+*.pt
+*.bin
+*.pkl
+*.npz
+*.ckpt
+
+# 数据集压缩包
+*.zip
+*.tar
+*.tar.gz
+
+# 输出结果
+output_ral/
+outputs/
+output/
+
+# 嵌套的 Git 仓库（很重要，避免把第三方仓库的 .git 也带进去）
+**/.git/
+third_party/*/.git/
+
+# 其他常见大文件
+*.h5
+*.onnx
+*.engine
+*.mp4
+*.avi
+
+/data_eval_robust/

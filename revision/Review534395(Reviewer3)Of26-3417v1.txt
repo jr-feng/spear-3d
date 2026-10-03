@@ -1,0 +1,92 @@
+**Summary**
+
+The paper proposes SPEAR-3D, a two-stage framework that combines:
+(1) a streaming 3D semantic instance reconstruction module, reported at
+10 FPS on an RTX 3090, which conditions SAM3 segmentation and CLIP
+feature binding on an inference-time prompt vocabulary and reuses the
+OnlineAnySeg reconstruction backend;
+(2) a neuro-symbolic grounding module (NS-Grounding), in which an LLM
+parses the natural-language query into a structured query graph that is
+matched against a scene graph derived from the reconstructed instances,
+using a library of hand-crafted spatial relation scorers.
+
+The direction is reasonable, and the motivation (avoiding black-box LLM
+spatial reasoning through explicit geometric matching) is sound.
+However, in its current form, the paper has significant issues with the
+coherence of the prompt-conditioned evaluation protocol, the omission
+of related work and comparisons in the 3D scene graph literature,
+insufficient justification and ablation studies for key design choices,
+and the absence of any real-robot experiment. 
+My assessment is that a major revision is needed.
+
+**Major Comments**
+
+- The paper constructs a geometry-derived 3D scene graph and grounds
+language against it, but does not discuss or compare it with the
+substantial recent literature on 3D scene graph construction and
+language grounding over scene graphs, e.g., [1,2,3,4]. The related work
+section needs a dedicated discussion of this line of work, and the
+authors should clearly articulate what NS-Grounding does differently
+from (or better than) these methods.
+
+-  Integrating semantic category information into the 3D instance
+mapping/fusion process is already common practice, e.g., [4,5,6]. The
+paper should explain concretely how its "label-mediated feature
+binding" differs from these approaches beyond running at a higher frame
+rate, ideally with a comparison. The semantic TSDF mapping component
+should also be compared with OVI-MAP [7], which addresses a closely
+related problem.
+
+- The results on ScanNet are reported in multiple parts of the paper,
+including the abstract, but it is not clear what this AP is measuring:
+3D instance segmentation? Class-agnostic or not? 
+
+- The pipeline appears to pass the full prompt vocabulary to SAM3 at
+every frame (Eq. 2). Prior work [8] handles large vocabularies more
+efficiently by first running an open-set recognition model (e.g.,
+Recognize Anything Model (RAM)) to propose which categories are present
+in the image, and only then, prompting SAM with that reduced set. The
+authors should discuss this alternative and, ideally, report how their
+per-frame runtime scales with vocabulary size; the 10 FPS claim is
+presumably not independent of the number of prompts.
+
+- Sec. III-B.4 introduces seven hand-crafted scorers for relations, but
+the paper provides no justification for why this particular pool of
+relations is sufficient, nor an ablation showing the contribution of
+each scorer.
+
+-All experiments are conducted offline on ScanNet200/SceneNN/NR3D/SR3D
+sequences. There is no demonstration on a physical robot, no evaluation
+under real sensor noise, motion blur, and no closed-loop task using the
+grounding output. 
+
+- Several symbols are used without definition, e.g., the operator
+ID(l_k) over the arrow in Eq. (3).
+
+**Minor Comment**
+
+The text contains many typos and grammatical errors, for example:
+
+- Abstract: "RGB-D streams,and" (missing space)
+- Sec. I: "inference phrase" -> "inference phase"
+- Sec. III-B.4a: "Directional Relations.:" (stray period before the
+colon; this pattern recurs in the other paragraph headings)
+- Sec. IV-C.a: "recall.Additionally" (missing space)
+
+This list is not exhaustive. High-quality work should also pay
+attention to these details, which are easily checkable with today's
+tools. As a practical tip, proofreading the paper from the bottom up
+makes such errors easier to spot if the authors prefer not to automate
+the check.
+
+
+**References**
+
+[1] 3DGraphLLM: https://arxiv.org/abs/2412.18450
+[2] KeySG: https://arxiv.org/pdf/2510.01049
+[3] DAAAM https://arxiv.org/abs/2512.00565
+[4] ConceptGraphs: https://arxiv.org/abs/2309.16650
+[5] HOV-SG: https://arxiv.org/abs/2403.17846
+[6] FunGraph: https://arxiv.org/pdf/2503.07909
+[7] OVI-MAP: https://arxiv.org/abs/2603.26541
+[8] OpenGraph: https://arxiv.org/abs/2403.09412

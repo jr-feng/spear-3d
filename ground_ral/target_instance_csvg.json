@@ -1,0 +1,36 @@
+{
+  "pred_root": "/home/OnlineAnySeg/output_test/nr3d",
+  "definition": "Correct iff the referred ScanNet object is the unique highest point-IoU match of the selected reconstructed instance, and IoU is at least the threshold. No selection counts incorrect. Denominator is queries whose scene masks and aggregation loaded.",
+  "rows": [
+    {
+      "name": "CSVG NR3D",
+      "queries": 1450,
+      "scored": 1450,
+      "missing_scene": 0,
+      "no_prediction": 246,
+      "parse_fail": 0,
+      "centroid_known": 0,
+      "acc05_centroid_all": 0.0,
+      "acc05_centroid_known": null,
+      "target_acc_iou25": 41.31,
+      "target_acc_iou50": 33.86,
+      "centroid_hit_other_object": 0,
+      "centroid_hit_other_object_pct": 0.0
+    },
+    {
+      "name": "CSVG SR3D",
+      "queries": 5247,
+      "scored": 5247,
+      "missing_scene": 0,
+      "no_prediction": 504,
+      "parse_fail": 0,
+      "centroid_known": 0,
+      "acc05_centroid_all": 0.0,
+      "acc05_centroid_known": null,
+      "target_acc_iou25": 43.76,
+      "target_acc_iou50": 37.07,
+      "centroid_hit_other_object": 0,
+      "centroid_hit_other_object_pct": 0.0
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+The paper addresses prompt-conditioned open-vocabulary 3D scene
+instance reconstruction and language-guided object localization for
+embodied robots. The proposed system, SPEAR-3D, has two stages. A
+category-guided streaming reconstruction module feeds an inference-time
+prompt vocabulary to SAM3, binds precomputed CLIP text embeddings to
+the resulting masks, and lifts them into a 3D instance library using
+the OnlineAnySeg reconstruction backend. A neuro-symbolic grounding
+module (NS-Grounding) then uses an LLM to parse a referring expression
+into a query graph, and scores injective mappings from the query graph
+onto a geometry-derived scene graph using a library of hand-designed
+spatial relation scorers. The authors report 10 FPS streaming
+reconstruction.
+
+- Additional literature review is requested to better position
+NS-grounding, e.g., Z. Yuan et al (ZSVG3D, CPVR 24) and Q. Yuan et al.
+(CSVG, arXiv 24).
+ZSVG3D parses a referring expression with an LLM. The view-dependent
+and view-independent relation modules are directly analogous to the
+proposed scorer library. CSVG formulates grounding as constraint
+satisfaction over spatial relations. There are others such as
+LLM-Grounder, VLM-Grounder, SeeGround, and BBQ, which might be
+relevant. Please position NS-Grounding explicitly with respect to this
+line of work and state what is new relative to it. Eq. (9) is
+additionally a standard attributed graph matching objective and should
+carry a citation.
+
+References: 
+- Visual Programming for Zero-shot Open-Vocabulary 3D Visual Grounding.
+Zhihao Yuan, Jinke Ren, Chun-Mei Feng, Hengshuang Zhao, Shuguang Cui,
+Zhen Li
+https://github.com/CurryYuan/ZSVG3D
+
+@article{yuan2024solving,
+      title={Solving Zero-Shot 3D Visual Grounding as Constraint
+Satisfaction Problems}, 
+      author={Yuan, Qihao and Zhang, Jiaming and Li, Kailai and
+Stiefelhagen, Rainer},
+      journal={arXiv preprint arXiv:2411.14594},
+      year={2024}
+}
+https://github.com/sunsleaf/CSVG
+
+- The paper adopts several aspects from the existing paper OnlineAnySeg
+[6]. The reconstruction contribution appears to be weak as it appears
+to be component swap. Relative to OnlineAnySeg, the delta is SAM3 in
+place of CropFormer and label-bound text embeddings in place of
+per-crop CLIP features. An ablation study of OnlineAnySeg backend with
+SAM3 masks and per-crop CLIP features, versus the proposed label
+binding would strengthn the claim. Currently, it is not clear if the AP
+gain is due to the better 2D segmentation backbone.
+
+- Acc@0.3 and Acc@0.5 are centroid distance thresholds in meters
+instead of Intersection over Union (IoU). In the ReferIt3D protocol the
+reported quantity is selection accuracy over ground-truth proposals.
+"Acc@k" with a numeric threshold is the ScanRefer/IoU convention. They
+dont match here. Without units, metres is inferable only from "MeanDist
+of 0.96 m" in Sec. IV-C-b.
+
+- Under the stated centroid-distance definition, Acc@0.3 &#8804;
+Acc@0.5 must hold by set inclusion. But GLM-5 without NS-Grounding on
+SR3D reports 52.5/51.9, which is impossible under the distance reading
+and consistent only with an IoU convention. Please correct the entry or
+clarify the metric, and add units to the labels.
+
+- The grounding evaluation contains no external baseline. Every row of
+Table II is the proposed system with NS-Grounding toggled. To
+strengthen the contribution claim at least one prior zero-shot
+grounding method should be run on the the reconstructions.
+
+- Timing and baseline numbers require justification. OnlineAnySeg
+reports 15 FPS, however, Table I says 4. This undermines the efficiency
+claim. Please report hardware, keyframe interval, and a per-stage
+timing breakdown for both systems, noting that SAM3 is considerably
+heavier than CropFormer. The remaining rows of Table I appear to be
+transcribed from OnlineAnySeg Table 1 and should be credited as such.
+
+- From Table II, the SR3D columns, Qwen3-plus with NS-Grounding is the
+worst of the three on both accuracies. It leads only on MeanDist. Yet
+Sec. IV-C-b calls it the best result. The 65.9 in the abstract and
+contribution list is the weakest SR3D number. The best scores should be
+bold.
+
+- Section III-B4, the following are not defined: gamma_xy in (11), rho
+and r-star in (12), a_xy in (13), g_z in (14), the scene-adaptive
+normalization scales, and the numerical values of tau_wall, tau_mid,
+tau_align. The operators U, Pi, and R in (4), (5), and (7) are likewise
+undefined or not precisely stated mathematically.
+
+- Eq. (9) does not balance node and relation terms as claimed. With
+unnormalized sums, the effective ratio is lambda_u |V_Q| to lambda_e
+|E_Q|, so the Table III conclusion that the two contribute equally at
+lambda_u = 0.50 does not follow. Averaging each term and re-sweeping
+lambda_u is needed. The paper also never states how the optimal
+injective mapping is computed. With edge terms this appears to be a
+quadratic assignment problem, and the algorithm and candidate set size
+should be given.
+
+
+Minor Comments
+
+
+- Fig. 1 labels OnlineAnySeg as OFFLINE while Table I marks it Online.
+The distinction between "streaming" and "online" is never defined,
+though the positioning depends on it.
+
+- FCGF, voxel-hashed TSDF, and TSDF fusion are used but uncited. Ref
+[24] cites the 2022 GLM pretraining paper for GLM-5. Qwen3-plus and
+deepseek-v3.2 are uncited. Ref [23] is malformed. Refs [3], [10], and
+[17] now have published versions (ICLR 2025, RSS 2023, ICCV 2025).
+
+- The abstract leads with AP25 of 60.4 while AP is 22.6. Please report
+AP as the primary metric.
+
+- On SceneNN the method loses to OnlineAnySeg on all three metrics and
+to MaskClustering on AP and AP50. Sec. IV-C-a attributes this to
+SceneNN's incomplete annotations without evidence. If categories are
+missing from the inventory, the prompt vocabulary was set to that same
+inventory (Sec. IV-A), so the loss seems to be a direct consequence of
+the design rather than a dataset artefact. Please support the claim
+quantitatively or state it as a limitation.
+
+- Typos: "are method" (Section I), "inference phrase" for "inference
+phase", "structred" (Section III-B), missing period after "real-time
+streaming reconstruction" (Section II-B).
+
+- Also, the markers (asterix an daggers) are given without a note in
+Table I

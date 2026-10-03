@@ -835,12 +835,43 @@ class MatchState:
     node_weight_sum: float = 0.0
     rel_log_sum: float = 0.0
     rel_weight_sum: float = 0.0
+    # Reviewer Eq.(9): average the node terms by |V| and the relation terms by |E|,
+    # then mix the two means with lambda_u. Counts are unweighted (one per node / edge).
+    node_arith_sum: float = 0.0
+    node_count: int = 0
+    rel_arith_sum: float = 0.0
+    rel_count: int = 0
+    term_average: bool = False
+    balance: float = 0.5
 
     @property
     def total_score(self) -> float:
+        if self.term_average:
+            return self._averaged_score()
         if self.weight_sum <= EPS:
             return 0.0
         return math.exp(self.log_sum / self.weight_sum)
+
+    def _averaged_score(self) -> float:
+        """S = λu * mean_v s_u + (1-λu) * mean_e s_e.
+
+        A missing side (no nodes yet, or a query with no relations) drops out,
+        so λu = 0 uses only relations and λu = 1 uses only nodes.
+        """
+        node_mean = (self.node_arith_sum / self.node_count) if self.node_count else None
+        rel_mean = (self.rel_arith_sum / self.rel_count) if self.rel_count else None
+        lam = self.balance
+        if lam <= 1e-12:
+            return 0.0 if rel_mean is None else rel_mean
+        if lam >= 1.0 - 1e-12:
+            return 0.0 if node_mean is None else node_mean
+        if node_mean is not None and rel_mean is not None:
+            return lam * node_mean + (1.0 - lam) * rel_mean
+        if node_mean is not None:
+            return node_mean
+        if rel_mean is not None:
+            return rel_mean
+        return 0.0
 
     @property
     def node_part(self) -> Optional[float]:
@@ -872,6 +903,7 @@ class QueryGraphGrounder:
         disabled_scorers: Sequence[str] = (),
         graph_balance: Optional[float] = None,
         normalize_terms: bool = False,
+        term_average: bool = False,
     ):
         self.scene = scene_graph
         self.matcher = clip_matcher
@@ -889,6 +921,12 @@ class QueryGraphGrounder:
         # ranking (addresses R1 "Eq.(9) terms are imbalanced"). Only affects
         # the ordering/beam pruning, never stored per-instance scores.
         self.normalize_terms = bool(normalize_terms)
+        # Average node scores by |V_Q| and relation scores by |E_Q| before
+        # applying lambda_u. This is the Eq.(9) balance the reviewer asked for.
+        # Beam pruning and the final top-1 both use this score. Default off,
+        # so stored Table II runs keep the previous weighted geometric mean.
+        self.term_average = bool(term_average)
+        self._pool_cache: Dict[Tuple[Any, ...], Dict[str, NodeCandidatePool]] = {}
         # which of the 7 relation scorers are ablated (their rel_types never
         # contribute to S(pi)); unknown names are ignored.
         self.disabled_scorers = frozenset(
@@ -910,10 +948,20 @@ class QueryGraphGrounder:
         resolved_classes_by_node: Dict[str, List[ResolvedClass]] = {}
 
         for direction in directions:
-            pools = {
-                node.node_id: self._build_node_candidate_pool(node, direction)
-                for node in query_graph.nodes
-            }
+            pool_key = (
+                direction,
+                tuple(
+                    (node.node_id, node.role, node.class_name, tuple(node.attributes))
+                    for node in query_graph.nodes
+                ),
+            )
+            pools = self._pool_cache.get(pool_key)
+            if pools is None:
+                pools = {
+                    node.node_id: self._build_node_candidate_pool(node, direction)
+                    for node in query_graph.nodes
+                }
+                self._pool_cache[pool_key] = pools
             for node_id, pool in pools.items():
                 resolved_classes_by_node[node_id] = list(pool.resolved_classes)
             states = self._search_assignments(query_graph, pools, direction)
@@ -947,7 +995,7 @@ class QueryGraphGrounder:
                     best_by_target[pred_id] = record
 
         results = sorted(best_by_target.values(), key=lambda item: item["total_score"], reverse=True)
-        if self.normalize_terms and results:
+        if self.normalize_terms and not self.term_average and results:
             # E10 (R1: Eq.(9) node/relation terms are imbalanced): re-rank the
             # per-target winners by per-term normalized scores
             #   rank = lambda_u * norm(node_part) + (1 - lambda_u) * norm(rel_part)
@@ -1141,7 +1189,11 @@ class QueryGraphGrounder:
         direction: str,
     ) -> List[MatchState]:
         ordered_nodes = sorted(query_graph.nodes, key=lambda node: (0 if node.role == "target" else 1, len(node_pools[node.node_id].candidates)))
-        beam: List[MatchState] = [MatchState(assignment={}, log_sum=0.0, weight_sum=0.0, details={"node_scores": {}, "relation_scores": {}})]
+        beam: List[MatchState] = [MatchState(
+            assignment={}, log_sum=0.0, weight_sum=0.0,
+            details={"node_scores": {}, "relation_scores": {}},
+            term_average=self.term_average, balance=self.graph_balance,
+        )]
         relation_list = list(query_graph.relations)
 
         for node in ordered_nodes:
@@ -1158,6 +1210,10 @@ class QueryGraphGrounder:
                     node_weight_sum = state.node_weight_sum
                     rel_log_sum = state.rel_log_sum
                     rel_weight_sum = state.rel_weight_sum
+                    node_arith_sum = state.node_arith_sum
+                    node_count = state.node_count
+                    rel_arith_sum = state.rel_arith_sum
+                    rel_count = state.rel_count
                     details = {
                         "node_scores": dict(state.details.get("node_scores", {})),
                         "relation_scores": dict(state.details.get("relation_scores", {})),
@@ -1176,6 +1232,9 @@ class QueryGraphGrounder:
                     weight_sum += node_weight
                     node_log_sum += node_raw_w * math.log(node_score)
                     node_weight_sum += node_raw_w
+                    if self.term_average:
+                        node_arith_sum += node_score
+                        node_count += 1
                     details["node_scores"][node.node_id] = {
                         "pred_id": candidate.pred_id,
                         "score": candidate.prior_score,
@@ -1200,6 +1259,9 @@ class QueryGraphGrounder:
                         weight_sum += effective_relation_weight
                         rel_log_sum += relation.weight * math.log(relation_score)
                         rel_weight_sum += relation.weight
+                        if self.term_average:
+                            rel_arith_sum += relation_score
+                            rel_count += 1
                         details["relation_scores"][rel_key] = {
                             "type": relation.rel_type,
                             "score": relation_score,
@@ -1208,10 +1270,15 @@ class QueryGraphGrounder:
                             "source": relation.source,
                             "targets": list(relation.targets),
                         }
-                    next_beam.append(MatchState(assignment=new_assignment, log_sum=log_sum, weight_sum=weight_sum,
-                                                details=details,
-                                                node_log_sum=node_log_sum, node_weight_sum=node_weight_sum,
-                                                rel_log_sum=rel_log_sum, rel_weight_sum=rel_weight_sum))
+                    next_beam.append(MatchState(
+                        assignment=new_assignment, log_sum=log_sum, weight_sum=weight_sum,
+                        details=details,
+                        node_log_sum=node_log_sum, node_weight_sum=node_weight_sum,
+                        rel_log_sum=rel_log_sum, rel_weight_sum=rel_weight_sum,
+                        node_arith_sum=node_arith_sum, node_count=node_count,
+                        rel_arith_sum=rel_arith_sum, rel_count=rel_count,
+                        term_average=self.term_average, balance=self.graph_balance,
+                    ))
             next_beam.sort(key=lambda item: item.total_score, reverse=True)
             beam = next_beam[: self.beam_size]
             if not beam:

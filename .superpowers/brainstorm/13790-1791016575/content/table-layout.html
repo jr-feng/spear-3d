@@ -1,0 +1,148 @@
+<h2>实验末尾的三种排版</h2>
+<p class="subtitle">三套都去掉表 I 的基线行，表 II 居中，表 III 的题注紧贴在表上方、不跨页。差别在表放在哪、段间距怎么收。点选一套。</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#f4f1ea;border:1px solid #d9d3c7;padding:8px;font-family:Georgia,serif;color:#1c1c1c;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:9px;line-height:1.35;">
+          <div>
+            <div style="height:28px;background:#e7e2d8;margin-bottom:6px;"></div>
+            <div style="height:10px;background:#e7e2d8;margin-bottom:4px;"></div>
+            <div style="height:10px;background:#e7e2d8;margin-bottom:8px;"></div>
+            <div style="text-align:center;font-size:8px;letter-spacing:.04em;">TABLE II</div>
+            <div style="font-size:8px;text-align:center;margin-bottom:3px;">Class-agnostic instance segmentation</div>
+            <table style="margin:0 auto;border-collapse:collapse;font-size:8px;">
+              <tr style="border-top:1px solid #222;border-bottom:1px solid #222;"><th style="padding:1px 3px;">Arm</th><th>AP</th><th>AP50</th><th>AP25</th></tr>
+              <tr><td>A</td><td>22.5</td><td>40.4</td><td>60.5</td></tr>
+              <tr><td>B</td><td>20.1</td><td>37.4</td><td>58.7</td></tr>
+              <tr><td>C</td><td>18.6</td><td>36.1</td><td>53.5</td></tr>
+              <tr style="border-bottom:1px solid #222;"><td>D</td><td>21.8</td><td>39.8</td><td>57.9</td></tr>
+            </table>
+          </div>
+          <div>
+            <div style="height:10px;background:#e7e2d8;margin-bottom:4px;"></div>
+            <div style="height:10px;background:#e7e2d8;margin-bottom:4px;"></div>
+            <div style="height:10px;background:#e7e2d8;margin-bottom:8px;"></div>
+            <div style="height:36px;background:#efeae0;"></div>
+          </div>
+        </div>
+        <div style="margin-top:8px;font-size:8px;text-align:center;letter-spacing:.04em;">TABLE I</div>
+        <div style="font-size:8px;text-align:center;">Full-sequence reconstruction. Ours only.</div>
+        <table style="width:100%;border-collapse:collapse;font-size:8px;margin-top:2px;">
+          <tr style="border-top:1px solid #222;border-bottom:1px solid #222;"><th>Method</th><th>AP</th><th>AP50</th><th>AP25</th><th>FPS</th></tr>
+          <tr style="border-bottom:1px solid #222;"><td>Ours</td><td>22.6</td><td>40.4</td><td>60.4</td><td>10</td></tr>
+        </table>
+        <div style="margin-top:8px;border:1px solid #2f6f4e;padding:4px;">
+          <div style="font-size:8px;text-align:center;letter-spacing:.04em;">TABLE III</div>
+          <div style="font-size:8px;text-align:center;margin-bottom:2px;">Grounding on the streaming reconstructions.</div>
+          <table style="width:100%;border-collapse:collapse;font-size:8px;">
+            <tr style="border-top:1px solid #222;border-bottom:1px solid #222;"><th>Method</th><th>Data</th><th>@0.5m</th></tr>
+            <tr><td>CSVG</td><td>NR3D</td><td>47.7</td></tr>
+            <tr><td>Qwen3-plus + NS</td><td>NR3D</td><td>58.8</td></tr>
+            <tr><td>CSVG</td><td>SR3D</td><td>47.0</td></tr>
+            <tr style="border-bottom:1px solid #222;"><td>GLM-5 + NS</td><td>SR3D</td><td>67.0</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A. 表留在实验文字中间</h3>
+      <p>表 I 只留 Ours，仍通栏。表 II 在所在栏里居中。表 III 题注和表身绑在一起，本页放不下就整表换到下一页。段间距收到普通行距。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#f4f1ea;border:1px solid #d9d3c7;padding:8px;font-family:Georgia,serif;color:#1c1c1c;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:9px;">
+          <div>
+            <div style="height:10px;background:#e7e2d8;margin-bottom:4px;"></div>
+            <div style="height:10px;background:#e7e2d8;margin-bottom:4px;"></div>
+            <div style="height:10px;background:#e7e2d8;"></div>
+          </div>
+          <div>
+            <div style="height:10px;background:#e7e2d8;margin-bottom:4px;"></div>
+            <div style="height:10px;background:#e7e2d8;margin-bottom:4px;"></div>
+            <div style="height:10px;background:#e7e2d8;"></div>
+          </div>
+        </div>
+        <div style="margin:8px 0 2px;font-size:8px;text-align:center;color:#6b6458;">段与段只留正常一行空隙</div>
+        <div style="border:1px solid #8a5a2a;padding:6px;">
+          <div style="font-size:8px;text-align:center;letter-spacing:.04em;">TABLE I · Ours only</div>
+          <table style="width:100%;border-collapse:collapse;font-size:8px;margin:2px 0 6px;">
+            <tr style="border-top:1px solid #222;border-bottom:1px solid #222;"><th>Method</th><th>AP</th><th>AP50</th><th>AP25</th><th>FPS</th></tr>
+            <tr style="border-bottom:1px solid #222;"><td>Ours</td><td>22.6</td><td>40.4</td><td>60.4</td><td>10</td></tr>
+          </table>
+          <div style="font-size:8px;text-align:center;letter-spacing:.04em;">TABLE II · centered</div>
+          <table style="margin:2px auto 6px;border-collapse:collapse;font-size:8px;">
+            <tr style="border-top:1px solid #222;border-bottom:1px solid #222;"><th style="padding:1px 4px;">Arm</th><th>AP</th><th>AP50</th><th>AP25</th></tr>
+            <tr><td>A</td><td>22.5</td><td>40.4</td><td>60.5</td></tr>
+            <tr><td>D</td><td>21.8</td><td>39.8</td><td>57.9</td></tr>
+            <tr style="border-bottom:1px solid #222;"><td colspan="4" style="text-align:center;color:#6b6458;">B, C 同样居中</td></tr>
+          </table>
+          <div style="font-size:8px;text-align:center;letter-spacing:.04em;">TABLE III</div>
+          <div style="font-size:8px;text-align:center;">题注在表线上，和四行在同一页</div>
+          <table style="width:100%;border-collapse:collapse;font-size:8px;">
+            <tr style="border-top:1px solid #222;border-bottom:1px solid #222;"><th>Method</th><th>Data</th><th>@0.5m</th></tr>
+            <tr><td>Qwen3-plus + NS</td><td>NR3D</td><td>58.8</td></tr>
+            <tr style="border-bottom:1px solid #222;"><td>GLM-5 + NS</td><td>SR3D</td><td>67.0</td></tr>
+          </table>
+        </div>
+        <div style="margin-top:6px;font-size:8px;letter-spacing:.06em;">V. CONCLUSION</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. 四张表集中到结论前</h3>
+      <p>实验正文先写完，段间距恢复成普通双栏。四张表接在结论前面，通栏、居中。表 III 的题注和表身作为一块，不会被分页切开。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#f4f1ea;border:1px solid #d9d3c7;padding:8px;font-family:Georgia,serif;color:#1c1c1c;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start;">
+          <div style="text-align:center;">
+            <div style="font-size:8px;letter-spacing:.04em;">TABLE I</div>
+            <div style="font-size:8px;">Ours only, one column</div>
+            <table style="margin:2px auto 0;border-collapse:collapse;font-size:8px;">
+              <tr style="border-top:1px solid #222;border-bottom:1px solid #222;"><th style="padding:1px 3px;"></th><th>AP</th><th>AP50</th><th>AP25</th></tr>
+              <tr style="border-bottom:1px solid #222;"><td>ScanNet</td><td>22.6</td><td>40.4</td><td>60.4</td></tr>
+              <tr style="border-bottom:1px solid #222;"><td>SceneNN</td><td>15.6</td><td>30.4</td><td>54.7</td></tr>
+            </table>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-size:8px;letter-spacing:.04em;">TABLE II</div>
+            <div style="font-size:8px;">centered in the column</div>
+            <table style="margin:2px auto 0;border-collapse:collapse;font-size:8px;">
+              <tr style="border-top:1px solid #222;border-bottom:1px solid #222;"><th style="padding:1px 3px;">Arm</th><th>AP</th><th>AP50</th></tr>
+              <tr><td>A</td><td>22.5</td><td>40.4</td></tr>
+              <tr><td>B</td><td>20.1</td><td>37.4</td></tr>
+              <tr style="border-bottom:1px solid #222;"><td>C</td><td>18.6</td><td>36.1</td></tr>
+            </table>
+          </div>
+        </div>
+        <div style="height:8px;"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="height:22px;background:#e7e2d8;"></div>
+          <div style="height:22px;background:#e7e2d8;"></div>
+        </div>
+        <div style="margin-top:8px;border:1px solid #2f6f4e;padding:4px;">
+          <div style="font-size:8px;text-align:center;letter-spacing:.04em;">TABLE III</div>
+          <div style="font-size:8px;text-align:center;">caption stays with the rows</div>
+          <table style="width:100%;border-collapse:collapse;font-size:8px;margin-top:2px;">
+            <tr style="border-top:1px solid #222;border-bottom:1px solid #222;"><th>Method</th><th>Data</th><th>@0.5m</th></tr>
+            <tr><td>Qwen3-plus + NS</td><td>NR3D</td><td>58.8</td></tr>
+            <tr style="border-bottom:1px solid #222;"><td>GLM-5 + NS</td><td>SR3D</td><td>67.0</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C. 表 I 也改成单栏居中</h3>
+      <p>去掉基线行以后，表 I 改成两行（ScanNet200、SceneNN），和表 II 一样放在栏中间。表 III 仍通栏，题注贴在表上。正文不再被通栏表切开。</p>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle">建议用 B。现在段与段之间的大空白，主要是通栏表插在双栏文字中间造成的。把四张表收到结论前，文字的行距可以回到 IEEE 的普通段距。</p>

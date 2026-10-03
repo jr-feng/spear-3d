@@ -33,6 +33,23 @@
 ⚠️ **场景集敏感性大（相差约 27%）**：论文/回复必须固定同一场景集口径，建议统一用 30 场景集，
 否则会被质疑挑场景。
 
+## 30 场景同实例绑定消融（2026-10-02）
+
+官方 OVI-MAP 重建在本机不能启动（没有 ROS `devel/setup.bash`，也没有 `ovimap-perception-py310`）。
+下面两行用的是 `output_ral/B` 里已经存好的重建：同一套 SAM3 实例，指标是 OVI-MAP 的 `eval_per_class_IoU`。
+脚本：`scripts/run_e7_binding_30.py`。原始结果：`ground_ral/e7_binding_30.json`。
+
+| 语义赋值 | mIoU | mAcc | 查询/实例 |
+|---|---|---|---|
+| label-bound（SAM3 类名，融合时写入） | 0.2925 | 0.3766 | 0 |
+| post-hoc（crop CLIP 对 200 类文本 argmax） | 0.1532 | 0.2596 | 1 |
+
+30 场景，重建实例 1147 个；对齐后 post-hoc 实际分类 1119 次。与存下的类名一致的比例 0.3155，最大余弦相似度均值 0.2916。
+label-bound 有 19 个类名对不上 ScanNet200，这些实例按背景计，会计入错误。
+
+这不是 OVI-MAP 自己的重建，也不要和他们论文里的 mIoU 或约 8.6 次/实例并排。查询次数只写 0 和 1。
+`e5_out_200_dense` 的 `pred_sem_features` 是类名的文本特征（`feature_source=text`），不能当作 post-hoc 图像分类。
+
 ## 尚未闭环的缺口（E7 真正交付物）
 
 1. **OVI-MAP 方法自身的数字**（同 30 场景、同 200 帧协议）——目前表里没有 OVI-MAP 行。

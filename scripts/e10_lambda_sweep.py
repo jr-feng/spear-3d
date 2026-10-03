@@ -66,6 +66,9 @@ def main():
                     help="comma-separated lambda_u values (node-side share)")
     ap.add_argument("--clip-device", default=None)
     ap.add_argument("--out", default=os.path.join(ROOT, "ground_ral", "nr3d", "e10_lambda_sweep.json"))
+    ap.add_argument("--max-queries", type=int, default=0, help="0 = all records with a query_graph")
+    ap.add_argument("--modes", default="legacy,avg",
+                    help="legacy = weighted geometric mean; avg = mean-by-|V| and mean-by-|E|")
     args = ap.parse_args()
 
     lambdas = [float(x) for x in args.lambdas.split(",") if x.strip()]
@@ -92,10 +95,27 @@ def main():
             pred_cache[scene_id] = {int(p["pred_id"]): p for p in preds if "pred_id" in p}
         return scene_cache[scene_id], pred_cache[scene_id]
 
-    cells = [("none", False), ("norm", True)]
-    results = {f"lambda={l}:{mode}": [] for l in lambdas for mode, _ in cells}
-    pids = {f"lambda={l}:{mode}": [] for l in lambdas for mode, _ in cells}  # E10-C
+    mode_names = [m.strip() for m in args.modes.split(",") if m.strip()]
+    unknown = [m for m in mode_names if m not in ("legacy", "avg", "none", "norm")]
+    if unknown:
+        raise SystemExit(f"unknown modes: {unknown}")
+    # legacy/none: previous weighted geometric mean. avg: reviewer formula.
+    # norm: old min-max re-rank, kept so earlier tables can be reproduced.
+    cells = []
+    for mode in mode_names:
+        if mode in ("legacy", "none"):
+            cells.append((mode, False, False))
+        elif mode == "norm":
+            cells.append((mode, True, False))
+        else:
+            cells.append((mode, False, True))
+    results = {f"lambda={l}:{mode}": [] for l in lambdas for mode, _, _ in cells}
+    pids = {f"lambda={l}:{mode}": [] for l in lambdas for mode, _, _ in cells}  # E10-C
+    n_nodes = []
+    n_edges = []
     processed = 0
+    if args.max_queries > 0:
+        usable = usable[: args.max_queries]
 
     for rec in usable:
         scene_id = rec.get("scene_id")
@@ -112,16 +132,20 @@ def main():
         except Exception:
             continue
         processed += 1
-        gt_objs = {str(g.get("object_id")): g for g in gts if g.get("scene_id") == scene_id}
-        covered = any(_corresponds(p, target, args.corr_thresh) for p in pred_map.values())
+        n_nodes.append(len(query_graph.nodes))
+        n_edges.append(len(query_graph.relations))
+        if processed % 10 == 0:
+            print(f"  ... {processed} queries", flush=True)
 
+        grounder = QueryGraphGrounder(
+            scene_graph, clip_matcher,
+            target_limit=24, ref_limit=10, beam_size=160, class_top_k=3,
+        )
         for l in lambdas:
-            for mode, norm in cells:
-                grounder = QueryGraphGrounder(
-                    scene_graph, clip_matcher,
-                    target_limit=24, ref_limit=10, beam_size=160, class_top_k=3,
-                    graph_balance=l, normalize_terms=norm,
-                )
+            for mode, norm, averaged in cells:
+                grounder.graph_balance = l
+                grounder.normalize_terms = norm
+                grounder.term_average = averaged
                 try:
                     gres = grounder.ground(query_graph, top_k=1)
                 except Exception:
@@ -138,7 +162,7 @@ def main():
     print("-" * len(hdr))
     rows = {}
     for l in lambdas:
-        for mode, _ in cells:
+        for mode, _, _ in cells:
             key = f"lambda={l}:{mode}"
             metrics = _summarize_dists(results[key])
             if metrics is None or metrics[3] == 0:
@@ -154,8 +178,27 @@ def main():
             print(f"{key:<18}{rows[key]['mean_dist']:>9.4f}{rows[key]['acc03m']:>9.4f}"
                   f"{rows[key]['acc05m']:>9.4f}{rows[key]['selacc']:>9.4f}")
 
-    out = {"n_queries": processed, "rows": rows,
-           "params": {"corr_thresh": args.corr_thresh, "lambdas": lambdas}}
+    out = {
+        "n_queries": processed,
+        "rows": rows,
+        "cardinality": {
+            "mean_nodes": round(float(np.mean(n_nodes)), 3) if n_nodes else None,
+            "mean_edges": round(float(np.mean(n_edges)), 3) if n_edges else None,
+            "mean_edges_per_node": round(float(np.mean(n_edges) / max(np.mean(n_nodes), 1e-9)), 3) if n_nodes else None,
+        },
+        "formula": {
+            "legacy": "weighted geometric mean; each node and each edge is a separate factor, so |E_Q| changes the balance",
+            "avg": "S = lambda_u * mean_{v in V_Q} s_u(v) + (1-lambda_u) * mean_{e in E_Q} s_e(e)",
+        },
+        "params": {
+            "corr_thresh": args.corr_thresh,
+            "lambdas": lambdas,
+            "modes": mode_names,
+            "beam_size": 160,
+            "target_limit": 24,
+            "ref_limit": 10,
+        },
+    }
 
     # ---- E10-C: decision-change rate (norm vs none) -------------------------
     print("\n== E10-C decision change rate: per-term normalization vs raw (same lambda_u) ==")
@@ -163,8 +206,14 @@ def main():
     print("-" * 36)
     change_rows = {}
     for l in lambdas:
-        a = pids[f"lambda={l}:none"]
-        b = pids[f"lambda={l}:norm"]
+        if "legacy" in mode_names and "avg" in mode_names:
+            left_mode, right_mode = "legacy", "avg"
+        elif len(mode_names) == 2:
+            left_mode, right_mode = mode_names
+        else:
+            continue
+        a = pids[f"lambda={l}:{left_mode}"]
+        b = pids[f"lambda={l}:{right_mode}"]
         n = min(len(a), len(b))
         if n == 0:
             continue

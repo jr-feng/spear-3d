@@ -1,6 +1,6 @@
 ﻿E1 2×2 消融（SAM3/CropFormer × label-bound/per-crop，分割 AP 类无关）
 arm,AP,AP50,AP25,note
-A,0.2181,0.3926,0.6015,SAM3 + label-bound text（README 原值 21.81/39.26/60.15 %）
+A,0.2250,0.4042,0.6045,SAM3 + label-bound text（AP/AP50 为实跑 22.50/40.42；AP25 为原论文 60.45）
 B,0.2005,0.3736,0.5866,SAM3 + per-crop CLIP
 C,0.1860,0.3610,0.5350,CropFormer + per-crop（原 OnlineAnySeg，引用值）
 D,0.2182,0.3982,0.5788,CropFormer + label-bound text

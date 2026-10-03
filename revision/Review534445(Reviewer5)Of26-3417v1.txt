@@ -1,0 +1,44 @@
+This paper presents SPEAR-3D, a pipeline combining prompt-conditioned
+streaming 3D instance mapping with an LLM-parsed query graph and
+explicit geometric relation scoring. The problem is relevant to RA-L,
+and externalizing spatial reasoning into an inspectable geometric
+procedure is a reasonable design choice. The manuscript also
+appropriately distinguishes reconstruction throughput from query-time
+latency and acknowledges that reconstruction recall is conditioned on
+the supplied prompt vocabulary. The visualization, the design of the
+figures are also clear and amazing.
+
+However, the current manuscript does not yet provide sufficient
+methodological consistency, experimental rigor, or differentiation from
+prior work to substantiate its main claims.
+
+First, according to the paper, some of the reported grounding results
+appear internally inconsistent.
+In Table II, the GLM-5 baseline on SR3D has Acc@0.3 = 52.5 but Acc@0.5
+= 51.9. Since every prediction within 0.3 m is also within 0.5 m, this
+result should not be possible under the stated metric. The claims about
+the “best” model also do not fully match the table. Please recheck the
+evaluation code and all reported numbers, because this currently raises
+concerns about the reliability of the experimental results.
+
+Second, the mathematical formulation does not match the proposed
+“between” relation. The paper defines the query structure as a normal
+graph with binary edges, but the between relation depends jointly on
+one target and two reference objects. In other words, it is a ternary
+constraint, not two independent binary relations as shown in Fig. 5.
+The authors should revise the formulation using a higher-order factor
+or hyperedge and make the figure, equations, and implementation
+consistent.
+
+Another problem is that the grounding evaluation is not sufficient to
+support the main claims. The paper uses custom centroid-distance
+metrics instead of the standard target-instance accuracy commonly used
+for NR3D and SR3D. A nearby wrong object may therefore still be counted
+as correct, and the results cannot be directly compared with prior
+grounding methods. Please report the standard benchmark metrics,
+clearly explain any query filtering, and compare against existing
+structured or constraint-based 3D grounding approaches rather than only
+against direct LLM prompting.
+
+So generally speaking, I think the problems on the paper is more than
+just edit, but should really revise and resubmit. 

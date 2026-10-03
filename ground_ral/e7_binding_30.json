@@ -1,0 +1,33 @@
+{
+  "pred_root": "/home/OnlineAnySeg/output_ral/B",
+  "n_scenes_listed": 30,
+  "instances": 1147,
+  "metric": "OVI-MAP eval_per_class_IoU",
+  "protocol": "Same output_ral/B reconstructions (full ScanNet sequence, SAM3 masks, per-crop CLIP features). Label-bound uses the stored SAM3 class name (0 post-hoc queries per instance). Post-hoc is one argmax of that crop feature against the 200 ScanNet200 CLIP text embeddings. This is not an OVI-MAP reconstruction and not OVI-MAP's published view-query count.",
+  "rows": [
+    {
+      "arm": "label-bound",
+      "scenes": 30,
+      "assignments": 0,
+      "unmatched_instances": 19,
+      "name_agree": 0.0,
+      "mean_max_sim": 0.0,
+      "mIoU": 0.2925,
+      "mAcc": 0.3766,
+      "instances": 1147,
+      "queries_per_instance": 0.0
+    },
+    {
+      "arm": "post-hoc",
+      "scenes": 30,
+      "assignments": 1119,
+      "unmatched_instances": 0,
+      "name_agree": 0.3155,
+      "mean_max_sim": 0.2916,
+      "mIoU": 0.1532,
+      "mAcc": 0.2596,
+      "instances": 1147,
+      "queries_per_instance": 1.0
+    }
+  ]
+}

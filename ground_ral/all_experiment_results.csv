@@ -1,0 +1,538 @@
+﻿实验,子表,回应审稿人,数据集,方法或条件,指标,数值,单位,样本量,状态,来源,备注
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,EmbodiedSAM,AP,28.8,%,,送审稿原文,Overleaf 送审稿 Table I,closed-set
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,EmbodiedSAM,AP50,42.7,%,,送审稿原文,Overleaf 送审稿 Table I,closed-set
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,EmbodiedSAM,AP25,54.2,%,,送审稿原文,Overleaf 送审稿 Table I,closed-set
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,EmbodiedSAM,AP,20.1,%,,送审稿原文,Overleaf 送审稿 Table I,closed-set
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,EmbodiedSAM,AP50,32.5,%,,送审稿原文,Overleaf 送审稿 Table I,closed-set
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,EmbodiedSAM,AP25,46.3,%,,送审稿原文,Overleaf 送审稿 Table I,closed-set
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,运行速度,EmbodiedSAM,FPS,10,FPS,,送审稿原文,Overleaf 送审稿 Table I,closed-set
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,OVIR-3D,AP,14.4,%,,送审稿原文,Overleaf 送审稿 Table I,offline
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,OVIR-3D,AP50,27.5,%,,送审稿原文,Overleaf 送审稿 Table I,offline
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,OVIR-3D,AP25,38.8,%,,送审稿原文,Overleaf 送审稿 Table I,offline
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,OVIR-3D,AP,12.3,%,,送审稿原文,Overleaf 送审稿 Table I,offline
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,OVIR-3D,AP50,24.4,%,,送审稿原文,Overleaf 送审稿 Table I,offline
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,OVIR-3D,AP25,34.6,%,,送审稿原文,Overleaf 送审稿 Table I,offline
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,MaskClustering,AP,19.7,%,,送审稿原文,Overleaf 送审稿 Table I,offline
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,MaskClustering,AP50,36.4,%,,送审稿原文,Overleaf 送审稿 Table I,offline
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,MaskClustering,AP25,51.4,%,,送审稿原文,Overleaf 送审稿 Table I,offline
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,MaskClustering,AP,16.3,%,,送审稿原文,Overleaf 送审稿 Table I,offline
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,MaskClustering,AP50,31.7,%,,送审稿原文,Overleaf 送审稿 Table I,offline
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,MaskClustering,AP25,46.2,%,,送审稿原文,Overleaf 送审稿 Table I,offline
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,SAM3D offline,AP,17.8,%,,送审稿原文,Overleaf 送审稿 Table I,注释表中带星号
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,SAM3D offline,AP50,30.6,%,,送审稿原文,Overleaf 送审稿 Table I,注释表中带星号
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,SAM3D offline,AP25,48.5,%,,送审稿原文,Overleaf 送审稿 Table I,注释表中带星号
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,运行速度,SAM3D offline,FPS,8,FPS,,送审稿原文,Overleaf 送审稿 Table I,注释表中带星号
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,SAM3D online,AP,9.6,%,,送审稿原文,Overleaf 送审稿 Table I,注释表中带星号
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,SAM3D online,AP50,24.8,%,,送审稿原文,Overleaf 送审稿 Table I,注释表中带星号
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,SAM3D online,AP25,49.6,%,,送审稿原文,Overleaf 送审稿 Table I,注释表中带星号
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,SAM3D online,AP,9.1,%,,送审稿原文,Overleaf 送审稿 Table I,注释表中带星号
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,SAM3D online,AP50,21.3,%,,送审稿原文,Overleaf 送审稿 Table I,注释表中带星号
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,SAM3D online,AP25,43.4,%,,送审稿原文,Overleaf 送审稿 Table I,注释表中带星号
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,运行速度,SAM3D online,FPS,8,FPS,,送审稿原文,Overleaf 送审稿 Table I,注释表中带星号
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,OnlineAnySeg,AP,18.6,%,,送审稿原文,Overleaf 送审稿 Table I,表内写 4 FPS；原文报告 15 FPS
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,OnlineAnySeg,AP50,36.1,%,,送审稿原文,Overleaf 送审稿 Table I,表内写 4 FPS；原文报告 15 FPS
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,OnlineAnySeg,AP25,53.5,%,,送审稿原文,Overleaf 送审稿 Table I,表内写 4 FPS；原文报告 15 FPS
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,OnlineAnySeg,AP,18.1,%,,送审稿原文,Overleaf 送审稿 Table I,表内写 4 FPS；原文报告 15 FPS
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,OnlineAnySeg,AP50,35.3,%,,送审稿原文,Overleaf 送审稿 Table I,表内写 4 FPS；原文报告 15 FPS
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,OnlineAnySeg,AP25,59.5,%,,送审稿原文,Overleaf 送审稿 Table I,表内写 4 FPS；原文报告 15 FPS
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,运行速度,OnlineAnySeg,FPS,4,FPS,,送审稿原文,Overleaf 送审稿 Table I,表内写 4 FPS；原文报告 15 FPS
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,SPEAR-3D (Ours),AP,22.6,%,,送审稿原文,Overleaf 送审稿 Table I,摘要以 AP25 60.4 打头
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,SPEAR-3D (Ours),AP50,40.4,%,,送审稿原文,Overleaf 送审稿 Table I,摘要以 AP25 60.4 打头
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,ScanNet200,SPEAR-3D (Ours),AP25,60.4,%,,送审稿原文,Overleaf 送审稿 Table I,摘要以 AP25 60.4 打头
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,SPEAR-3D (Ours),AP,15.6,%,,送审稿原文,Overleaf 送审稿 Table I,摘要以 AP25 60.4 打头
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,SPEAR-3D (Ours),AP50,30.4,%,,送审稿原文,Overleaf 送审稿 Table I,摘要以 AP25 60.4 打头
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,SceneNN,SPEAR-3D (Ours),AP25,54.7,%,,送审稿原文,Overleaf 送审稿 Table I,摘要以 AP25 60.4 打头
+论文表I,送审稿重建表,R1计时; R1 SceneNN; R3 AP定义,运行速度,SPEAR-3D (Ours),FPS,10,FPS,,送审稿原文,Overleaf 送审稿 Table I,摘要以 AP25 60.4 打头
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,Qwen3-plus / 无 NS-Grounding,MeanDist,1.36,m,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,Qwen3-plus / 无 NS-Grounding,Acc@0.3,38.7,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,Qwen3-plus / 无 NS-Grounding,Acc@0.5,43.5,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,Qwen3-plus / 有 NS-Grounding,MeanDist,1.02,m,,送审稿原文,Overleaf Table II,送审稿把 Qwen3+NS 整行加粗为 best
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,Qwen3-plus / 有 NS-Grounding,Acc@0.3,56.3,%,,送审稿原文,Overleaf Table II,送审稿把 Qwen3+NS 整行加粗为 best
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,Qwen3-plus / 有 NS-Grounding,Acc@0.5,58.8,%,,送审稿原文,Overleaf Table II,送审稿把 Qwen3+NS 整行加粗为 best
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,Qwen3-plus / 无 NS-Grounding,MeanDist,1.32,m,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,Qwen3-plus / 无 NS-Grounding,Acc@0.3,53.8,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,Qwen3-plus / 无 NS-Grounding,Acc@0.5,54.8,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,Qwen3-plus / 有 NS-Grounding,MeanDist,0.96,m,,送审稿原文,Overleaf Table II,送审稿把 Qwen3+NS 整行加粗为 best
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,Qwen3-plus / 有 NS-Grounding,Acc@0.3,64.7,%,,送审稿原文,Overleaf Table II,送审稿把 Qwen3+NS 整行加粗为 best
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,Qwen3-plus / 有 NS-Grounding,Acc@0.5,65.9,%,,送审稿原文,Overleaf Table II,送审稿把 Qwen3+NS 整行加粗为 best
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,deepseek-v3.2 / 无 NS-Grounding,MeanDist,1.33,m,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,deepseek-v3.2 / 无 NS-Grounding,Acc@0.3,42.0,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,deepseek-v3.2 / 无 NS-Grounding,Acc@0.5,44.6,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,deepseek-v3.2 / 有 NS-Grounding,MeanDist,1.27,m,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,deepseek-v3.2 / 有 NS-Grounding,Acc@0.3,51.1,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,deepseek-v3.2 / 有 NS-Grounding,Acc@0.5,54.3,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,deepseek-v3.2 / 无 NS-Grounding,MeanDist,1.24,m,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,deepseek-v3.2 / 无 NS-Grounding,Acc@0.3,53.1,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,deepseek-v3.2 / 无 NS-Grounding,Acc@0.5,54.1,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,deepseek-v3.2 / 有 NS-Grounding,MeanDist,1.00,m,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,deepseek-v3.2 / 有 NS-Grounding,Acc@0.3,64.8,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,deepseek-v3.2 / 有 NS-Grounding,Acc@0.5,66.0,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,GLM-5 / 无 NS-Grounding,MeanDist,1.35,m,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,GLM-5 / 无 NS-Grounding,Acc@0.3,37.8,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,GLM-5 / 无 NS-Grounding,Acc@0.5,41.5,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,GLM-5 / 有 NS-Grounding,MeanDist,1.18,m,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,GLM-5 / 有 NS-Grounding,Acc@0.3,50.2,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,NR3D,GLM-5 / 有 NS-Grounding,Acc@0.5,53.4,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,GLM-5 / 无 NS-Grounding,MeanDist,1.28,m,,送审稿原文,Overleaf Table II,送审稿原文；此格 Acc@0.3>Acc@0.5，违反单调性
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,GLM-5 / 无 NS-Grounding,Acc@0.3,52.5,%,,送审稿原文,Overleaf Table II,送审稿原文；此格 Acc@0.3>Acc@0.5，违反单调性
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,GLM-5 / 无 NS-Grounding,Acc@0.5,51.9,%,,送审稿原文,Overleaf Table II,送审稿原文；此格 Acc@0.3>Acc@0.5，违反单调性
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,GLM-5 / 有 NS-Grounding,MeanDist,0.97,m,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,GLM-5 / 有 NS-Grounding,Acc@0.3,65.6,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表II,送审稿定位表,R1指标口径; R5内部矛盾,SR3D,GLM-5 / 有 NS-Grounding,Acc@0.5,67.0,%,,送审稿原文,Overleaf Table II,质心距离，未标米；未区分 @pred/@all
+论文表III,lambda_u 原表,R1 Eq9,NR3D,Qwen3-plus lambda_u=0.25,MeanDist,1.2550,m,,送审稿原文,Overleaf Table III,未做逐项归一化
+论文表III,lambda_u 原表,R1 Eq9,NR3D,Qwen3-plus lambda_u=0.25,Acc@0.3,48.1,%,,送审稿原文,Overleaf Table III,
+论文表III,lambda_u 原表,R1 Eq9,NR3D,Qwen3-plus lambda_u=0.25,Acc@0.5,51.6,%,,送审稿原文,Overleaf Table III,
+论文表III,lambda_u 原表,R1 Eq9,NR3D,Qwen3-plus lambda_u=0.50,MeanDist,1.0200,m,,送审稿原文,Overleaf Table III,未做逐项归一化
+论文表III,lambda_u 原表,R1 Eq9,NR3D,Qwen3-plus lambda_u=0.50,Acc@0.3,56.3,%,,送审稿原文,Overleaf Table III,
+论文表III,lambda_u 原表,R1 Eq9,NR3D,Qwen3-plus lambda_u=0.50,Acc@0.5,58.8,%,,送审稿原文,Overleaf Table III,
+论文表III,lambda_u 原表,R1 Eq9,NR3D,Qwen3-plus lambda_u=0.75,MeanDist,1.0840,m,,送审稿原文,Overleaf Table III,未做逐项归一化
+论文表III,lambda_u 原表,R1 Eq9,NR3D,Qwen3-plus lambda_u=0.75,Acc@0.3,53.4,%,,送审稿原文,Overleaf Table III,
+论文表III,lambda_u 原表,R1 Eq9,NR3D,Qwen3-plus lambda_u=0.75,Acc@0.5,57.8,%,,送审稿原文,Overleaf Table III,
+E1,2x2 消融,R1 component swap,ScanNet200,A: SAM3 + label-bound text,AP,0.2250,比例,实跑,已有结果,用户实跑截图,替换旧值 0.2181；与送审稿 22.6 同量级
+E1,2x2 消融,R1 component swap,ScanNet200,A: SAM3 + label-bound text,AP50,0.4042,比例,实跑,已有结果,用户实跑截图,替换旧值 0.3926；与送审稿 40.4 同量级
+E1,2x2 消融,R1 component swap,ScanNet200,A: SAM3 + label-bound text,AP25,0.6045,比例,原论文,已有结果,原论文 Table I,AP25 为原论文 60.45
+E1,2x2 消融,R1 component swap,ScanNet200,B: SAM3 + per-crop CLIP,AP,0.2005,比例,306,已有结果,review/reviewer_1.md; ral_readme.md,同批 306 场景
+E1,2x2 消融,R1 component swap,ScanNet200,B: SAM3 + per-crop CLIP,AP50,0.3736,比例,306,已有结果,review/reviewer_1.md; ral_readme.md,同批 306 场景
+E1,2x2 消融,R1 component swap,ScanNet200,B: SAM3 + per-crop CLIP,AP25,0.5866,比例,306,已有结果,review/reviewer_1.md; ral_readme.md,同批 306 场景
+E1,2x2 消融,R1 component swap,ScanNet200,C: CropFormer + per-crop CLIP,AP,0.1860,比例,,已有结果,review/reviewer_1.md; ral_readme.md,OnlineAnySeg 论文引用值，未在同场景重跑
+E1,2x2 消融,R1 component swap,ScanNet200,C: CropFormer + per-crop CLIP,AP50,0.3610,比例,,已有结果,review/reviewer_1.md; ral_readme.md,OnlineAnySeg 论文引用值，未在同场景重跑
+E1,2x2 消融,R1 component swap,ScanNet200,C: CropFormer + per-crop CLIP,AP25,0.5350,比例,,已有结果,review/reviewer_1.md; ral_readme.md,OnlineAnySeg 论文引用值，未在同场景重跑
+E1,2x2 消融,R1 component swap,ScanNet200,D: CropFormer + label-bound text,AP,0.2182,比例,180/306,已有结果,review/reviewer_1.md; ral_readme.md,场景数少于 A/B，不能和 A/B/C 直接做主效应
+E1,2x2 消融,R1 component swap,ScanNet200,D: CropFormer + label-bound text,AP50,0.3982,比例,180/306,已有结果,review/reviewer_1.md; ral_readme.md,场景数少于 A/B，不能和 A/B/C 直接做主效应
+E1,2x2 消融,R1 component swap,ScanNet200,D: CropFormer + label-bound text,AP25,0.5788,比例,180/306,已有结果,review/reviewer_1.md; ral_readme.md,场景数少于 A/B，不能和 A/B/C 直接做主效应
+E1,2x2 主效应,R1 component swap,ScanNet200,A-B label binding @ SAM3,delta AP,0.0176,比例,306,已有结果,review/reviewer_1.md,同场景，可比较
+E1,2x2 主效应,R1 component swap,ScanNet200,A-B label binding @ SAM3,delta AP50,0.0190,比例,306,已有结果,review/reviewer_1.md,同场景，可比较
+E1,2x2 主效应,R1 component swap,ScanNet200,D-C label binding @ CropFormer,delta AP,0.0322,比例,,口径未对齐,review/reviewer_1.md,C 为引用值，D 为 180 场景
+E1,2x2 主效应,R1 component swap,ScanNet200,A-D backbone @ label-bound,delta AP,-0.0001,比例,,口径未对齐,review/reviewer_1.md,306 对 180 场景
+E2,CSVG 外部基线,R1外部基线; R5标准对比,NR3D,CSVG,MeanDist,1.099288,m,1450,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,NR3D,CSVG,Acc@0.3m@pred,0.544020,比例,1450,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,NR3D,CSVG,Acc@0.5m@pred,0.574751,比例,1450,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,NR3D,CSVG,Acc@0.3m@all,0.451724,比例,1450,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,NR3D,CSVG,Acc@0.5m@all,0.477241,比例,1450,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,NR3D,CSVG,Coverage,0.962759,比例,1450,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,NR3D,CSVG,SelAcc@all,0.455862,比例,1450,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,NR3D,CSVG,SelAcc@covered,0.473496,比例,1450,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,NR3D,CSVG,not_reconstructed,54,条,1450,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,NR3D,CSVG,no_prediction,242,条,1450,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,NR3D,CSVG,wrong_selection,269,条,1450,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,NR3D,CSVG,hallucinated,224,条,1450,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,SR3D,CSVG,MeanDist,1.338104,m,5247,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,SR3D,CSVG,Acc@0.3m@pred,0.509593,比例,5247,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,SR3D,CSVG,Acc@0.5m@pred,0.519713,比例,5247,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,SR3D,CSVG,Acc@0.3m@all,0.460644,比例,5247,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,SR3D,CSVG,Acc@0.5m@all,0.469792,比例,5247,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,SR3D,CSVG,Coverage,0.971603,比例,5247,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,SR3D,CSVG,SelAcc@all,0.463694,比例,5247,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,SR3D,CSVG,SelAcc@covered,0.477246,比例,5247,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,SR3D,CSVG,not_reconstructed,149,条,5247,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,SR3D,CSVG,no_prediction,487,条,5247,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,SR3D,CSVG,wrong_selection,1074,条,5247,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E2,CSVG 外部基线,R1外部基线; R5标准对比,SR3D,CSVG,hallucinated,1104,条,5247,已有结果,ral_readme.md,与 Table II 不是同一批查询
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=10,latency,311.0,ms,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=10,FPS_eff,3.22,FPS,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=10,peak_mem,16105.3,MB,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=10,segments_avg,8.3,个,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=10,oom,0,次,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=30,latency,508.85,ms,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=30,FPS_eff,1.97,FPS,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=30,peak_mem,16098.1,MB,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=30,segments_avg,11.3,个,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=30,oom,0,次,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=50,latency,761.75,ms,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=50,FPS_eff,1.31,FPS,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=50,peak_mem,16094.7,MB,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=50,segments_avg,12.1,个,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=50,oom,0,次,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=100,latency,1626.6,ms,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=100,FPS_eff,0.61,FPS,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=100,peak_mem,16083.8,MB,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=100,segments_avg,16.8,个,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E3,词表规模,R3词表运行时,ScanNet 2场景,V=100,oom,0,次,30,已有结果,ground_ral/e3_vocab_bench.json,"场景 scene0011_00, scene0015_00；每场景 5 帧；分割帧延迟，不是端到端 FPS"
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,full,Acc@0.5m@pred,0.6224,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,99 条均衡子集，无 rerank
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,full,Acc@0.3m@pred,0.5816,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,99 条均衡子集，无 rerank
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,full,Acc@0.5m@all,0.6061,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,99 条均衡子集，无 rerank
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,full,SelAcc@all,0.6061,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,99 条均衡子集，无 rerank
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,full,MeanDist,0.9139,m,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,99 条均衡子集，无 rerank
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,full,Coverage,0.9394,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,99 条均衡子集，无 rerank
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,full,no_prediction,1,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,99 条均衡子集，无 rerank
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-dir,Acc@0.5m@pred,0.5714,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0510
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-dir,Acc@0.3m@pred,0.551,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0510
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-dir,Acc@0.5m@all,0.5556,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0510
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-dir,SelAcc@all,0.5556,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0510
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-dir,MeanDist,1.0239,m,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0510
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-dir,Coverage,0.9394,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0510
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-dir,no_prediction,1,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0510
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-near,Acc@0.5m@pred,0.6735,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 +0.0511
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-near,Acc@0.3m@pred,0.602,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 +0.0511
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-near,Acc@0.5m@all,0.6465,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 +0.0511
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-near,SelAcc@all,0.6465,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 +0.0511
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-near,MeanDist,0.8991,m,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 +0.0511
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-near,Coverage,0.9394,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 +0.0511
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-near,no_prediction,1,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 +0.0511
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-rank,Acc@0.5m@pred,0.5918,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0306
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-rank,Acc@0.3m@pred,0.551,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0306
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-rank,Acc@0.5m@all,0.5758,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0306
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-rank,SelAcc@all,0.5758,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0306
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-rank,MeanDist,0.9676,m,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0306
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-rank,Coverage,0.9394,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0306
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-rank,no_prediction,1,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0306
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-vert,Acc@0.5m@pred,0.5714,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0510
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-vert,Acc@0.3m@pred,0.5306,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0510
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-vert,Acc@0.5m@all,0.5657,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0510
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-vert,SelAcc@all,0.5657,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0510
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-vert,MeanDist,0.9967,m,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0510
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-vert,Coverage,0.9394,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0510
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-vert,no_prediction,1,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0510
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-contact,Acc@0.5m@pred,0.5612,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0612
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-contact,Acc@0.3m@pred,0.5204,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0612
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-contact,Acc@0.5m@all,0.5455,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0612
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-contact,SelAcc@all,0.5455,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0612
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-contact,MeanDist,1.0502,m,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0612
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-contact,Coverage,0.9394,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0612
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-contact,no_prediction,1,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0612
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-side,Acc@0.5m@pred,0.602,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0204
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-side,Acc@0.3m@pred,0.5612,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0204
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-side,Acc@0.5m@all,0.5859,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0204
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-side,SelAcc@all,0.5859,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0204
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-side,MeanDist,0.9219,m,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0204
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-side,Coverage,0.9394,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0204
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-side,no_prediction,1,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0204
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-between,Acc@0.5m@pred,0.5816,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0408
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-between,Acc@0.3m@pred,0.5408,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0408
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-between,Acc@0.5m@all,0.5657,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0408
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-between,SelAcc@all,0.5657,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0408
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-between,MeanDist,1.0338,m,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0408
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-between,Coverage,0.9394,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0408
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-between,no_prediction,1,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.0408
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-all_relations,Acc@0.5m@pred,0.398,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.2244
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-all_relations,Acc@0.3m@pred,0.3469,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.2244
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-all_relations,Acc@0.5m@all,0.3838,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.2244
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-all_relations,SelAcc@all,0.3838,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.2244
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-all_relations,MeanDist,1.4721,m,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.2244
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-all_relations,Coverage,0.9394,比例,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.2244
+E4,scorer 逐个消融,R3七个scorer,NR3D 99条,-all_relations,no_prediction,1,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,相对 full 的 Acc@0.5m@pred 变化 -0.2244
+E4,关系频率,R3关系充分性,NR3D 99条,same_side_as,query_count,11,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,关系频率,R3关系充分性,NR3D 99条,between,query_count,15,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,关系频率,R3关系充分性,NR3D 99条,above,query_count,12,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,关系频率,R3关系充分性,NR3D 99条,below,query_count,3,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,关系频率,R3关系充分性,NR3D 99条,under,query_count,7,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,关系频率,R3关系充分性,NR3D 99条,not_with_object,query_count,1,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,关系频率,R3关系充分性,NR3D 99条,on_top_of,query_count,9,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,关系频率,R3关系充分性,NR3D 99条,on_wall,query_count,1,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,关系频率,R3关系充分性,NR3D 99条,closest_to,query_count,13,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,关系频率,R3关系充分性,NR3D 99条,farthest_from,query_count,5,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,关系频率,R3关系充分性,NR3D 99条,near,query_count,16,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,关系频率,R3关系充分性,NR3D 99条,left_of,query_count,1,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,关系频率,R3关系充分性,NR3D 99条,right_of,query_count,8,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,关系频率,R3关系充分性,NR3D 99条,front_of,query_count,6,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,关系频率,R3关系充分性,NR3D 99条,behind,query_count,6,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,关系频率,R3关系充分性,NR3D 99条,with_object,query_count,1,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,关系频率,R3关系充分性,NR3D 99条,has_on_it,query_count,1,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,出现该关系的查询数
+E4,scorer 覆盖,R3关系充分性,NR3D 99条,side,queries_touching,11,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,至少命中该 scorer 一条关系的查询数
+E4,scorer 覆盖,R3关系充分性,NR3D 99条,between,queries_touching,15,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,至少命中该 scorer 一条关系的查询数
+E4,scorer 覆盖,R3关系充分性,NR3D 99条,vert,queries_touching,15,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,至少命中该 scorer 一条关系的查询数
+E4,scorer 覆盖,R3关系充分性,NR3D 99条,contact,queries_touching,16,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,至少命中该 scorer 一条关系的查询数
+E4,scorer 覆盖,R3关系充分性,NR3D 99条,rank,queries_touching,18,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,至少命中该 scorer 一条关系的查询数
+E4,scorer 覆盖,R3关系充分性,NR3D 99条,near,queries_touching,16,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,至少命中该 scorer 一条关系的查询数
+E4,scorer 覆盖,R3关系充分性,NR3D 99条,dir,queries_touching,21,条,99,已有结果,ground_ral/nr3d/ablation/scorer_ablation.json,至少命中该 scorer 一条关系的查询数
+E5,端到端 FPS,R1 15vs4 FPS,scene0432_00,A SAM3+label-bound,FPS,11.42,FPS,5,已有结果,ral_readme.md,RTX 3090；keyframe_freq=10；merge 每 50 帧
+E5,端到端 FPS,R1 15vs4 FPS,scene0432_00,C CropFormer+per-crop,FPS,5.5,FPS,5,已有结果,ral_readme.md,RTX 3090；keyframe_freq=10；merge 每 50 帧
+E5,端到端 FPS,R1 15vs4 FPS,scene0527_00,A SAM3+label-bound,FPS,10.71,FPS,5,已有结果,ral_readme.md,RTX 3090；keyframe_freq=10；merge 每 50 帧
+E5,端到端 FPS,R1 15vs4 FPS,scene0527_00,C CropFormer+per-crop,FPS,4.82,FPS,5,已有结果,ral_readme.md,RTX 3090；keyframe_freq=10；merge 每 50 帧
+E5,端到端 FPS,R1 15vs4 FPS,scene0559_00,A SAM3+label-bound,FPS,10.62,FPS,5,已有结果,ral_readme.md,RTX 3090；keyframe_freq=10；merge 每 50 帧
+E5,端到端 FPS,R1 15vs4 FPS,scene0559_00,C CropFormer+per-crop,FPS,4.41,FPS,5,已有结果,ral_readme.md,RTX 3090；keyframe_freq=10；merge 每 50 帧
+E5,端到端 FPS,R1 15vs4 FPS,scene0494_00,A SAM3+label-bound,FPS,10.82,FPS,5,已有结果,ral_readme.md,RTX 3090；keyframe_freq=10；merge 每 50 帧
+E5,端到端 FPS,R1 15vs4 FPS,scene0494_00,C CropFormer+per-crop,FPS,6.6,FPS,5,已有结果,ral_readme.md,RTX 3090；keyframe_freq=10；merge 每 50 帧
+E5,端到端 FPS,R1 15vs4 FPS,scene0689_00,A SAM3+label-bound,FPS,11.04,FPS,5,已有结果,ral_readme.md,RTX 3090；keyframe_freq=10；merge 每 50 帧
+E5,端到端 FPS,R1 15vs4 FPS,scene0689_00,C CropFormer+per-crop,FPS,5.25,FPS,5,已有结果,ral_readme.md,RTX 3090；keyframe_freq=10；merge 每 50 帧
+E5,端到端 FPS,R1 15vs4 FPS,五场景均值,A SAM3+label-bound,FPS,10.92,FPS,5,已有结果,ral_readme.md,RTX 3090；keyframe_freq=10；merge 每 50 帧
+E5,端到端 FPS,R1 15vs4 FPS,五场景均值,C CropFormer+per-crop,FPS,5.32,FPS,5,已有结果,ral_readme.md,RTX 3090；keyframe_freq=10；merge 每 50 帧
+E5,分阶段耗时,R1 15vs4 FPS,五场景,A SAM3+label-bound,分割平均耗时,241,ms,5,已有结果,ral_readme.md,分割单位是 call/s；fusion=insert_seg_frame
+E5,分阶段耗时,R1 15vs4 FPS,五场景,A SAM3+label-bound,分割吞吐,4.16,次/秒,5,已有结果,ral_readme.md,分割单位是 call/s；fusion=insert_seg_frame
+E5,分阶段耗时,R1 15vs4 FPS,五场景,A SAM3+label-bound,融合平均耗时,330,ms,5,已有结果,ral_readme.md,分割单位是 call/s；fusion=insert_seg_frame
+E5,分阶段耗时,R1 15vs4 FPS,五场景,A SAM3+label-bound,融合吞吐,3.03,frame/s,5,已有结果,ral_readme.md,分割单位是 call/s；fusion=insert_seg_frame
+E5,分阶段耗时,R1 15vs4 FPS,五场景,A SAM3+label-bound,合并平均耗时,487,ms,5,已有结果,ral_readme.md,分割单位是 call/s；fusion=insert_seg_frame
+E5,分阶段耗时,R1 15vs4 FPS,五场景,A SAM3+label-bound,合并吞吐,2.05,merge/s,5,已有结果,ral_readme.md,merge 吞吐不是 15 FPS
+E5,分阶段耗时,R1 15vs4 FPS,五场景,C CropFormer+per-crop,分割平均耗时,1099,ms,5,已有结果,ral_readme.md,分割单位是 frame/s；integrate 含 insert_seg_frame
+E5,分阶段耗时,R1 15vs4 FPS,五场景,C CropFormer+per-crop,分割吞吐,0.89,次/秒,5,已有结果,ral_readme.md,分割单位是 frame/s；integrate 含 insert_seg_frame
+E5,分阶段耗时,R1 15vs4 FPS,五场景,C CropFormer+per-crop,融合平均耗时,453,ms,5,已有结果,ral_readme.md,分割单位是 frame/s；integrate 含 insert_seg_frame
+E5,分阶段耗时,R1 15vs4 FPS,五场景,C CropFormer+per-crop,融合吞吐,2.41,frame/s,5,已有结果,ral_readme.md,分割单位是 frame/s；integrate 含 insert_seg_frame
+E5,分阶段耗时,R1 15vs4 FPS,五场景,C CropFormer+per-crop,合并平均耗时,1307,ms,5,已有结果,ral_readme.md,分割单位是 frame/s；integrate 含 insert_seg_frame
+E5,分阶段耗时,R1 15vs4 FPS,五场景,C CropFormer+per-crop,合并吞吐,1.5,merge/s,5,已有结果,ral_readme.md,merge 吞吐不是 15 FPS
+E7,语义 mIoU,R3 OVI-MAP,ScanNet200,label-mediated 单场景 scene0025_00,mIoU,0.27,比例,1,冒烟,review/reviewer_1.md; ground_ral/E7_ovimap_metric_30scenes.md,冒烟值
+E7,语义 mIoU,R3 OVI-MAP,ScanNet200,label-mediated 单场景 scene0025_00,mAcc,0.32,比例,1,冒烟,review/reviewer_1.md; ground_ral/E7_ovimap_metric_30scenes.md,冒烟值
+E7,语义 mIoU,R3 OVI-MAP,ScanNet200,label-mediated 单场景 scene0025_00,VLM查询每实例,0,次,1,冒烟,review/reviewer_1.md,冒烟值
+E7,语义 mIoU,R3 OVI-MAP,ScanNet200,post-hoc VLM 单场景 scene0025_00,mIoU,0.12,比例,1,冒烟,review/reviewer_1.md; ground_ral/E7_ovimap_metric_30scenes.md,冒烟值；查询次数与 OVI-MAP 论文 AQ≈8.6 不一致
+E7,语义 mIoU,R3 OVI-MAP,ScanNet200,post-hoc VLM 单场景 scene0025_00,mAcc,0.17,比例,1,冒烟,review/reviewer_1.md; ground_ral/E7_ovimap_metric_30scenes.md,冒烟值；查询次数与 OVI-MAP 论文 AQ≈8.6 不一致
+E7,语义 mIoU,R3 OVI-MAP,ScanNet200,post-hoc VLM 单场景 scene0025_00,VLM查询每实例,53,次,1,冒烟,review/reviewer_1.md,冒烟值；查询次数与 OVI-MAP 论文 AQ≈8.6 不一致
+E7,语义 mIoU,R3 OVI-MAP,ScanNet200,label-mediated arm A 30场景 eval_posthoc,mIoU,0.3,比例,30,已有结果,review/reviewer_1.md; ground_ral/E7_ovimap_metric_30scenes.md,只有 label-bound 一侧
+E7,语义 mIoU,R3 OVI-MAP,ScanNet200,label-mediated arm A 30场景 eval_posthoc,mAcc,0.3915,比例,30,已有结果,review/reviewer_1.md; ground_ral/E7_ovimap_metric_30scenes.md,只有 label-bound 一侧
+E7,语义 mIoU,R3 OVI-MAP,ScanNet200,label-mediated arm A 30场景 eval_posthoc,VLM查询每实例,0,次,30,已有结果,review/reviewer_1.md,只有 label-bound 一侧
+E7,语义 mIoU,R3 OVI-MAP,ScanNet200,e5_out_200_dense 30场景 OVI-MAP mesh 指标,mIoU,0.3057,比例,30,已有结果,review/reviewer_1.md; ground_ral/E7_ovimap_metric_30scenes.md,200帧 dense-seg 协议
+E7,语义 mIoU,R3 OVI-MAP,ScanNet200,e5_out_200_dense 30场景 OVI-MAP mesh 指标,mAcc,0.3982,比例,30,已有结果,review/reviewer_1.md; ground_ral/E7_ovimap_metric_30scenes.md,200帧 dense-seg 协议
+E7,30场景类无关AP对照,R3 OVI-MAP,ScanNet200,e5_out_200_dense 30场景,AP,0.2135,比例,30,已有结果,ground_ral/E7_ovimap_metric_30scenes.md,200帧均匀子采样+逐帧分割
+E7,30场景类无关AP对照,R3 OVI-MAP,ScanNet200,e5_out_200_dense 30场景,AP50,0.3925,比例,30,已有结果,ground_ral/E7_ovimap_metric_30scenes.md,200帧均匀子采样+逐帧分割
+E7,30场景类无关AP对照,R3 OVI-MAP,ScanNet200,e5_out_200_dense 30场景,AP25,0.6097,比例,30,已有结果,ground_ral/E7_ovimap_metric_30scenes.md,200帧均匀子采样+逐帧分割
+E7,30场景类无关AP对照,R3 OVI-MAP,ScanNet200,output_ral/A 30场景,AP,0.2039,比例,30,已有结果,ground_ral/E7_ovimap_metric_30scenes.md,全序列+默认 keyframe，类无关 AP
+E7,30场景类无关AP对照,R3 OVI-MAP,ScanNet200,output_ral/A 30场景,AP50,0.3782,比例,30,已有结果,ground_ral/E7_ovimap_metric_30scenes.md,全序列+默认 keyframe，类无关 AP
+E7,30场景类无关AP对照,R3 OVI-MAP,ScanNet200,output_ral/A 30场景,AP25,0.5835,比例,30,已有结果,ground_ral/E7_ovimap_metric_30scenes.md,全序列+默认 keyframe，类无关 AP
+E8,SceneNN 汇总,R1 SceneNN,SceneNN,汇总,GT实例词表内覆盖率,0.613,比例,12,已有结果,ground_ral/E8_scenenn_evidence.md,12 scene GT
+E8,SceneNN 汇总,R1 SceneNN,SceneNN,汇总,GT实例词表外覆盖率,0.387,比例,12,已有结果,ground_ral/E8_scenenn_evidence.md,otherprops 占实例 33.8%
+E8,SceneNN 汇总,R1 SceneNN,SceneNN,汇总,GT顶点词表内覆盖率,0.868,比例,12,已有结果,ground_ral/E8_scenenn_evidence.md,
+E8,SceneNN 汇总,R1 SceneNN,SceneNN,汇总,词表内实例召回 IoU0.25,0.851,比例,11,已有结果,ground_ral/E8_scenenn_evidence.md,194 inst
+E8,SceneNN 汇总,R1 SceneNN,SceneNN,汇总,词表内实例召回 IoU0.5,0.567,比例,11,已有结果,ground_ral/E8_scenenn_evidence.md,194 inst
+E8,SceneNN 汇总,R1 SceneNN,SceneNN,汇总,词表内物体类实例召回 IoU0.25,0.862,比例,11,已有结果,ground_ral/E8_scenenn_evidence.md,剔除 wall/floor/ceiling，145 inst
+E8,SceneNN 汇总,R1 SceneNN,SceneNN,汇总,词表内物体类实例召回 IoU0.5,0.621,比例,11,已有结果,ground_ral/E8_scenenn_evidence.md,145 inst
+E8,SceneNN 汇总,R1 SceneNN,SceneNN,汇总,词表外实例召回 IoU0.25,0.613,比例,11,已有结果,ground_ral/E8_scenenn_evidence.md,111 inst
+E8,SceneNN 汇总,R1 SceneNN,SceneNN,汇总,词表外实例召回 IoU0.5,0.378,比例,11,已有结果,ground_ral/E8_scenenn_evidence.md,111 inst
+E8,SceneNN 汇总,R1 SceneNN,SceneNN,汇总,词表内类匹配顶点覆盖,0.669,比例,11,已有结果,ground_ral/E8_scenenn_evidence.md,含背景
+E8,SceneNN 汇总,R1 SceneNN,SceneNN,汇总,词表内物体类匹配顶点覆盖,0.611,比例,11,已有结果,ground_ral/E8_scenenn_evidence.md,
+E8,SceneNN 汇总,R1 SceneNN,SceneNN,汇总,词表外类匹配顶点覆盖,0.0,比例,11,已有结果,ground_ral/E8_scenenn_evidence.md,构造性为 0
+E8,SceneNN 汇总,R1 SceneNN,SceneNN,汇总,GT class-0 未标注顶点占比,0.282,比例,12,已有结果,ground_ral/E8_scenenn_evidence.md,场景平均
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,1:wall,instances,31,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,1:wall,inst_share,0.0852,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,1:wall,vertices,5112349,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,1:wall,vert_share,0.3414,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,2:floor,instances,11,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,2:floor,inst_share,0.0302,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,2:floor,vertices,2854022,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,2:floor,vert_share,0.1906,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,3:cabinet,instances,6,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,3:cabinet,inst_share,0.0165,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,3:cabinet,vertices,260482,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,3:cabinet,vert_share,0.0174,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,4:bed,instances,4,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,4:bed,inst_share,0.011,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,4:bed,vertices,479196,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,4:bed,vert_share,0.032,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,5:chair,instances,34,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,5:chair,inst_share,0.0934,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,5:chair,vertices,735338,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,5:chair,vert_share,0.0491,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,6:sofa,instances,10,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,6:sofa,inst_share,0.0275,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,6:sofa,vertices,624761,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,6:sofa,vert_share,0.0417,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,7:table,instances,6,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,7:table,inst_share,0.0165,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,7:table,vertices,130234,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,7:table,vert_share,0.0087,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,8:door,instances,13,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,8:door,inst_share,0.0357,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,8:door,vertices,519552,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,8:door,vert_share,0.0347,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,9:window,instances,5,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,9:window,inst_share,0.0137,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,9:window,vertices,209781,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,9:window,vert_share,0.014,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,10:bookshelf,instances,3,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,10:bookshelf,inst_share,0.0082,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,10:bookshelf,vertices,151601,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,10:bookshelf,vert_share,0.0101,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,11:picture,instances,8,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,11:picture,inst_share,0.022,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,11:picture,vertices,66628,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,11:picture,vert_share,0.0044,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,12:counter,instances,3,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,12:counter,inst_share,0.0082,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,12:counter,vertices,108884,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,12:counter,vert_share,0.0073,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,13:blinds,instances,2,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,13:blinds,inst_share,0.0055,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,13:blinds,vertices,100440,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,13:blinds,vert_share,0.0067,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,14:desk,instances,13,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,14:desk,inst_share,0.0357,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,14:desk,vertices,590579,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,14:desk,vert_share,0.0394,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,15:shelves,instances,4,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,15:shelves,inst_share,0.011,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,15:shelves,vertices,97168,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,15:shelves,vert_share,0.0065,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,16:curtain,instances,3,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,16:curtain,inst_share,0.0082,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,16:curtain,vertices,226703,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,16:curtain,vert_share,0.0151,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,18:pillow,instances,9,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,18:pillow,inst_share,0.0247,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,18:pillow,vertices,55090,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,18:pillow,vert_share,0.0037,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,20:floor mat,instances,1,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,20:floor mat,inst_share,0.0027,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,20:floor mat,vertices,5935,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,20:floor mat,vert_share,0.0004,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,21:clothes,instances,8,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,21:clothes,inst_share,0.022,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,21:clothes,vertices,102385,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,21:clothes,vert_share,0.0068,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,22:ceiling,instances,16,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,22:ceiling,inst_share,0.044,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,22:ceiling,vertices,729166,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,22:ceiling,vert_share,0.0487,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,23:books,instances,12,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,23:books,inst_share,0.033,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,23:books,vertices,83118,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,23:books,vert_share,0.0056,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,25:television,instances,5,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表外
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,25:television,inst_share,0.0137,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表外
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,25:television,vertices,89157,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表外
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,25:television,vert_share,0.006,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表外
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,26:paper,instances,2,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,26:paper,inst_share,0.0055,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,26:paper,vertices,3732,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,26:paper,vert_share,0.0002,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,29:box,instances,1,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,29:box,inst_share,0.0027,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,29:box,vertices,6613,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,29:box,vert_share,0.0004,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,30:whiteboard,instances,5,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,30:whiteboard,inst_share,0.0137,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,30:whiteboard,vertices,261473,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,30:whiteboard,vert_share,0.0175,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,32:night stand,instances,1,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,32:night stand,inst_share,0.0027,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,32:night stand,vertices,14748,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,32:night stand,vert_share,0.001,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,34:sink,instances,2,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,34:sink,inst_share,0.0055,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,34:sink,vertices,13189,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,34:sink,vert_share,0.0009,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,35:lamp,instances,5,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,35:lamp,inst_share,0.0137,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,35:lamp,vertices,34133,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,35:lamp,vert_share,0.0023,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,37:bag,instances,5,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,37:bag,inst_share,0.0137,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,37:bag,vertices,41313,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,37:bag,vert_share,0.0028,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表内
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,38:otherstructure,instances,2,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表外
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,38:otherstructure,inst_share,0.0055,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表外
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,38:otherstructure,vertices,55946,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表外
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,38:otherstructure,vert_share,0.0037,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表外
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,39:otherfurniture,instances,11,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表外
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,39:otherfurniture,inst_share,0.0302,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表外
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,39:otherfurniture,vertices,569210,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表外
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,39:otherfurniture,vert_share,0.038,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表外
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,40:otherprops,instances,123,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表外
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,40:otherprops,inst_share,0.3379,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表外
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,40:otherprops,vertices,642436,个,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表外
+E8,NYU40 词表覆盖,R1 SceneNN,SceneNN,40:otherprops,vert_share,0.0429,比例,12,已有结果,ground_ral/scenenn_vocab_coverage.json,词表外
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,none,AP,0.214337,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,none,AP50,0.394705,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,none,AP25,0.617012,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,blur_w,AP,0.212023,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,blur_w,AP50,0.385427,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,blur_w,AP25,0.608737,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,blur_s,AP,0.225692,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,blur_s,AP50,0.420195,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,blur_s,AP25,0.631482,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,blur_xs,AP,0.216848,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,blur_xs,AP50,0.406863,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,blur_xs,AP25,0.597162,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,noise_w,AP,0.219030,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,noise_w,AP50,0.402571,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,noise_w,AP25,0.632362,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,noise_s,AP,0.220284,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,noise_s,AP50,0.398740,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,noise_s,AP25,0.634339,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,noise_xs,AP,0.214768,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,noise_xs,AP50,0.386055,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,noise_xs,AP25,0.617132,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,drop133,AP,0.192810,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,drop133,AP50,0.348433,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,drop133,AP25,0.544307,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,drop100,AP,0.169621,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,drop100,AP50,0.326320,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,drop100,AP25,0.499575,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,drop67,AP,0.132302,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,drop67,AP50,0.275963,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E9,合成退化,R3噪声模糊丢帧,ScanNet 10场景×200帧,drop67,AP25,0.429022,比例,10,已有结果,out_robust/e9_summary.json,未做 paired t-test；无闭环、无真机
+E10,项尺度诊断,R1 Eq9,NR3D,qwen3 s_node,n,424,,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_qwen3.json,states=424
+E10,项尺度诊断,R1 Eq9,NR3D,qwen3 s_node,mean,0.8881,比例,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_qwen3.json,states=424
+E10,项尺度诊断,R1 Eq9,NR3D,qwen3 s_node,median,0.9505,比例,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_qwen3.json,states=424
+E10,项尺度诊断,R1 Eq9,NR3D,qwen3 s_node,frac_ge_0.9,0.6462,比例,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_qwen3.json,states=424
+E10,项尺度诊断,R1 Eq9,NR3D,qwen3 s_node,frac_le_0.5,0.033,比例,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_qwen3.json,states=424
+E10,项尺度诊断,R1 Eq9,NR3D,qwen3 s_rel,n,334,,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_qwen3.json,states=424
+E10,项尺度诊断,R1 Eq9,NR3D,qwen3 s_rel,mean,0.4151,比例,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_qwen3.json,states=424
+E10,项尺度诊断,R1 Eq9,NR3D,qwen3 s_rel,median,0.3712,比例,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_qwen3.json,states=424
+E10,项尺度诊断,R1 Eq9,NR3D,qwen3 s_rel,frac_ge_0.9,0.0689,比例,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_qwen3.json,states=424
+E10,项尺度诊断,R1 Eq9,NR3D,qwen3 s_rel,frac_le_0.5,0.6257,比例,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_qwen3.json,states=424
+E10,项尺度诊断,R1 Eq9,NR3D,deepseek s_node,n,428,,99,已有结果,ground_ral/e10_diag/e10_diag_nr3d_deepseek.json,states=428
+E10,项尺度诊断,R1 Eq9,NR3D,deepseek s_node,mean,0.9139,比例,99,已有结果,ground_ral/e10_diag/e10_diag_nr3d_deepseek.json,states=428
+E10,项尺度诊断,R1 Eq9,NR3D,deepseek s_node,median,0.9703,比例,99,已有结果,ground_ral/e10_diag/e10_diag_nr3d_deepseek.json,states=428
+E10,项尺度诊断,R1 Eq9,NR3D,deepseek s_node,frac_ge_0.9,0.6682,比例,99,已有结果,ground_ral/e10_diag/e10_diag_nr3d_deepseek.json,states=428
+E10,项尺度诊断,R1 Eq9,NR3D,deepseek s_node,frac_le_0.5,0.0257,比例,99,已有结果,ground_ral/e10_diag/e10_diag_nr3d_deepseek.json,states=428
+E10,项尺度诊断,R1 Eq9,NR3D,deepseek s_rel,n,356,,99,已有结果,ground_ral/e10_diag/e10_diag_nr3d_deepseek.json,states=428
+E10,项尺度诊断,R1 Eq9,NR3D,deepseek s_rel,mean,0.4497,比例,99,已有结果,ground_ral/e10_diag/e10_diag_nr3d_deepseek.json,states=428
+E10,项尺度诊断,R1 Eq9,NR3D,deepseek s_rel,median,0.4575,比例,99,已有结果,ground_ral/e10_diag/e10_diag_nr3d_deepseek.json,states=428
+E10,项尺度诊断,R1 Eq9,NR3D,deepseek s_rel,frac_ge_0.9,0.1208,比例,99,已有结果,ground_ral/e10_diag/e10_diag_nr3d_deepseek.json,states=428
+E10,项尺度诊断,R1 Eq9,NR3D,deepseek s_rel,frac_le_0.5,0.5534,比例,99,已有结果,ground_ral/e10_diag/e10_diag_nr3d_deepseek.json,states=428
+E10,项尺度诊断,R1 Eq9,NR3D,glm s_node,n,449,,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_glm.json,states=449
+E10,项尺度诊断,R1 Eq9,NR3D,glm s_node,mean,0.8811,比例,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_glm.json,states=449
+E10,项尺度诊断,R1 Eq9,NR3D,glm s_node,median,0.9197,比例,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_glm.json,states=449
+E10,项尺度诊断,R1 Eq9,NR3D,glm s_node,frac_ge_0.9,0.5546,比例,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_glm.json,states=449
+E10,项尺度诊断,R1 Eq9,NR3D,glm s_node,frac_le_0.5,0.0245,比例,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_glm.json,states=449
+E10,项尺度诊断,R1 Eq9,NR3D,glm s_rel,n,385,,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_glm.json,states=449
+E10,项尺度诊断,R1 Eq9,NR3D,glm s_rel,mean,0.445,比例,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_glm.json,states=449
+E10,项尺度诊断,R1 Eq9,NR3D,glm s_rel,median,0.4026,比例,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_glm.json,states=449
+E10,项尺度诊断,R1 Eq9,NR3D,glm s_rel,frac_ge_0.9,0.1091,比例,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_glm.json,states=449
+E10,项尺度诊断,R1 Eq9,NR3D,glm s_rel,frac_le_0.5,0.5714,比例,100,已有结果,ground_ral/e10_diag/e10_diag_nr3d_glm.json,states=449
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.0 / none,MeanDist,1.4601,m,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.0 / none,Acc@0.3,0.45,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.0 / none,Acc@0.5,0.47,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.0 / none,SelAcc,0.47,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.0 / norm,MeanDist,1.4601,m,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.0 / norm,Acc@0.3,0.45,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.0 / norm,Acc@0.5,0.47,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.0 / norm,SelAcc,0.47,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.25 / none,MeanDist,1.4251,m,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.25 / none,Acc@0.3,0.46,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.25 / none,Acc@0.5,0.48,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.25 / none,SelAcc,0.48,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.25 / norm,MeanDist,1.309,m,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.25 / norm,Acc@0.3,0.48,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.25 / norm,Acc@0.5,0.5,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.25 / norm,SelAcc,0.5,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.5 / none,MeanDist,1.2048,m,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.5 / none,Acc@0.3,0.52,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.5 / none,Acc@0.5,0.54,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.5 / none,SelAcc,0.54,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.5 / norm,MeanDist,1.1976,m,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.5 / norm,Acc@0.3,0.51,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.5 / norm,Acc@0.5,0.53,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.5 / norm,SelAcc,0.53,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.75 / none,MeanDist,1.2157,m,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.75 / none,Acc@0.3,0.5,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.75 / none,Acc@0.5,0.52,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.75 / none,SelAcc,0.52,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.75 / norm,MeanDist,1.2406,m,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.75 / norm,Acc@0.3,0.53,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.75 / norm,Acc@0.5,0.54,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=0.75 / norm,SelAcc,0.54,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=1.0 / none,MeanDist,1.6963,m,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=1.0 / none,Acc@0.3,0.36,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=1.0 / none,Acc@0.5,0.37,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=1.0 / none,SelAcc,0.37,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=1.0 / norm,MeanDist,1.6963,m,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=1.0 / norm,Acc@0.3,0.36,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=1.0 / norm,Acc@0.5,0.37,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,lambda 扫描 100条,R1 Eq9,NR3D,lambda_u=1.0 / norm,SelAcc,0.37,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep.json,离线回放，无 rerank；不是论文 Table III 的全量
+E10,决策变化,R1 Eq9,NR3D,lambda_u=0.5 norm vs none,top1_changed,9,条,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_qwen3.json,变化率 9%；0.25 与 0.75 的变化率没有落在该 json
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,qwen3 lambda_u=0.5 / none,MeanDist,1.2048,m,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_qwen3.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,qwen3 lambda_u=0.5 / none,Acc@0.3,0.52,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_qwen3.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,qwen3 lambda_u=0.5 / none,Acc@0.5,0.54,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_qwen3.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,qwen3 lambda_u=0.5 / norm,MeanDist,1.1976,m,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_qwen3.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,qwen3 lambda_u=0.5 / norm,Acc@0.3,0.51,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_qwen3.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,qwen3 lambda_u=0.5 / norm,Acc@0.5,0.53,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_qwen3.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,deepseek lambda_u=0.5 / none,MeanDist,1.1081,m,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_deepseek.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,deepseek lambda_u=0.5 / none,Acc@0.3,0.5354,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_deepseek.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,deepseek lambda_u=0.5 / none,Acc@0.5,0.5758,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_deepseek.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,deepseek lambda_u=0.5 / norm,MeanDist,1.1194,m,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_deepseek.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,deepseek lambda_u=0.5 / norm,Acc@0.3,0.5253,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_deepseek.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,deepseek lambda_u=0.5 / norm,Acc@0.5,0.5657,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_deepseek.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,glm lambda_u=0.5 / none,MeanDist,1.178,m,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_glm.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,glm lambda_u=0.5 / none,Acc@0.3,0.52,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_glm.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,glm lambda_u=0.5 / none,Acc@0.5,0.54,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_glm.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,glm lambda_u=0.5 / norm,MeanDist,1.1286,m,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_glm.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,glm lambda_u=0.5 / norm,Acc@0.3,0.51,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_glm.json,只扫了 0.5
+E10,三骨干 lambda=0.5,R1 Eq9,NR3D,glm lambda_u=0.5 / norm,Acc@0.5,0.54,比例,100,已有结果,ground_ral/nr3d/e10_lambda_sweep_glm.json,只扫了 0.5

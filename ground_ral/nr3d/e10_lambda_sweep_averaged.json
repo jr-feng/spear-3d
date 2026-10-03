@@ -1,0 +1,148 @@
+{
+  "n_queries": 100,
+  "rows": {
+    "lambda=0.0:legacy": {
+      "lambda_u": 0.0,
+      "normalize": "legacy",
+      "mean_dist": 1.4601,
+      "acc03m": 0.45,
+      "acc05m": 0.47,
+      "selacc": 0.47,
+      "queries": 100
+    },
+    "lambda=0.0:avg": {
+      "lambda_u": 0.0,
+      "normalize": "avg",
+      "mean_dist": 1.5071,
+      "acc03m": 0.44,
+      "acc05m": 0.46,
+      "selacc": 0.46,
+      "queries": 100
+    },
+    "lambda=0.25:legacy": {
+      "lambda_u": 0.25,
+      "normalize": "legacy",
+      "mean_dist": 1.4251,
+      "acc03m": 0.46,
+      "acc05m": 0.48,
+      "selacc": 0.48,
+      "queries": 100
+    },
+    "lambda=0.25:avg": {
+      "lambda_u": 0.25,
+      "normalize": "avg",
+      "mean_dist": 1.4953,
+      "acc03m": 0.44,
+      "acc05m": 0.46,
+      "selacc": 0.46,
+      "queries": 100
+    },
+    "lambda=0.5:legacy": {
+      "lambda_u": 0.5,
+      "normalize": "legacy",
+      "mean_dist": 1.2048,
+      "acc03m": 0.52,
+      "acc05m": 0.54,
+      "selacc": 0.54,
+      "queries": 100
+    },
+    "lambda=0.5:avg": {
+      "lambda_u": 0.5,
+      "normalize": "avg",
+      "mean_dist": 1.3771,
+      "acc03m": 0.46,
+      "acc05m": 0.48,
+      "selacc": 0.48,
+      "queries": 100
+    },
+    "lambda=0.75:legacy": {
+      "lambda_u": 0.75,
+      "normalize": "legacy",
+      "mean_dist": 1.2157,
+      "acc03m": 0.5,
+      "acc05m": 0.52,
+      "selacc": 0.52,
+      "queries": 100
+    },
+    "lambda=0.75:avg": {
+      "lambda_u": 0.75,
+      "normalize": "avg",
+      "mean_dist": 1.2708,
+      "acc03m": 0.5,
+      "acc05m": 0.52,
+      "selacc": 0.52,
+      "queries": 100
+    },
+    "lambda=1.0:legacy": {
+      "lambda_u": 1.0,
+      "normalize": "legacy",
+      "mean_dist": 1.6963,
+      "acc03m": 0.36,
+      "acc05m": 0.37,
+      "selacc": 0.37,
+      "queries": 100
+    },
+    "lambda=1.0:avg": {
+      "lambda_u": 1.0,
+      "normalize": "avg",
+      "mean_dist": 1.6963,
+      "acc03m": 0.36,
+      "acc05m": 0.37,
+      "selacc": 0.37,
+      "queries": 100
+    }
+  },
+  "cardinality": {
+    "mean_nodes": 2.09,
+    "mean_edges": 1.08,
+    "mean_edges_per_node": 0.517
+  },
+  "formula": {
+    "legacy": "weighted geometric mean; each node and each edge is a separate factor, so |E_Q| changes the balance",
+    "avg": "S = lambda_u * mean_{v in V_Q} s_u(v) + (1-lambda_u) * mean_{e in E_Q} s_e(e)"
+  },
+  "params": {
+    "corr_thresh": 0.5,
+    "lambdas": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "modes": [
+      "legacy",
+      "avg"
+    ],
+    "beam_size": 160,
+    "target_limit": 24,
+    "ref_limit": 10
+  },
+  "decision_change": {
+    "0.0": {
+      "changed": 2,
+      "n": 100,
+      "pct": 0.02
+    },
+    "0.25": {
+      "changed": 3,
+      "n": 100,
+      "pct": 0.03
+    },
+    "0.5": {
+      "changed": 8,
+      "n": 100,
+      "pct": 0.08
+    },
+    "0.75": {
+      "changed": 8,
+      "n": 100,
+      "pct": 0.08
+    },
+    "1.0": {
+      "changed": 0,
+      "n": 100,
+      "pct": 0.0
+    }
+  }
+}

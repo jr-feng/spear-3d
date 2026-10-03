@@ -1,0 +1,66 @@
+{
+  "pred_root": "/home/OnlineAnySeg/output_test/nr3d",
+  "definition": "Correct iff the referred ScanNet object is the unique highest point-IoU match of the selected reconstructed instance, and IoU is at least the threshold. No selection counts incorrect. Denominator is queries whose scene masks and aggregation loaded.",
+  "rows": [
+    {
+      "name": "Qwen3-plus NS",
+      "queries": 500,
+      "scored": 500,
+      "missing_scene": 0,
+      "no_prediction": 7,
+      "parse_fail": 3,
+      "centroid_known": 493,
+      "acc05_centroid_all": 54.2,
+      "acc05_centroid_known": 54.97,
+      "target_acc_iou25": 44.4,
+      "target_acc_iou50": 37.8,
+      "centroid_hit_other_object": 30,
+      "centroid_hit_other_object_pct": 6.0
+    },
+    {
+      "name": "deepseek-v3.2 NS",
+      "queries": 500,
+      "scored": 500,
+      "missing_scene": 0,
+      "no_prediction": 5,
+      "parse_fail": 0,
+      "centroid_known": 495,
+      "acc05_centroid_all": 53.8,
+      "acc05_centroid_known": 54.34,
+      "target_acc_iou25": 46.0,
+      "target_acc_iou50": 39.4,
+      "centroid_hit_other_object": 25,
+      "centroid_hit_other_object_pct": 5.0
+    },
+    {
+      "name": "GLM-5 NS",
+      "queries": 500,
+      "scored": 500,
+      "missing_scene": 0,
+      "no_prediction": 2,
+      "parse_fail": 0,
+      "centroid_known": 498,
+      "acc05_centroid_all": 53.2,
+      "acc05_centroid_known": 53.41,
+      "target_acc_iou25": 44.4,
+      "target_acc_iou50": 36.2,
+      "centroid_hit_other_object": 25,
+      "centroid_hit_other_object_pct": 5.0
+    },
+    {
+      "name": "direct LLM",
+      "queries": 500,
+      "scored": 500,
+      "missing_scene": 0,
+      "no_prediction": 18,
+      "parse_fail": 0,
+      "centroid_known": 482,
+      "acc05_centroid_all": 42.0,
+      "acc05_centroid_known": 43.57,
+      "target_acc_iou25": 33.2,
+      "target_acc_iou50": 28.2,
+      "centroid_hit_other_object": 36,
+      "centroid_hit_other_object_pct": 7.2
+    }
+  ]
+}

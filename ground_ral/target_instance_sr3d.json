@@ -1,0 +1,36 @@
+{
+  "pred_root": "/home/OnlineAnySeg/output_test/nr3d",
+  "definition": "Correct iff the referred ScanNet object is the unique highest point-IoU match of the selected reconstructed instance, and IoU is at least the threshold. No selection counts incorrect. Denominator is queries whose scene masks and aggregation loaded.",
+  "rows": [
+    {
+      "name": "GLM-5 NS",
+      "queries": 500,
+      "scored": 500,
+      "missing_scene": 0,
+      "no_prediction": 0,
+      "parse_fail": 0,
+      "centroid_known": 500,
+      "acc05_centroid_all": 67.0,
+      "acc05_centroid_known": 67.0,
+      "target_acc_iou25": 63.2,
+      "target_acc_iou50": 53.8,
+      "centroid_hit_other_object": 5,
+      "centroid_hit_other_object_pct": 1.0
+    },
+    {
+      "name": "Qwen3-plus NS SR3D",
+      "queries": 500,
+      "scored": 500,
+      "missing_scene": 0,
+      "no_prediction": 4,
+      "parse_fail": 3,
+      "centroid_known": 496,
+      "acc05_centroid_all": 65.4,
+      "acc05_centroid_known": 65.93,
+      "target_acc_iou25": 61.4,
+      "target_acc_iou50": 52.6,
+      "centroid_hit_other_object": 5,
+      "centroid_hit_other_object_pct": 1.0
+    }
+  ]
+}

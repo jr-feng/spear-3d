@@ -1,0 +1,295 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=0.72in]{geometry}
+\usepackage{newtxtext,newtxmath}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+
+\captionsetup{font=small,labelfont=bf,skip=4pt}
+\captionsetup[table]{position=top}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\arraystretch}{1.1}
+\setlength{\parskip}{0.28em}
+\setlength{\parindent}{1.05em}
+\setlength{\tabcolsep}{5pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small Supplementary Material}
+\fancyhead[R]{\small SPEAR-3D}
+\fancyfoot[C]{\thepage}
+
+\begin{document}
+\begin{center}
+{\large\bfseries Supplementary Material}\\[0.55em]
+{\normalsize SPEAR-3D: From Streaming Reconstruction to Explicit Reasoning---\\
+A Neuro-Symbolic Approach for 3D Visual Grounding}
+\end{center}
+\vspace{0.15em}
+\thispagestyle{fancy}
+
+\noindent
+This file is supplementary material.
+It is submitted in the zip with the demonstration video.
+It is not part of the manuscript PDF.
+The demonstration is the accompanying file spear3d\_demo.mp4.
+
+\section{Additional Experiments}
+The tables in this file are not repeated in the main text.
+Acc@0.3m and Acc@0.5m are centroid distances in metres over queries with a finite distance, with no class match.
+T-Acc requires the referred object to be the unique highest point IoU of the selected instance on the ScanNet ground-truth mesh.
+No selection is incorrect.
+
+\subsection{NS-Grounding}
+\begin{table}[H]
+\centering
+\caption{NS-Grounding on NR3D and SR3D.
+The GLM-5 row without NS on SR3D is 51.9 / 52.5.
+Bold marks the highest Acc@0.5m on each dataset.}
+\label{tab:module_ablation}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{llccccc}
+\toprule
+ & & \multicolumn{5}{c}{NR3D} \\
+\cmidrule(lr){3-7}
+LLM & NS & MeanDist & Acc@0.3m & Acc@0.5m & T-Acc@0.25 & T-Acc@0.50 \\
+\midrule
+Qwen3-plus & no & 1.36 & 38.7 & 43.5 & 33.2 & 28.2 \\
+Qwen3-plus & yes & 0.91 & 56.3 & \textbf{58.8} & 50.4 & 40.8 \\
+deepseek-v3.2 & no & 1.33 & 42.0 & 44.6 & 30.9 & 26.0 \\
+deepseek-v3.2 & yes & 1.27 & 51.1 & 54.3 & 46.0 & 39.4 \\
+GLM-5 & no & 1.35 & 37.8 & 41.5 & 32.3 & 29.1 \\
+GLM-5 & yes & 1.18 & 50.2 & 53.4 & 44.4 & 36.2 \\
+\midrule
+ & & \multicolumn{5}{c}{SR3D} \\
+\cmidrule(lr){3-7}
+LLM & NS & MeanDist & Acc@0.3m & Acc@0.5m & T-Acc@0.25 & T-Acc@0.50 \\
+\midrule
+Qwen3-plus & no & 1.32 & 53.8 & 54.8 & 37.2 & 31.1 \\
+Qwen3-plus & yes & 0.96 & 64.7 & 65.9 & 61.4 & 52.6 \\
+deepseek-v3.2 & no & 1.24 & 53.1 & 54.1 & 36.3 & 29.7 \\
+deepseek-v3.2 & yes & 1.00 & 64.8 & 66.0 & 64.0 & 57.0 \\
+GLM-5 & no & 1.28 & 51.9 & 52.5 & 35.7 & 29.5 \\
+GLM-5 & yes & 0.97 & 65.6 & \textbf{67.0} & 63.2 & 53.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Node--Relation Weight}
+\begin{table}[H]
+\centering
+\caption{Sensitivity of the weighted geometric mean on NR3D with Qwen3-plus.}
+\label{tab:graph_balance}
+\begin{tabular}{cccccc}
+\toprule
+\(\lambda_u\) & MeanDist & Acc@0.3m & Acc@0.5m & T-Acc@0.25 & T-Acc@0.50 \\
+\midrule
+0.25 & 1.2550 & 48.1 & 51.6 & -- & -- \\
+0.50 & 0.9140 & 56.3 & 58.8 & 50.4 & 40.8 \\
+0.75 & 1.0840 & 53.4 & 57.8 & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{End-to-End Frame Rate}
+\begin{table}[H]
+\centering
+\caption{End-to-end FPS on an RTX 3090 with keyframe interval 10.
+A is SAM3 with label binding.
+C is CropFormer with per-crop CLIP.}
+\label{tab:fps}
+\begin{tabular}{lcc}
+\toprule
+Scene & A & C \\
+\midrule
+scene0432\_00 & 11.42 & 5.50 \\
+scene0527\_00 & 10.71 & 4.82 \\
+scene0559\_00 & 10.62 & 4.41 \\
+scene0494\_00 & 10.82 & 6.60 \\
+scene0689\_00 & 11.04 & 5.25 \\
+Mean & 10.92 & 5.32 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Per-Stage Time}
+\begin{table}[H]
+\centering
+\caption{Per-stage wall time.
+Rates are reciprocals of those times.}
+\label{tab:stages}
+\begin{tabular}{lcc}
+\toprule
+Stage & A & C \\
+\midrule
+Segmentation & 241 ms (4.16/s) & 1099 ms (0.91/s) \\
+Fusion & 330 ms (3.03/s) & 453 ms (2.21/s) \\
+Merge & 487 ms (2.05/s) & 1307 ms (0.77/s) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Prompt Vocabulary}
+\begin{table}[H]
+\centering
+\caption{Segmentation latency as the prompt vocabulary grows.}
+\label{tab:vocab}
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{4}{c}{Vocabulary size} \\
+\cmidrule(lr){2-5}
+ & 10 & 30 & 50 & 100 \\
+\midrule
+Latency (ms) & 311 & 509 & 762 & 1627 \\
+Seg.\ rate & 3.22 & 1.97 & 1.31 & 0.61 \\
+Peak MB & 16105 & 16098 & 16095 & 16084 \\
+Fragments & 8.3 & 11.3 & 12.1 & 16.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+Segmentation takes 241~ms (4.16/s) against 1099~ms (0.91/s), fusion 330~ms (3.03/s) against 453~ms (2.21/s), and merge 487~ms (2.05/s) against 1307~ms (0.77/s).
+For vocabulary sizes 10, 30, 50, and 100, latency is 311, 509, 762, and 1627~ms, segmentation rate is 3.22, 1.97, 1.31, and 0.61, peak memory is 16105, 16098, 16095, and 16084~MB, and the mean fragment count is 8.3, 11.3, 12.1, and 16.8.
+About 10~FPS is the end-to-end mean 10.92 of arm A.
+The published OnlineAnySeg figure of about 15~FPS is on an RTX 4090.
+
+\subsection{SceneNN Coverage}
+\begin{table}[H]
+\centering
+\caption{SceneNN prompt-vocabulary coverage.
+Out-of-vocabulary class-matched coverage is zero because that class is not a prompt.}
+\label{tab:scenenn}
+\begin{tabular}{lc}
+\toprule
+Quantity & Value \\
+\midrule
+In-vocabulary instances & 61.3\% \\
+Out-of-vocabulary instances & 38.7\% \\
+\texttt{otherprops} share & 33.8\% \\
+In-vocab. recall @0.50 / @0.25 & 56.7\% / 85.1\% \\
+Out-of-vocab. recall @0.50 / @0.25 & 37.8\% / 61.3\% \\
+Class-matched coverage, in / out & 61.1\% / 0.0\% \\
+Unlabeled vertices & 28.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Label Binding}
+\begin{table}[H]
+\centering
+\caption{Label binding and post-hoc CLIP on the same SAM3 masks.
+The manuscript cites label-binding mIoU 30.6 against 15.3 for post-hoc CLIP.}
+\label{tab:bind}
+\begin{tabular}{lccc}
+\toprule
+Method & mIoU & mAcc & Queries \\
+\midrule
+Label binding & 30.6 & 39.8 & 0 \\
+Post-hoc CLIP argmax & 15.3 & 26.0 & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cited OVI-MAP Scores}
+\begin{table}[H]
+\centering
+\caption{Percent scores beside OVI-MAP Table~3.
+The OVI-MAP row is cited and was not re-run.
+The rows are not a paired comparison.}
+\label{tab:ovimap}
+\begin{tabular}{lcc}
+\toprule
+Method & mIoU & mAcc \\
+\midrule
+OVI-MAP & 17.5 & 27.6 \\
+SPEAR-3D & 30.6 & 39.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Synthetic Degradation}
+\begin{table}[H]
+\centering
+\caption{Class-agnostic AP under blur, depth noise, and frame drop.
+Blur and noise are not monotone.
+Frame drop is monotone.}
+\label{tab:robust}
+\begin{tabular}{lccc}
+\toprule
+Condition & AP & AP50 & AP25 \\
+\midrule
+Clean & 22.6 & 40.4 & 60.4 \\
+Blur 7 px & 21.2 & 38.5 & 60.9 \\
+Blur 21 px & 22.6 & 42.0 & 63.2 \\
+Blur 41 px & 21.7 & 40.7 & 59.7 \\
+Depth \(b{=}0.005\), holes 3\% & 21.9 & 40.3 & 63.2 \\
+Depth \(b{=}0.02\), holes 10\% & 22.0 & 39.9 & 63.4 \\
+Depth \(b{=}0.04\), holes 20\% & 21.5 & 38.6 & 61.7 \\
+Keep 133 frames & 19.3 & 34.8 & 54.4 \\
+Keep 100 frames & 17.0 & 32.6 & 50.0 \\
+Keep 67 frames & 13.2 & 27.6 & 42.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+At 4~m, \(\sigma\) is about 0.54, 0.66, and 0.82~mm.
+The Gaussian term is below one millimetre.
+The main change along the depth rows is the hole rate.
+
+\subsection{Segmenter and Binding}
+\begin{table}[H]
+\centering
+\caption{Differences of the rounded \(2\times 2\) cells, in percentage points.}
+\label{tab:recondiff}
+\begin{tabular}{llccc}
+\toprule
+Contrast & Meaning & \(\Delta\)AP & \(\Delta\)AP50 & \(\Delta\)AP25 \\
+\midrule
+A\(-\)B & Binding, SAM3 fixed & +2.4 & +3.0 & +1.8 \\
+D\(-\)C & Binding, CropFormer fixed & +3.2 & +3.7 & +4.4 \\
+A\(-\)D & Backbone, binding fixed & +0.7 & +0.6 & +2.6 \\
+B\(-\)C & Backbone, per-crop fixed & +1.5 & +1.3 & +5.2 \\
+A\(-\)C & Full method vs.\ OnlineAnySeg & +3.9 & +4.3 & +7.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+On AP and AP50, label binding is the larger effect when the segmenter is fixed.
+On AP25, the backbone gap under label binding (\(+2.6\)) exceeds the binding gap on SAM3 (\(+1.8\)).
+
+\section{Additional Figures}
+These two figures use the same chair example as Figure 4 of the manuscript.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.86\linewidth]{scene_graph.pdf}
+\caption{3D scene graph topology.
+The graph encodes explicit spatial relations as the substrate for structural graph matching.}
+\label{fig:s_scene}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.86\linewidth]{pred_3d.pdf}
+\caption{Final 3D spatial localization.
+The red bounding box indicates the predicted target extent in the reconstructed scene.}
+\label{fig:s_pred}
+\end{figure}
+
+\section{Robot Demonstration Video}
+\label{sec:robotvideo}
+This revision does not add a quantitative physical-robot experiment.
+The demonstration is the accompanying file spear3d\_demo.mp4.
+
+\end{document}

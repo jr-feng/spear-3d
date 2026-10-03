@@ -1,0 +1,469 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{revblue}{RGB}{0,51,140}
+\definecolor{revred}{RGB}{165,0,0}
+
+\newcommand{\revcomment}[1]{%
+  \par\vspace{0.6em}\noindent\textcolor{revblue}{\textbf{Comment.}}\ %
+  \textcolor{revblue}{#1}\par\vspace{0.4em}}
+\newcommand{\revresponse}[1]{%
+  \par\noindent\textbf{Response.}\ #1\par\vspace{0.3em}}
+\newcommand{\revchange}[1]{%
+  \par\noindent\textbf{Revision in the manuscript (marked in red).}\par
+  \noindent\textcolor{revred}{#1}\par\vspace{0.8em}}
+
+\captionsetup{font=small,labelfont=bf,skip=4pt}
+\renewcommand{\arraystretch}{1.08}
+
+\title{\textbf{Response to the Reviewers}\\[0.4em]
+\large SPEAR-3D: From Streaming Reconstruction to Explicit Reasoning---A Neuro-Symbolic Approach for 3D Visual Grounding}
+\author{}
+\date{Manuscript 26-3417}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\noindent Dear Editor and Reviewers,
+
+\medskip
+\noindent We thank you for the careful reading of manuscript 26-3417. This letter answers each comment, including the comments on grammar, notation, figures, and citations. For every comment, the red text begins with the section in which the change appears and then quotes the sentence already printed there. Those manuscript sentences are highlighted in yellow in the eight-page manuscript PDF. A sentence that appears only in the supplementary material is quoted from that file. Tables reprinted below use the cells printed in the manuscript or in the supplementary material. Where two tables print the same measurement at different decimal precision, each cell is copied from its own table.
+
+\bigskip
+\noindent\textcolor{revblue}{\large\textbf{Reviewer 1}}
+
+\subsection*{Comment on the reconstruction ablation}
+
+\revcomment{The reconstruction contribution appears to be a component swap of OnlineAnySeg: SAM3 in place of CropFormer, and label-bound text embeddings in place of per-crop CLIP features. An ablation of the OnlineAnySeg backend with SAM3 masks and per-crop CLIP features, versus the proposed label binding, is needed. It is not clear whether the AP gain comes from the 2D backbone.}
+
+\revresponse{We agree, and we thank the reviewer for asking that the two changes be separated. Manuscript Table~III crosses the segmenter with the semantic source. Arm A is the proposed system and is the same ScanNet200 operating point as manuscript Table~I, 22.6 / 40.4 / 60.4. Arm C is the cited OnlineAnySeg configuration. Supplementary Table~S10 prints the rounded differences. The manuscript states that, on AP and AP50, label binding is the larger effect when the segmenter is fixed, while on AP25 the backbone gap of \(+2.6\) exceeds the SAM3 binding gap of \(+1.8\).}
+
+\revchange{Ablation Studies, Segmenter and Semantic Binding (manuscript Table~III), and Supplementary Table~S10. ``Table~III defines the four arms on ScanNet200: A is SAM3 with label-bound CLIP, B is SAM3 with per-crop CLIP, C is CropFormer with per-crop CLIP, and D is CropFormer with label-bound CLIP. Supplementary Table~S10 lists the rounded differences: label binding is larger on AP and AP\(_{50}\) when the segmenter is fixed, while on AP\(_{25}\) the backbone gap A\(-\)D of \(+2.6\) exceeds the binding gap A\(-\)B of \(+1.8\).''}
+
+\noindent The table below repeats manuscript Table~III.
+
+\begin{table}[ht]
+\centering
+\caption{Manuscript Table~III. Class-agnostic 3D instance segmentation on ScanNet200. Arm A is the proposed system. Arm C is the cited OnlineAnySeg configuration.}
+\label{tab:recon}
+\small
+\begin{tabular}{llrrr}
+\toprule
+Arm & Configuration & AP & AP50 & AP25 \\
+\midrule
+A & SAM3 + label-bound CLIP & 22.6 & 40.4 & 60.4 \\
+B & SAM3 + per-crop CLIP & 20.1 & 37.4 & 58.7 \\
+C & CropFormer + per-crop CLIP & 18.6 & 36.1 & 53.5 \\
+D & CropFormer + label-bound CLIP & 21.8 & 39.8 & 57.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent The table below repeats Supplementary Table~S10.
+
+\begin{table}[ht]
+\centering
+\caption{Supplementary Table~S10. Differences of the rounded \(2\times 2\) cells, in percentage points.}
+\label{tab:recondiff}
+\small
+\begin{tabular}{llrrr}
+\toprule
+Contrast & Meaning & \(\Delta\)AP & \(\Delta\)AP50 & \(\Delta\)AP25 \\
+\midrule
+A\(-\)B & Binding, SAM3 fixed & +2.4 & +3.0 & +1.8 \\
+D\(-\)C & Binding, CropFormer fixed & +3.2 & +3.7 & +4.4 \\
+A\(-\)D & Backbone, binding fixed & +0.7 & +0.6 & +2.6 \\
+B\(-\)C & Backbone, per-crop fixed & +1.5 & +1.3 & +5.2 \\
+A\(-\)C & Full method vs.\ OnlineAnySeg & +3.9 & +4.3 & +7.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Comment on Acc@0.3, Acc@0.5, and the external baseline}
+
+\revcomment{Acc@0.3 and Acc@0.5 are centroid-distance thresholds in metres, whereas the ReferIt3D quantity is selection accuracy over ground-truth proposals, and Acc@\(k\) with a numeric threshold is the ScanRefer IoU convention. The grounding table also has no external baseline: every row is the proposed system with NS-Grounding toggled. At least one prior zero-shot grounding method should be run on these reconstructions. In addition, Acc@0.3 cannot exceed Acc@0.5, but GLM-5 without NS-Grounding on SR3D was reported as 52.5 / 51.9. On SR3D, Qwen3-plus with NS-Grounding is not the best of the three backbones, yet the text calls 65.9 the best result.}
+
+\revresponse{We thank the reviewer for separating quantities that the submitted table had left under one name. The revised Grounding Performance section defines MeanDist, Acc@0.3m, and Acc@0.5m as centroid distances, and T-Acc@0.25 and T-Acc@0.50 as target-instance accuracies. A nearby object is incorrect for T-Acc when another object has the higher point IoU. CSVG is evaluated on the same streaming reconstructions and is manuscript Table~II. On Acc@0.5m the highest entry is 58.8 on NR3D and 67.0 on SR3D. The SR3D Acc@0.5m of Qwen3-plus with NS-Grounding is 65.9 and is not the best SR3D result. On SR3D T-Acc, deepseek-v3.2 with NS-Grounding reaches 64.0 / 57.0, above GLM-5 with NS-Grounding at 63.2 / 53.8. Supplementary Table~S1 prints GLM-5 without NS-Grounding on SR3D as 51.9 / 52.5. Manuscript Table~II prints MeanDist 0.91 for Qwen3-plus with NS-Grounding on NR3D.}
+
+\revchange{Quantitative Analysis, Grounding Performance (manuscript Table~II), and Supplementary Table~S1. ``MeanDist is the mean centroid distance in metres over queries with a finite distance. Acc@0.3m and Acc@0.5m are the percentages of those queries within 0.3\,m and 0.5\,m, with no class match. T-Acc@0.25 and T-Acc@0.50 require the referred object to be the unique highest point-IoU match of the selected instance on the ScanNet ground-truth mesh, at IoU 0.25 and 0.50. No selection is incorrect. On Acc@0.5m the highest entry is Qwen3-plus with NS-Grounding on NR3D (58.8) and GLM-5 with NS-Grounding on SR3D (67.0). The SR3D Acc@0.5m of Qwen3-plus with NS-Grounding is 65.9 and is not the best SR3D result.'' Supplementary Table~S1 adds: ``The GLM-5 row without NS on SR3D is 51.9 / 52.5. Bold marks the highest Acc@0.5m on each dataset.''}
+
+\noindent The table below repeats manuscript Table~II.
+
+\begin{table}[ht]
+\centering
+\caption{Manuscript Table~II. Grounding comparison with CSVG on the streaming reconstructions. MeanDist is in metres.}
+\label{tab:csvg}
+\small
+\begin{tabular}{llrrrrr}
+\toprule
+Method & Data & MeanDist (m) & Acc@0.3m & Acc@0.5m & T-Acc@0.25 & T-Acc@0.50 \\
+\midrule
+CSVG & NR3D & 1.10 & 45.2 & 47.7 & 41.3 & 33.9 \\
+Qwen3-plus + NS & NR3D & 0.91 & 56.3 & 58.8 & 50.4 & 40.8 \\
+CSVG & SR3D & 1.34 & 46.1 & 47.0 & 43.8 & 37.1 \\
+GLM-5 + NS & SR3D & 0.97 & 65.6 & 67.0 & 63.2 & 53.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent The table below repeats Supplementary Table~S1.
+
+\begin{table}[ht]
+\centering
+\caption{Supplementary Table~S1, NR3D block. The highest Acc@0.5m in this block is 58.8.}
+\label{tab:ablation-nr}
+\small
+\begin{tabular}{llrrrrr}
+\toprule
+LLM & NS & MeanDist & Acc@0.3m & Acc@0.5m & T-Acc@0.25 & T-Acc@0.50 \\
+\midrule
+Qwen3-plus & no & 1.36 & 38.7 & 43.5 & 33.2 & 28.2 \\
+Qwen3-plus & yes & 0.91 & 56.3 & \textbf{58.8} & 50.4 & 40.8 \\
+deepseek-v3.2 & no & 1.33 & 42.0 & 44.6 & 30.9 & 26.0 \\
+deepseek-v3.2 & yes & 1.27 & 51.1 & 54.3 & 46.0 & 39.4 \\
+GLM-5 & no & 1.35 & 37.8 & 41.5 & 32.3 & 29.1 \\
+GLM-5 & yes & 1.18 & 50.2 & 53.4 & 44.4 & 36.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Supplementary Table~S1, SR3D block. GLM-5 without NS is 51.9 / 52.5. The highest Acc@0.5m in this block is 67.0.}
+\label{tab:ablation-sr}
+\small
+\begin{tabular}{llrrrrr}
+\toprule
+LLM & NS & MeanDist & Acc@0.3m & Acc@0.5m & T-Acc@0.25 & T-Acc@0.50 \\
+\midrule
+Qwen3-plus & no & 1.32 & 53.8 & 54.8 & 37.2 & 31.1 \\
+Qwen3-plus & yes & 0.96 & 64.7 & 65.9 & 61.4 & 52.6 \\
+deepseek-v3.2 & no & 1.24 & 53.1 & 54.1 & 36.3 & 29.7 \\
+deepseek-v3.2 & yes & 1.00 & 64.8 & 66.0 & 64.0 & 57.0 \\
+GLM-5 & no & 1.28 & 51.9 & 52.5 & 35.7 & 29.5 \\
+GLM-5 & yes & 0.97 & 65.6 & \textbf{67.0} & 63.2 & 53.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Comment on speed}
+
+\revcomment{OnlineAnySeg reports 15 FPS, while Table~I of the manuscript reports about 4. Please give the hardware, the keyframe interval, and a per-stage timing breakdown. SAM3 is heavier than CropFormer. The 10 FPS claim is not independent of the number of prompts.}
+
+\revresponse{We thank the reviewer for asking which rate the FPS column names. Manuscript Table~I now prints 15 in the OnlineAnySeg FPS cell. That 15 is OnlineAnySeg's published figure, measured on an RTX 4090, and the manuscript does not compare it with the 10.92 FPS measured on an RTX 3090. The 10.92 FPS figure is the end-to-end rate of the proposed arm, with keyframe interval 10. Supplementary Table~S3 prints 10.92 FPS for arm A and 5.32 FPS for arm C. Supplementary Table~S4 prints segmentation, fusion, and merge at 241 / 330 / 487\,ms for arm A and 1099 / 453 / 1307\,ms for arm C. Those stage times are not the end-to-end FPS, and they are not the published 15 FPS. Supplementary Table~S5 prints segmentation-frame latency rising from 311\,ms at vocabulary size 10 to 1627\,ms at vocabulary size 100. That latency is not the end-to-end 10.92 FPS. The same vocabulary measurement answers Reviewer~3's question on prompt count.}
+
+\revchange{Quantitative Analysis, Reconstruction Performance and Supplementary Measurements (manuscript Table~I). ``On an RTX 3090 with keyframe interval 10, the proposed method runs at 10.92 FPS end to end (Table~I). The 15 FPS entry for OnlineAnySeg is that paper's published figure, measured on an RTX 4090, and is not compared here with the 10.92 FPS measured on an RTX 3090.'' ``Supplementary Table~S3 reports 10.92 FPS for arm A and 5.32 FPS for arm C (Table~III). Table~S4 reports segmentation, fusion, and merge at 241/330/487\,ms for A against 1099/453/1307\,ms for C. Table~S5 reports latency rising from 311\,ms to 1627\,ms as the vocabulary grows from 10 to 100.''}
+
+\noindent The table below repeats Supplementary Table~S3.
+
+\begin{table}[ht]
+\centering
+\caption{Supplementary Table~S3. End-to-end frames per second on an RTX 3090. Arm A is SAM3 with label-bound features. Arm C is CropFormer with per-crop CLIP features.}
+\label{tab:fps}
+\small
+\begin{tabular}{lrr}
+\toprule
+Scene & Arm A (frames/s) & Arm C (frames/s) \\
+\midrule
+scene0432\_00 & 11.42 & 5.50 \\
+scene0527\_00 & 10.71 & 4.82 \\
+scene0559\_00 & 10.62 & 4.41 \\
+scene0494\_00 & 10.82 & 6.60 \\
+scene0689\_00 & 11.04 & 5.25 \\
+Mean & 10.92 & 5.32 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent The table below repeats Supplementary Table~S4.
+
+\begin{table}[ht]
+\centering
+\caption{Supplementary Table~S4. Per-stage wall time on an RTX 3090. The accompanying rates are reciprocals of those times and are not the end-to-end FPS.}
+\label{tab:stages}
+\small
+\begin{tabular}{lll}
+\toprule
+Stage & SAM3 + label-bound & CropFormer + per-crop \\
+\midrule
+Segmentation & 241\,ms/call (4.16 calls/s) & 1099\,ms/call (0.91 calls/s) \\
+Fusion & 330\,ms (3.03 frames/s) & 453\,ms (2.21 frames/s) \\
+Merge & 487\,ms (2.05 merges/s) & 1307\,ms (0.77 merges/s) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent The table below repeats Supplementary Table~S5.
+
+\begin{table}[ht]
+\centering
+\caption{Supplementary Table~S5. Segmentation-frame cost as the prompt vocabulary grows. The frame rate is not an end-to-end FPS.}
+\label{tab:vocab}
+\small
+\begin{tabular}{rrrrr}
+\toprule
+\(V\) & Latency (ms) & Frame rate & Peak memory (MB) & Mean segments \\
+\midrule
+10 & 311 & 3.22 & 16105 & 8.3 \\
+30 & 509 & 1.97 & 16098 & 11.3 \\
+50 & 762 & 1.31 & 16095 & 12.1 \\
+100 & 1627 & 0.61 & 16084 & 16.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Comment on SceneNN}
+
+\revcomment{On SceneNN the method loses to OnlineAnySeg, and the text attributes this to incomplete annotations without evidence. If the prompt vocabulary is the category inventory, missing categories are a consequence of that design.}
+
+\revresponse{We agree that the submitted text asserted incomplete annotation without a measurement. The revised Reconstruction Performance section states the loss against OnlineAnySeg and MaskClustering and points to Supplementary Table~S6. That table records the coverage of the prompt inventory: 61.3\% of ground-truth instances are in vocabulary and 38.7\% are not; \texttt{otherprops} accounts for 33.8\% of all instances; class-matched vertex coverage is 61.1\% inside the vocabulary and 0.0\% outside it. The zero out-of-vocabulary class match follows from the prompt list.}
+
+\revchange{Quantitative Analysis, Reconstruction Performance, and Supplementary Table~S6. ``On SceneNN the method is below OnlineAnySeg on AP, AP\(_{50}\), and AP\(_{25}\), and below MaskClustering on AP and AP\(_{50}\), because classes absent from the prompt list receive no class-matched credit. Supplementary Table~S6 records this coverage gap.''}
+
+\noindent The table below repeats Supplementary Table~S6.
+
+\begin{table}[ht]
+\centering
+\caption{Supplementary Table~S6. SceneNN vocabulary coverage.}
+\label{tab:scenenn}
+\small
+\begin{tabular}{lr}
+\toprule
+Quantity & Value \\
+\midrule
+In-vocabulary instances & 61.3\% \\
+Out-of-vocabulary instances & 38.7\% \\
+\texttt{otherprops} share & 33.8\% \\
+In-vocabulary recall at IoU 0.50 / 0.25 & 56.7\% / 85.1\% \\
+Out-of-vocabulary recall at IoU 0.50 / 0.25 & 37.8\% / 61.3\% \\
+Class-matched coverage, in / out & 61.1\% / 0.0\% \\
+Unlabeled vertices, mean over scenes & 28.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Comment on Equation~(9) and the search}
+
+\revcomment{Equation~(9) does not balance node and relation terms as claimed. With unnormalized sums, the effective ratio depends on the number of nodes and edges, so an equal contribution at \(\lambda_u=0.50\) does not follow. Please average each term and re-sweep \(\lambda_u\). Please also state how the injective mapping is computed, including the algorithm and the candidate-set size. Equation~(9) should carry a citation as an attributed graph-matching objective.}
+
+\revresponse{We thank the reviewer for the reading of the sum. The revised equation is the weighted geometric mean already used for the grounding tables, not an unnormalized sum and not an arithmetic mean of a node block and a relation block. At \(\lambda_u=0.50\), \(\lambda_u\) multiplies every node weight and \(1-\lambda_u\) multiplies every relation weight, and that common factor cancels. The manuscript states that the side with the larger raw weight still dominates. The mapping is beam search, not an exact quadratic assignment: beam width 160, at most 24 target candidates, at most 10 reference candidates, and the top 3 CLIP classes. Equation~(9) cites the graduated assignment paper for attributed graph matching. Supplementary Table~S2 reports \(\lambda_u\in\{0.25,0.50,0.75\}\) on NR3D with Qwen3-plus, and Acc@0.5m is highest at \(\lambda_u=0.50\). In that table the \(\lambda_u=0.50\) row prints MeanDist 0.9140 and T-Acc 50.4 / 40.8. T-Acc is not filled at 0.25 or 0.75. Manuscript Table~II prints 0.91 for the same Qwen3-plus with NS-Grounding row, and manuscript Table~IV prints 0.914 for the full scorer pool.}
+
+\revchange{Methodology, Joint Graph Matching and Ranking, and Ablation Studies, Node-Relation Weight. ``Equation~(9) is the weighted geometric mean used for the grounding tables. It is an attributed graph-matching score, written as that geometric mean rather than as an unnormalized sum. With \(\lambda_u=0.50\), \(\lambda_u\) multiplies every node weight and \(1-\lambda_u\) multiplies every relation weight. The common factor cancels, so the side with the larger raw weight still dominates. The optimal injective mapping is not computed as an exact quadratic assignment. Candidates are ranked by beam search with beam width 160, at most 24 target candidates, at most 10 reference candidates, and the top 3 CLIP classes.'' ``Supplementary Table~S2 reports \(\lambda_u\in\{0.25,0.50,0.75\}\) on NR3D with Qwen3-plus. Acc@0.5m is highest at \(\lambda_u=0.50\).''}
+
+\noindent The table below repeats Supplementary Table~S2. An en dash means that T-Acc was not recorded for that setting.
+
+\begin{table}[ht]
+\centering
+\caption{Supplementary Table~S2. Node-relation weight on NR3D with Qwen3-plus.}
+\label{tab:lambda}
+\small
+\begin{tabular}{rrrrrr}
+\toprule
+\(\lambda_u\) & MeanDist & Acc@0.3m & Acc@0.5m & T-Acc@0.25 & T-Acc@0.50 \\
+\midrule
+0.25 & 1.2550 & 48.1 & 51.6 & -- & -- \\
+0.50 & 0.9140 & 56.3 & 58.8 & 50.4 & 40.8 \\
+0.75 & 1.0840 & 53.4 & 57.8 & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Comment on undefined symbols}
+
+\revcomment{Section III-B.4 leaves \(\gamma_{xy}\), \(\rho\), \(r^{\star}\), \(a_{xy}\), \(g_z\), the scene-adaptive scales, and the numerical values of \(\tau_{\mathrm{wall}}\), \(\tau_{\mathrm{mid}}\), and \(\tau_{\mathrm{align}}\) undefined. The operators \(\mathcal{U}\), \(\Pi\), and \(\mathcal{R}\) are likewise undefined. Reviewer~3 also notes that \(\mathrm{ID}(l_k)\) is undefined.}
+
+\revresponse{We agree that these symbols were used before they were defined. Each one is now defined in the sentence next to the equation that uses it. The three thresholds are \(\tau_{\mathrm{wall}}=\max(0.12D,0.20)\), \(\tau_{\mathrm{mid}}=\max(0.18D,0.30)\), and \(\tau_{\mathrm{align}}=\max(0.10D,0.20)\), in metres, with \(D\) the XY diagonal of the room extent.}
+
+\revchange{Methodology, in the sentences that follow Eqs.~(3), (4), (5), and (7), and in Proximity and Comparative Distance, Vertical and Contact Relations, and Room-side and Between Relations. ``\(\mathrm{ID}(l_k)\) copies the text embedding of prompt \(l_k\) onto mask \(M_{t,k}\), and \(\mathbf{f}_{t,k}\) is that embedding.'' ``Each RGB-D frame is first integrated by \(\mathcal{U}\) into a 3D voxel-hashed TSDF geometry state.'' ``\(\Pi\) projects each 2D mask into the active 3D geometry.'' ``\(\mathcal{R}\) updates the instance library.'' ``Here \(r^{\star}\) is the distance of the best candidate.'' ``Proximity uses horizontal distance and an XY overlap bonus \(\gamma_{xy}\).'' ``Vertical relations combine height ordering with horizontal alignment \(a_{xy}\).'' ``Contact-sensitive relations add a vertical contact term based on the surface gap \(g_z\).'' ``With \(D\) the XY diagonal of the room extent, \(\tau_{\mathrm{wall}}=\max(0.12D,0.20)\), \(\tau_{\mathrm{mid}}=\max(0.18D,0.30)\), and \(\tau_{\mathrm{align}}=\max(0.10D,0.20)\), in metres.''}
+
+\subsection*{Comment on related positioning}
+
+\revcomment{Please position NS-Grounding with respect to ZSVG3D, CSVG, and other language-based grounders, and state what is new relative to that line of work. Please also discuss 3D scene-graph grounding. Reviewer~3 asks for the same positioning against ConceptGraphs, HOV-SG, FunGraph, and related scene-graph methods.}
+
+\revresponse{We thank both reviewers for these references. Related Work now places NS-Grounding next to methods that externalize spatial relations after parsing, and next to methods that ground language on a 3D scene graph. The match in this paper is a deterministic geometric score on the streaming reconstruction. ConceptGraphs is cited once, as the ICRA 2024 paper. The same subsection states how label binding differs from attaching semantics during mapping, and it points to Supplementary Tables~S5 and~S7.}
+
+\revchange{Related Work, Scene Graphs and Explicit Grounding. ``NS-Grounding uses the language model only to parse a referring expression into a query graph. The match itself is a deterministic geometric score on the streaming reconstruction. ZSVG3D and CSVG also externalize spatial relations after parsing. LLM-Grounder, VLM-Grounder, SeeGround, and BBQ leave more of the spatial choice to a language or vision-language model. 3DGraphLLM, KeySG, DAAAM, and ConceptGraphs ground language on 3D scene graphs. Label binding writes the prompt-text embedding onto the mask before fusion. HOV-SG and FunGraph also attach semantics during mapping, as does ConceptGraphs. Supplementary Table~S7 compares label binding with a post-hoc CLIP argmax on the same SAM3 masks. The OVI-MAP numbers are cited from that paper and are not a paired result. OpenGraph first shortens the prompt list with an open-vocabulary recognizer. This system passes the supplied vocabulary to SAM3, and Supplementary Table~S5 shows that segmentation latency grows with that vocabulary.''}
+
+\subsection*{Comment on Table~I notes and the primary metric}
+
+\revcomment{The remaining rows of Table~I appear to be transcribed from OnlineAnySeg and should be credited as such. The markers are given without a note. The abstract leads with AP25 of 60.4 while AP is 22.6. Please report AP as the primary metric.}
+
+\revresponse{We agree. The note under manuscript Table~I credits the baseline rows to OnlineAnySeg and defines the SAM3D markers. The abstract and the contribution list lead with class-agnostic AP of 22.6. AP25 of 60.4 remains in manuscript Table~I and is not the lead result.}
+
+\revchange{The note under manuscript Table~I, the Abstract, and the third contribution in the Introduction. ``Baseline rows are transcribed from OnlineAnySeg. The dagger marks raw outputs generated by SAM3D. The double dagger marks ensembled outputs, raw outputs merged with other over-segmentation results.'' ``Experimental results show that SPEAR-3D achieves 10 FPS in streaming reconstruction, reports class-agnostic 3D instance AP of 22.6 on ScanNet200 as the primary reconstruction metric, and evaluates language grounding on NR3D and SR3D with both centroid distance and target-instance accuracy.'' ``At 10 FPS on an RTX 3090, class-agnostic AP is 22.6 on ScanNet200. The highest Acc@0.5m is 58.8 on NR3D with Qwen3-plus and NS-Grounding, and 67.0 on SR3D with GLM-5 and NS-Grounding.''}
+
+\subsection*{Comment on Fig.~1}
+
+\revcomment{Fig.~1 labels OnlineAnySeg as offline, while Table~I marks it online. The distinction between streaming and online is not defined.}
+
+\revresponse{Fig.~1 no longer uses an offline label. The caption and Table~I agree that OnlineAnySeg is online. Streaming is incremental fusion of an RGB-D sequence. Online means the map is updated during the sequence. In Table~I, OnlineAnySeg is online and is not marked streaming.}
+
+\revchange{Introduction, and the caption of Fig.~1. ``We use streaming for incremental fusion of an RGB-D sequence, and online for a map that is updated while the sequence is being observed rather than reconstructed in one batch after the sequence ends. OnlineAnySeg is marked Online in Table~I. Fig.~1 uses the same term.'' The caption of Fig.~1 reads: ``OnlineAnySeg is online, matching Table~I. Streaming means incremental fusion of an RGB-D sequence. Online means the map is updated during the sequence rather than in one batch after it ends.''}
+
+\bigskip
+\noindent\textcolor{revblue}{\large\textbf{Reviewer 3}}
+
+\subsection*{Comment on scene graphs, label binding, and OVI-MAP}
+
+\revcomment{The paper constructs a geometry-derived 3D scene graph but does not compare it with recent 3D scene-graph work. Integrating a semantic category into 3D fusion is already common. Please explain how label-mediated feature binding differs from binding a category after the map is built, and compare the semantic TSDF with OVI-MAP.}
+
+\revresponse{We thank the reviewer for asking where the category enters the pipeline. The Related Work paragraph quoted under Reviewer~1 states that the match is a geometric score on the streaming reconstruction, cites ConceptGraphs once, and states that HOV-SG and FunGraph also attach semantics during mapping. Label binding writes the prompt-text embedding onto the mask before fusion. Supplementary Table~S7 compares that assignment with a post-hoc CLIP argmax on the same SAM3 masks: label-binding mIoU is 30.6 against 15.3 for post-hoc CLIP, and mAcc is 39.8 against 26.0. The label-binding row issues no category query after the map exists. Supplementary Table~S8 places 30.6 / 39.8 beside the cited OVI-MAP numbers 17.5 / 27.6. That OVI-MAP row was not re-run, and the two rows are not a paired comparison.}
+
+\revchange{Quantitative Analysis, Supplementary Measurements, and Supplementary Tables~S7 and~S8. ``Table~S7 reports label-binding mIoU 30.6 against 15.3 for post-hoc CLIP. Table~S8 places 30.6 / 39.8 beside cited OVI-MAP 17.5 / 27.6, which was not re-run.''}
+
+\noindent The table below repeats Supplementary Table~S7.
+
+\begin{table}[ht]
+\centering
+\caption{Supplementary Table~S7. Label binding and post-hoc CLIP on the same SAM3 masks.}
+\label{tab:bind}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Method & mIoU & mAcc & Queries \\
+\midrule
+Label binding & 30.6 & 39.8 & 0 \\
+Post-hoc CLIP argmax & 15.3 & 26.0 & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent The table below repeats Supplementary Table~S8.
+
+\begin{table}[ht]
+\centering
+\caption{Supplementary Table~S8. The OVI-MAP row is cited and was not re-run. The rows are not a paired comparison.}
+\label{tab:ovimap}
+\small
+\begin{tabular}{lrr}
+\toprule
+Method & mIoU & mAcc \\
+\midrule
+OVI-MAP & 17.5 & 27.6 \\
+SPEAR-3D & 30.6 & 39.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Comment on what AP measures, and on vocabulary size}
+
+\revcomment{It is not clear what the reported AP measures, and whether it is class-agnostic. The pipeline passes the full prompt vocabulary to SAM3. Please discuss the alternative of shortening that list, and report how runtime scales with vocabulary size. The 10 FPS claim is presumably not independent of the number of prompts.}
+
+\revresponse{AP is class-agnostic average precision over IoU thresholds from 0.50 to 0.95 in steps of 0.05. AP50 and AP25 are average precision at the single thresholds 0.50 and 0.25. The system passes the supplied vocabulary to SAM3. Related Work cites OpenGraph as the alternative that first shortens the prompt list. Supplementary Table~S5, reprinted above, shows segmentation-frame latency rising from 311\,ms to 1627\,ms as the vocabulary grows from 10 to 100. The end-to-end figure of 10.92 FPS is the proposed arm at the experimental vocabulary, not a rate claimed for every vocabulary size.}
+
+\revchange{Quantitative Analysis, Reconstruction Performance, and Related Work, Scene Graphs and Explicit Grounding. ``AP is class-agnostic average precision over IoU thresholds from 0.50 to 0.95 in steps of 0.05. AP\(_{50}\) and AP\(_{25}\) are average precision at IoU 0.50 and 0.25.'' ``OpenGraph first shortens the prompt list with an open-vocabulary recognizer. This system passes the supplied vocabulary to SAM3, and Supplementary Table~S5 shows that segmentation latency grows with that vocabulary.''}
+
+\subsection*{Comment on the seven relation scorers}
+
+\revcomment{Section III-B.4 introduces seven hand-crafted scorers, without a justification that this pool is sufficient and without an ablation of each scorer.}
+
+\revresponse{We thank the reviewer for asking whether each scorer contributes. The manuscript does not claim that the seven relations exhaust spatial language. Manuscript Table~IV removes one scorer at a time and then removes all seven. T-Acc and MeanDist use the grounding definitions above. The full pool is 50.4 / 40.8 / 0.914. Removing contact is the largest single drop. Removing all seven leaves 33.2 / 28.2 / 1.472. The MeanDist of this full-pool row is printed 0.914. Manuscript Table~II prints 0.91 for Qwen3-plus with NS-Grounding on NR3D.}
+
+\revchange{Ablation Studies, Relation Scorers (manuscript Table~IV). ``Table~IV leaves out one relation scorer at a time---contact, direction, side, between, vertical, rank, and near---and then leaves out all seven. \(\Delta\) is the difference from the full scorer pool after rounding. T-Acc@0.25, T-Acc@0.50, and MeanDist use the grounding definitions above.''}
+
+\noindent The table below repeats manuscript Table~IV.
+
+\begin{table}[ht]
+\centering
+\caption{Manuscript Table~IV. Leave-one-out ablation of the seven relation scorers. MeanDist is in metres.}
+\label{tab:scorers}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Configuration & T-Acc@0.25 & \(\Delta_{0.25}\) & T-Acc@0.50 & \(\Delta_{0.50}\) & MeanDist \\
+\midrule
+Full pool & 50.4 & -- & 40.8 & -- & 0.914 \\
+Without contact & 44.3 & \(-6.1\) & 37.5 & \(-3.3\) & 1.050 \\
+Without direction & 46.8 & \(-3.6\) & 38.8 & \(-2.0\) & 1.024 \\
+Without side & 47.6 & \(-2.8\) & 38.8 & \(-2.0\) & 0.922 \\
+Without between & 48.0 & \(-2.4\) & 36.4 & \(-4.4\) & 1.034 \\
+Without vertical & 48.9 & \(-1.5\) & 38.8 & \(-2.0\) & 0.997 \\
+Without rank & 48.9 & \(-1.5\) & 40.1 & \(-0.7\) & 0.968 \\
+Without near & 49.1 & \(-1.3\) & 40.2 & \(-0.6\) & 0.932 \\
+None of the seven & 33.2 & \(-17.2\) & 28.2 & \(-12.6\) & 1.472 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Comment on sensor degradation and a physical robot}
+
+\revcomment{All experiments are offline. There is no physical-robot demonstration, no evaluation under sensor noise and motion blur, and no closed-loop task that uses the grounding output.}
+
+\revresponse{We thank the reviewer for asking how the reconstruction behaves when the stream is degraded. Supplementary Table~S9 scores blur, depth noise, and frame drop with the same class-agnostic AP. The clean row is 22.6 / 40.4 / 60.4. Blur and noise are not monotone. Keeping 67 frames lowers AP to 13.2. Blur uses a line kernel of 7, 21, or 41 pixels on RGB only. Depth noise uses \(b\in\{0.005,0.02,0.04\}\) with hole rates 3\%, 10\%, and 20\%. At 4\,m, \(\sigma\) is about 0.54, 0.66, and 0.82\,mm. We do not add a closed-loop controller. The supplementary section Robot Demonstration Video states: ``The demonstration is the accompanying file spear3d\_demo.mp4.'' That video is not a new quantitative robot experiment.}
+
+\revchange{Quantitative Analysis, Supplementary Measurements; Conclusion; and the supplementary section Robot Demonstration Video. ``Table~S9 reports that blur and noise are not monotone, while keeping 67 frames lowers AP to 13.2.'' ``The experiments evaluate streaming reconstruction and language grounding. They do not include a closed-loop controller.'' The supplementary video section states: ``This revision does not add a quantitative physical-robot experiment. The demonstration is the accompanying file spear3d\_demo.mp4.''}
+
+\noindent The table below repeats Supplementary Table~S9.
+
+\begin{table}[ht]
+\centering
+\caption{Supplementary Table~S9. Class-agnostic AP under blur, depth noise, and frame drop.}
+\label{tab:robust}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Condition & AP & AP50 & AP25 \\
+\midrule
+Clean & 22.6 & 40.4 & 60.4 \\
+Blur 7 px & 21.2 & 38.5 & 60.9 \\
+Blur 21 px & 22.6 & 42.0 & 63.2 \\
+Blur 41 px & 21.7 & 40.7 & 59.7 \\
+Depth \(b{=}0.005\), holes 3\% & 21.9 & 40.3 & 63.2 \\
+Depth \(b{=}0.02\), holes 10\% & 22.0 & 39.9 & 63.4 \\
+Depth \(b{=}0.04\), holes 20\% & 21.5 & 38.6 & 61.7 \\
+Keep 133 frames & 19.3 & 34.8 & 54.4 \\
+Keep 100 frames & 17.0 & 32.6 & 50.0 \\
+Keep 67 frames & 13.2 & 27.6 & 42.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Comment on typographical errors}
+
+\revcomment{The text contains many typos and grammatical errors, including ``RGB-D streams,and'' in the Abstract, ``inference phrase'' in Section~I, ``Directional Relations.:'' on the paragraph headings, and ``recall.Additionally'' in Section~IV-C. Reviewer~1 also lists ``are method,'' ``structred,'' ``inference phrase,'' and a missing period after ``real-time streaming reconstruction.''}
+
+\revresponse{We thank both reviewers for these corrections. The listed errors are removed. The Abstract now has a space after the comma in ``RGB-D streams, and.'' Section~I says ``inference phase.'' The paragraph headings in Section~III no longer end with a period before the colon; IEEEtran supplies the colon, so the heading is ``Directional Relations'' rather than ``Directional Relations.:''. The joined ``recall.Additionally'' is gone; the SceneNN statement is the sentence quoted above. Section~III says ``structured query graph.'' Section~II ends the OnlineAnySeg sentence with a period after ``real-time streaming reconstruction.''}
+
+\revchange{Abstract; Introduction; Section~II, Real-Time 3D Instance Reconstruction; Section~III, Language to Query Graph; and the paragraph headings in Section~III. ``Our reconstruction module incrementally constructs an instance-aware 3D scene from RGB-D streams, and this streaming reconstruction stage operates at 10 FPS on an RTX 3090.'' ``Open-vocabulary systems are designed to leverage natural-language category names or task-specific textual prompts during the inference phase.'' ``An LLM parses the input expression into a structured query graph.'' ``Although OnlineAnySeg enables open-vocabulary 3D fusion, its fully decoupled pipeline introduces substantial cross-frame computational overhead, limiting its suitability for real-time streaming reconstruction.'' The paragraph heading is ``Directional Relations,'' with no period inside the heading.}
+
+\bigskip
+\noindent\textcolor{revblue}{\large\textbf{Reviewer 5}}
+
+\subsection*{Comment on inconsistent numbers and the standard grounding metric}
+
+\revcomment{In Table~II, GLM-5 without the proposed grounding module on SR3D has Acc@0.3\,=\,52.5 but Acc@0.5\,=\,51.9, which cannot occur if both are centroid distances. The claim that one model is best does not match the table. Please recheck the evaluation and all reported numbers. Please also report the standard target-instance accuracy used for NR3D and SR3D, explain any query filtering, and compare with a structured or constraint-based grounding method rather than only with direct LLM prompting. A nearby wrong object must count as incorrect.}
+
+\revresponse{We rechecked the centroid cells, and we thank the reviewer for catching the transposition. Supplementary Table~S1 now prints GLM-5 without NS-Grounding on SR3D as 51.9 / 52.5, so Acc@0.3m does not exceed Acc@0.5m. Every other centroid cell in that table satisfies the same order, and T-Acc@0.50 does not exceed T-Acc@0.25. The highest Acc@0.5m is stated separately on each dataset: 58.8 on NR3D and 67.0 on SR3D. The value 65.9 is not called the best SR3D result. CSVG is the constraint-based comparison, in manuscript Table~II, on the same reconstructions. Direct language-model selection is the ``no'' block of Supplementary Table~S1. MeanDist, Acc@0.3m, and Acc@0.5m use only queries with a finite distance. T-Acc does not use that omission: no selection is incorrect, and a nearby wrong object is incorrect when another object has the higher point IoU. On SR3D T-Acc, deepseek-v3.2 with NS-Grounding is higher than GLM-5 with NS-Grounding.}
+
+\revchange{Quantitative Analysis, Grounding Performance, and Supplementary Table~S1. The sentences are those quoted in the response to Reviewer~1 on Acc@0.3m and Acc@0.5m: the definitions of MeanDist, Acc@0.3m, Acc@0.5m, and T-Acc; ``On Acc@0.5m the highest entry is Qwen3-plus with NS-Grounding on NR3D (58.8) and GLM-5 with NS-Grounding on SR3D (67.0)''; and ``The SR3D Acc@0.5m of Qwen3-plus with NS-Grounding is 65.9 and is not the best SR3D result.'' Supplementary Table~S1 states: ``The GLM-5 row without NS on SR3D is 51.9 / 52.5.''}
+
+\noindent The corrected cells are the repeats of manuscript Table~II and Supplementary Table~S1 above.
+
+\subsection*{Comment on the between relation}
+
+\revcomment{The paper defines the query as a graph of binary edges, but \emph{between} depends jointly on one target and two reference objects. It is a ternary constraint, not two independent binary relations as drawn in Fig.~5. Please revise the formulation and make the figure, the equations, and the implementation consistent.}
+
+\revresponse{The reviewer is right that \emph{between} depends on one target and two anchors. The revised formulation scores it as one ternary factor. The score is the product of midpoint proximity, distance balance, and in-plane alignment, \(s_{\mathrm{between}}(o_u;o_{v_1},o_{v_2})=s_{\mathrm{mid}}\,s_{\mathrm{bal}}\,s_{\mathrm{align}}\). Fig.~5 draws one \emph{between} factor on the candidate and the two anchors, not two binary edges. The leave-one-out row in manuscript Table~IV removes that factor and lowers T-Acc@0.25 by 2.4 points and T-Acc@0.50 by 4.4 points.}
+
+\revchange{Methodology, Room-side and Between Relations; the caption of Fig.~5; and Qualitative Analysis. ``For the ternary \emph{between} relation, let \(c_u,c_{v_1},c_{v_2}\) denote object centers.'' The caption of Fig.~5 reads: ``One \emph{between} factor on the candidate target and two anchors. The factor is ternary. It is not two independent binary relations.'' ``For the instruction `choose the chair that is in the center of the plant and the radiator,' Fig.~5 shows one ternary between factor on the chair and the two anchors.''}
+
+\subsection*{Comment on citations}
+
+\revcomment{Several methods and models are uncited, Ref.~[23] is malformed, and Refs.~[3], [10], and [17] now have published versions. Reviewer~1 asks for citations of FCGF, voxel-hashed TSDF, TSDF fusion, Qwen3-plus, and deepseek-v3.2, and notes that GLM-5 should not be cited as the 2022 GLM pretraining paper.}
+
+\revresponse{The bibliography now uses the published versions of the three papers named in the review. EmbodiedSAM is cited as ICLR 2025. ConceptFusion is cited as RSS 2023. LLaVA-3D is cited as ICCV 2025, pages 4295--4305. ConceptGraphs is cited once, as the ICRA 2024 paper, and is not also cited as the arXiv preprint. FCGF, voxel-hashed TSDF, and volumetric TSDF fusion are cited where they are used. Qwen3-plus is cited from the Qwen3 technical report at its first use in the contribution list. deepseek-v3.2 is cited once, in Grounding Performance. GLM-5 is not cited as the 2022 GLM pretraining paper. Equation~(9) cites the graduated assignment paper, as quoted under Reviewer~1.}
+
+\revchange{Related Work and the contribution list in the Introduction; Methodology, 3D Scene Instance Reconstruction Backend; and Quantitative Analysis, Grounding Performance. ``Closed-set online systems such as EmbodiedSAM achieve real-time 3D instance construction, yet they are constrained by the semantic categories encountered during training.'' ``Subsequent works explored open-set multimodal scene construction, but often lacked real-time instance-level fusion.'' ``Many recent pipelines attempt to inject 3D awareness into LLMs for spatial reasoning.'' ``3DGraphLLM, KeySG, DAAAM, and ConceptGraphs ground language on 3D scene graphs.'' ``HOV-SG and FunGraph also attach semantics during mapping, as does ConceptGraphs.'' ``Each RGB-D frame is first integrated by \(\mathcal{U}\) into a 3D voxel-hashed TSDF.'' ``\(S^{\mathrm{geo}}_{kj}\) is the geometric similarity computed from FCGF descriptors.'' ``The highest Acc@0.5m is 58.8 on NR3D with Qwen3-plus and NS-Grounding, and 67.0 on SR3D with GLM-5 and NS-Grounding.'' ``On SR3D T-Acc, deepseek-v3.2 with NS-Grounding reaches 64.0 / 57.0, above GLM-5 with NS-Grounding at 63.2 / 53.8.''}
+
+\bigskip
+\noindent We thank the reviewers again. The yellow highlighting in the manuscript marks the sentences quoted in red above.
+
+\end{document}

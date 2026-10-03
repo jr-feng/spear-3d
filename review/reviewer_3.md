@@ -21,22 +21,34 @@
 
 > 把语义类别集成进 3D 实例建图/融合已是常见做法。请具体解释 "label-mediated feature binding" 与这些方法的区别（不能只是帧率更高），最好有对比；语义 TSDF 建图还应与**OVI-MAP [7]** 对比（问题密切相关）。
 
-**回应**：
-- 写作：解释 label binding 机制差异——用类别文本嵌入作为**融合相似度特征**（影响实例合并决策），而非仅贴语义标签；与 ConceptGraphs/HOV-SG/FunGraph 的语义建图（通常事后关联 2D 开放词汇特征）对比
-- **E7（OVI-MAP 对比）**：用受控语义绑定消融 + 机制对照，替代直接的 mIoU 并排（口径不同，见下）
+**回应**：机制表照旧。定量必须有一行 OVI-MAP 自己的数字，否则没有回应 “compared with OVI-MAP”。这一行只能引用他们 Table 3，不能写成我们复现的，也不能写成我们更高。
 
-**语义绑定消融（同 SAM3 实例 mask、同 CLIP backbone、同 OVI-MAP 协议 eval_per_class_IoU，ScanNet200）**
+OVI-MAP 原文 Table 3，ScanNet，18 场景，每场景 200 帧，ScanNet200：mIoU 17.5，mAcc 27.6，AP25 23.4，AP50 15.7。Table 4 里 ScanNet 的 View Coverage 查询次数 AQ 是 17.6 次/实例。不要写 8.6（那是另一张表的 AP_all）。
 
-| 语义绑定方式 | mIoU | mAcc | VLM 查询/实例 |
+我们在同一指标函数 `eval_per_class_IoU` 上、30 场景、200 帧 label-bound（`e5_out_200_dense`）是 mIoU 0.3057、mAcc 0.3982，写成百分数就是 30.57 / 39.82。场景集、分割器和语义来源都不同。
+
+| 方法 | 数字从哪来 | 场景 | 语义从哪来 | mIoU | mAcc |
+|---|---|---|---|---:|---:|
+| OVI-MAP | 原文 Table 3，未复现 | 18 × 200 帧 | 无类别实例建完后，SigLIP 对选中视角 | 17.5 | 27.6 |
+| SPEAR-3D | 本次 `eval_per_class_IoU` | 30 × 200 帧 | prompt 产生 mask 时绑定类名 | 30.57 | 39.82 |
+
+表 9 仍然只比较我们自己的两种赋值（0.2925 / 0.3766 对 0.1532 / 0.2596，查询 0 对 1），不要把 17.6 和 1 写进同一个格子。
+
+**Response (EN):** We thank the reviewer for pressing us to separate label-mediated feature binding from the frame rate, and to compare the semantic map with OVI-MAP.
+
+The category in SPEAR-3D is the prompt that produces the mask. Its CLIP text embedding is bound to that mask before cross-frame association (Eq. 3) and is the semantic term in the association score (Eq. 6). ConceptGraphs, HOV-SG, and FunGraph also carry semantics into the map, but the feature they fuse is computed from the observation and then stored on the instance. OVI-MAP first builds a class-agnostic instance map and writes semantics afterwards from selected views. Our feature is fixed by the prompt, is available when the mask is created, and is the vector the associator matches.
+
+On class-agnostic instance AP (IoU 0.5:0.95), with the segmenter held fixed, replacing the per-crop CLIP feature with the bound prompt embedding changes the map: SAM3 reaches AP 22.50 and AP50 40.42 against 20.05 and 37.36; CropFormer reaches 21.82 and 39.82 against 18.60 and 36.10. On the same SAM3 instances, writing the category at binding time gives mIoU 0.2925 and mAcc 0.3766 with no further query, against 0.1532 and 0.2596 for one CLIP argmax per instance.
+
+For OVI-MAP itself we report the number published in their Table 3, which we did not re-run: on 18 ScanNet scenes, 200 frames each, ScanNet200 labels, mIoU 17.5 and mAcc 27.6. Their Table 4 lists 17.6 view queries per instance on ScanNet. Under their eval_per_class_IoU, our label-bound map on 30 scenes and 200 frames gives mIoU 30.57 and mAcc 39.82. These rows use different scene sets, different segmenters, and different semantic sources, so we do not read the gap as a paired improvement. The comparison is that their published semantic map is built by post-hoc view queries, while ours binds the prompt embedding before association and makes no further query.
+
+机制表（无实验数字，放回复或 Related Work）：
+
+| 方法 | 类别何时确定 | 类别特征是否进入跨帧关联 | 地图建成后是否还要查询 |
 |---|---|---|---|
-| label-mediated（ours） | 0.27* | 0.32* | 0 |
-| post-hoc VLM assignment（OVI-MAP-style） | 0.12* | 0.17* | 53* |
-
-- *单场景 scene0025_00 冒烟值；最终表填 30 场景全量均值（30 场景 label-bound arm A 已跑：mIoU 0.3000 / mAcc 0.3915）。
-- **机制对照**：OVI-MAP 为 class-agnostic（CropFormer 实体）+ 重建完成后事后挑视角向 VLM 查询投票聚合（其 AQ 列 ≈8.6 次查询/实例）；我们是 SAM3 文本条件掩码 + 2D 帧上标签与 mask 共同产生、随 TSDF 融合累积，每实例 VLM 查询 = 0。
-- 因 OVI-MAP 的开放词表 class-agnostic 设定与我们的 prompt-conditioned 设定口径不同，**不并排 mIoU 绝对值**；以本受控消融（同实例/同 CLIP/同协议，只换绑定方式）作为定量证据。
-
-**Response (EN):** We will explain the mechanism precisely: label-mediated binding uses the category text embedding as a **fusion-similarity feature** that participates in instance-merge decisions, not merely as a semantic tag attached after the fact. In our pipeline the label and the mask are produced together in 2D by the same text-conditioned segmenter, and the label's text embedding is bound to the mask *before* TSDF fusion; as a result, semantic evidence accumulates across views during fusion and each instance ends up with a single, consistent, multi-view-averaged semantic feature that also steers whether two fragments merge. This contrasts with ConceptGraphs/HOV-SG/FunGraph, which typically associate open-vocabulary 2D features with the instance *after* reconstruction. For the OVI-MAP comparison we add a controlled semantic-binding ablation (identical SAM3 masks, same CLIP backbone, same OVI-MAP eval_per_class_IoU protocol): label-mediated binding attains mIoU 0.27 / mAcc 0.32 with 0 post-hoc VLM queries per instance, versus 0.12 / 0.17 with ~53 queries for post-hoc VLM assignment (single-scene smoke values; the 30-scene label-bound arm A reaches mIoU 0.3000 / mAcc 0.3915). *Why:* post-hoc assignment must re-project selected views, query a VLM per view, and aggregate by voting — the view selection is noisy and the per-view answers disagree, so it is both more expensive (~53 queries/instance) and less accurate. Because OVI-MAP's open-vocabulary class-agnostic setting differs from our prompt-conditioned setting, we do not place the mIoU absolute values side by side and instead report this controlled ablation as the quantitative evidence, plus the mechanism comparison table as the qualitative evidence.
+| ConceptGraphs, HOV-SG, FunGraph | 观测上提取开放词表特征，再写到实例上 | 融合的是该观测特征，不是产生 mask 的 prompt | 要，在已有地图上关联或描述 |
+| OVI-MAP | 先建与类别无关的实例图，再对选中视角赋值 | 语义在建图之后写入 | 要，按视角查询后再聚合 |
+| SPEAR-3D | prompt 产生 mask 的同时，其 CLIP 文本向量按 Eq. (3) 绑上 | 是。Eq. (6) 的 A(f_t,k, f_j) 用的就是这个向量 | 否，每实例 0 次 |
 
 ## ③ ScanNet AP 口径不清
 

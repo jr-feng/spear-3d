@@ -166,16 +166,31 @@ def build_scene_meshes_with_labels(npz_path, gt_txt, gt_ply, recon_ply, out_dir,
             ids.append(cid if cid in OVI_VALID else -1)
         ids = np.array(ids, dtype=np.int32)
     else:  # arm B: post-hoc argmax over CLIP text embeddings
-        feats_gt = np.stack([v["sem_feature"] for v in pred_info_gt.values()], axis=0) \
-            if sem_feats is not None else None
-        if feats_gt is not None and feats_gt.shape[0] == len(cls_names):
-            # normalize defensively (should already be L2 unit norm)
+        # Alignment drops instances, so score the survivors, not the raw npz count.
+        feat_rows, name_rows = [], []
+        for inst in pred_info_gt.values():
+            feat = inst.get("sem_feature")
+            if feat is None:
+                feat_rows = None
+                break
+            feat_rows.append(np.asarray(feat, dtype=np.float32))
+            name_rows.append(inst.get("class_name") or "")
+        if feat_rows:
+            feats_gt = np.stack(feat_rows, axis=0)
             fn = np.linalg.norm(feats_gt, axis=1, keepdims=True)
             feats_gt = feats_gt / np.maximum(fn, 1e-9)
-            ids, stats = posthoc_labels(feats_gt, text_feats, cls_names)
+            tn = np.linalg.norm(text_feats, axis=1, keepdims=True)
+            text_feats = text_feats / np.maximum(tn, 1e-9)
+            ids, stats = posthoc_labels(feats_gt, text_feats, name_rows)
+            agree = 0
+            for name, cid in zip(name_rows, ids):
+                bound = OVI_NAME2ID.get(_norm_label(name), -1)
+                if bound != -1 and int(cid) == int(bound):
+                    agree += 1
+            stats["name_agree"] = agree / float(len(name_rows))
         else:
             ids = np.full(len(pred_info_gt), -1, dtype=np.int32)
-            stats = {"queries": 0}
+            stats = {"queries": 0, "name_agree": 0.0, "mean_max_sim": 0.0}
 
     pred_sem = np.zeros(V, dtype=np.int32)
     unmatched = 0
@@ -220,6 +235,10 @@ def main():
     cfg_gt, cfg_pred = [], []
     tot_queries = 0
     tot_unmatched = 0
+    agree_num = 0.0
+    agree_den = 0
+    sim_sum = 0.0
+    sim_den = 0
     for seq in scenes:
         npz = os.path.join(args.pred_root, seq, "ckpt_final.npz")
         ply = os.path.join(args.pred_root, seq, "final.ply")
@@ -239,10 +258,20 @@ def main():
         cfg_pred.append({"sem_mesh_f": pf, "inst_mesh_f": pf, "res_folder": out_dir})
         tot_unmatched += unmatched
         if stats:
-            tot_queries += int(stats.get("queries", 0))
+            q = int(stats.get("queries", 0))
+            tot_queries += q
+            if q and "name_agree" in stats:
+                agree_num += float(stats["name_agree"]) * q
+                agree_den += q
+            if q and "mean_max_sim" in stats:
+                sim_sum += float(stats["mean_max_sim"]) * q
+                sim_den += q
 
+    name_agree = (agree_num / agree_den) if agree_den else 0.0
+    mean_max_sim = (sim_sum / sim_den) if sim_den else 0.0
     print(f"\n=== arm {args.arm} ({args.pred_root}): {len(cfg_gt)} scenes | "
-          f"post-hoc queries={tot_queries} | unmatched instances={tot_unmatched} ===")
+          f"post-hoc queries={tot_queries} | unmatched instances={tot_unmatched} | "
+          f"name_agree={name_agree:.4f} | mean_max_sim={mean_max_sim:.4f} ===")
     if cfg_gt:
         valid_ids = [0] + OVI_VALID
         labels = ["background"] + OVI_LABELS
